@@ -49,7 +49,7 @@ services:
       interval: 1m
       timeout: 3s
   mariadb:
-    image: arm64v8/mariadb:latest
+    image: yobasystems/alpine-mariadb:latest
     container_name: mariadb
     restart: unless-stopped
     security_opt:
