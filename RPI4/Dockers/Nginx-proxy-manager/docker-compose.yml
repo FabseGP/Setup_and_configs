@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   app:
-    container_name: Nginx-Proxy-Manager
+    container_name: Nginx-proxy-manager
     image: 'jc21/nginx-proxy-manager:latest'
     restart: unless-stopped
     ports:
