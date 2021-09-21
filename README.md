@@ -5,11 +5,7 @@
 <Br>
 <h1>About this repo! 😎</h1>
 
-- Scripts for installing Alpine Linux for RPI4, inkluding swap-space, persistent storage, networking, users and locals
-- Installing own list of packages + ZSH with PowerLevel10k-theme
-- Restoring KDE Plasma settings + Sway-config from backup
-- Installing FireFox-theme
-- Installing Docker-containers
+- Confidential data here
   
 
 <Br>
