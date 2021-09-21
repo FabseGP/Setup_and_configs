@@ -8,7 +8,7 @@ services:
       TZ: "Europe/Copenhagen"
       WATCHTOWER_CLEANUP: "true"
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/podman/podman.sock:/var/run/docker.sock
     healthcheck:
       test: ["CMD", "/bin/check-health"]
       interval: 1m
