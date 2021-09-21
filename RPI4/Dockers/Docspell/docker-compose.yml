@@ -52,9 +52,9 @@ services:
     volumes:
       - docspell-postgres_data:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_USER=dbuser
-      - POSTGRES_PASSWORD=dbpass
-      - POSTGRES_DB=dbname
+      - POSTGRES_USER=docspell_user
+      - POSTGRES_PASSWORD=Doc8363db928SpElL
+      - POSTGRES_DB=db_docspell
   solr:
     image: solr:latest
     container_name: Docspell-solr
@@ -77,4 +77,3 @@ networks:
   default:
     external:
       name: pacman
-      
