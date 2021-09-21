@@ -5,7 +5,8 @@
 <Br>
 <h1>About this repo! 😎</h1>
 
-- Confidential data here
+- Setup for both RPI4 and laptop
+- Installs packages and configures specific services
   
 
 <Br>
