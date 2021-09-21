@@ -1,0 +1,24 @@
+version: "3.8"
+services:
+  dashy:
+    image: lissy93/dashy:latest
+    container_name: Dashy
+    volumes:
+      - ./config/fabse_conf.yml:/app/public/conf.yml
+    ports:
+      - 4000:80
+    # Set any environmental variables
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    # Configure healthchecks
+    healthcheck:
+      test: ['CMD', 'node', '/app/services/healthcheck']
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+networks:
+  default:
+    external:
+      name: pacman
