@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   torrent:
-    container_name: Exotorrent
+    container_name: Exatorrent
     image: ghcr.io/varbhat/exatorrent:latest
     restart: unless-stopped
     volumes:
