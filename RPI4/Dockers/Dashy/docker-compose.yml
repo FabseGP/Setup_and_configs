@@ -1,12 +1,12 @@
 version: "3.8"
 services:
   dashy:
-    image: lissy93/dashy:latest
+    image: lissy93/dashy:arm64v8
     container_name: Dashy
     volumes:
       - ./config/fabse_conf.yml:/app/public/conf.yml
     ports:
-      - 4000:80
+      - 7632:7632
     # Set any environmental variables
     environment:
       - NODE_ENV=production
