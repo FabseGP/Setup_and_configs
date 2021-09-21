@@ -7,8 +7,8 @@ services:
     ports:
       - 18365:8080
     volumes:
-      - ./data:/data
-      - ./config:/config
+      - "/media/SEAGATE/FABSE_GATE:/data"
+      - "./config:/config"
     environment:
       - FB_BASEURL=/filebrowser
     restart: unless-stopped
