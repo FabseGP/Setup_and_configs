@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  uptime-kuma:
+    container_name: Uptime-kuma
+    image: louislam/uptime-kuma
+    restart: unless-stopped
+    volumes:
+      - ./uptime-kuma:/app/data
+    ports:
+      - 4387:3001
+    healthcheck:
+      test: ["CMD", "/bin/check-health"]
+      interval: 1m
+      timeout: 3s
+networks:
+  default:
+    external:
+      name: pacman
