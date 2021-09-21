@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  filebrowser:
+    image: hurlenko/filebrowser
+    container_name: Filebrowser
+    user: "${UID}:${GID}"
+    ports:
+      - 18365:8080
+    volumes:
+      - ./data:/data
+      - ./config:/config
+    environment:
+      - FB_BASEURL=/filebrowser
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "/bin/check-health"]
+      interval: 1m
+      timeout: 3s
+networks:
+  default:
+    external:
+      name: pacman
