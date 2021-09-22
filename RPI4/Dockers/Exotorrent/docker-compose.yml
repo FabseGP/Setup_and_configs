@@ -10,7 +10,7 @@ services:
       - 5000:5000
       - 42069:42069
     environment: 
-      - admin="Fabseman"
+      - admin="adminuser"
       - passw="37tb7LTtXNYEWG1cuMz18Fo1lNUZXLl4ZA6lwHgJDCUmaXv6Ub1"
     healthcheck:
       test: ["CMD", "/bin/check-health"]
