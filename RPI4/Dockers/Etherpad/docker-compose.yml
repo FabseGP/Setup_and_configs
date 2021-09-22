@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   web:
-    image: etherpad/etherpad
+    image: fabsepi/etherpad
     depends_on:
       - mydb
     ports:
@@ -13,9 +13,18 @@ services:
       - DB_NAME=postgres_ether
       - DB_USER=Etherpad_fabse
       - DB_PASS=Pos543EtHeR92823
+     healthcheck:
+      test: ["CMD", "/bin/check-health"]
+      interval: 1m
+      timeout: 3s
   mydb:
     image: postgres:latest
     environment:
       - POSTGRES_DB=postgres_ether
       - POSTGRES_PASSWORD=Pos543EtHeR92823
       - POSTGRES_USER=Etherpad_fabse
+networks:
+  default:
+    external:
+      name: pacman
+      
