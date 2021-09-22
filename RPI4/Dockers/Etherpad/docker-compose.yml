@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  web:
+    image: etherpad/etherpad
+    depends_on:
+      - mydb
+    ports:
+      - "9001:9001"
+    environment:
+      - DB_TYPE=postgres
+      - DB_HOST=mydb
+      - DB_PORT=8321
+      - DB_NAME=postgres_ether
+      - DB_USER=Etherpad_fabse
+      - DB_PASS=Pos543EtHeR92823
+  mydb:
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=postgres_ether
+      - POSTGRES_PASSWORD=Pos543EtHeR92823
+      - POSTGRES_USER=Etherpad_fabse
