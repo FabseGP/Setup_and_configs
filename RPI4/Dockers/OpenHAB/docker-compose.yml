@@ -15,7 +15,7 @@ services:
       OPENHAB_HTTP_PORT: "8080"
       OPENHAB_HTTPS_PORT: "8443"
       EXTRA_JAVA_OPTS: "-Duser.timezone=Europe/Copenhagen"
-     healthcheck:
+    healthcheck:
       test: ["CMD", "/bin/check-health"]
       interval: 1m
       timeout: 3s
