@@ -175,8 +175,8 @@
   "dbType": "${DB_TYPE:mysql}",
   "dbSettings" : {
     "user":     "${DB_USER:etherpad_fabsepi}",
-    "port":     "${DB_PORT:/var/run/mysqld/mysqld.sock}",
-    "password": "${DB_PASS:MySEth72629&""&PadQL92}",
+    "port":     "${DB_PORT:7621}",
+    "password": "${DB_PASS:MySEth7262928shs}",
     "database": "${DB_NAME:etherpad_lite_db}",
     "charset":  "${DB_CHARSET:utf8mb4}"
  }
