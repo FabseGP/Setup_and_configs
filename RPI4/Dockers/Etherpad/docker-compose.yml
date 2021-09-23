@@ -15,10 +15,6 @@ services:
       - DB_MYSQL_NAME=etherpad_lite_db
       - DB_MYSQL_USER=etherpad_fabsepi
       - DB_MYSQL_PASS=MySEth7262928shs
-     healthcheck:
-      test: ["CMD", "/bin/check-health"]
-      interval: 1m
-      timeout: 3s
   mydb:
     image: yobasystems/alpine-mariadb:latest
     restart: unless-stopped
