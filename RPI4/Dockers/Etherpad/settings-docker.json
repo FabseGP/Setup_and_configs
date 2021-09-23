@@ -1,4 +1,3 @@
-
 /*
  * This file must be valid JSON. But comments are allowed
  *
@@ -173,23 +172,28 @@
    * https://www.npmjs.com/package/ueberdb2
    */
 
-  "dbType": "${DB_TYPE:dirty}",
-  "dbSettings": {
-    "host":     "${DB_HOST:undefined}",
-    "port":     "${DB_PORT:undefined}",
-    "database": "${DB_NAME:undefined}",
-    "user":     "${DB_USER:undefined}",
-    "password": "${DB_PASS:undefined}",
-    "charset":  "${DB_CHARSET:undefined}",
-    "filename": "${DB_FILENAME:var/dirty.db}",
-    "collection": "${DB_COLLECTION:undefined}",
-    "url":      "${DB_URL:undefined}"
-  },
+  "dbType": "${DB_TYPE:mysql}",
+  "dbSettings" : {
+    "user":     "${DB_USER:etherpad_fabsepi}",
+    "port":     "${DB_PORT:/var/run/mysqld/mysqld.sock}",
+    "password": "${DB_PASS:MySEth72629&""&PadQL92}",
+    "database": "${DB_NAME:etherpad_lite_db}",
+    "charset":  "${DB_CHARSET:utf8mb4}"
+ }
+
+  /*
+   * Image uploading
+   */
+
+   "ep_image_upload": {
+    "fileTypes": ["jpeg", "jpg", "bmp", "gif", "png"],
+    "maxFileSize": 5000000
+   }
 
   /*
    * The default text of a pad
    */
-  "defaultPadText" : "${DEFAULT_PAD_TEXT:Welcome to Etherpad by Fabse Inc.!\n\nThis pad text is synchronized as you type, so that everyone viewing this page sees the same text.}",
+  "defaultPadText" : "${DEFAULT_PAD_TEXT:Welcome to Etherpad by Fabse Inc.!\n\nThis pad text is synchronized as you type, so that everyone viewing this page sees the same text - yaaay!}",
 
   /*
    * Default Pad behavior.
@@ -288,7 +292,7 @@
    * LibreOffice can be used in lieu of Abiword to export pads.
    * Setting it to null disables LibreOffice exporting.
    */
-  "soffice": "${SOFFICE:null}",
+  "soffice": "${SOFFICE:/usr/bin/soffice}",
 
   /*
    * Path to the Tidy executable.
@@ -519,7 +523,7 @@
    * Toolbar buttons configuration.
    *
    * Uncomment to customize.
-   */
+   */f
 
   /*
   "toolbar": {
@@ -563,45 +567,17 @@
   "logconfig" :
     { "appenders": [
         { "type": "console"
-        //, "category": "access"// only logs pad access
         }
 
-      /*
       , { "type": "file"
       , "filename": "your-log-file-here.log"
       , "maxLogSize": 1024
       , "backups": 3 // how many log files there're gonna be at max
-      //, "category": "test" // only log a specific category
         }
-      */
 
-      /*
       , { "type": "logLevelFilter"
         , "level": "warn" // filters out all log messages that have a lower level than "error"
-        , "appender":
-          {  Use whatever appender you want here  }
         }
-      */
-
-      /*
-      , { "type": "logLevelFilter"
-        , "level": "error" // filters out all log messages that have a lower level than "error"
-        , "appender":
-          { "type": "smtp"
-          , "subject": "An error occurred in your EPL instance!"
-          , "recipients": "bar@blurdybloop.com, baz@blurdybloop.com"
-          , "sendInterval": 300 // 60 * 5 = 5 minutes -- will buffer log messages; set to 0 to send a mail for every message
-          , "transport": "SMTP", "SMTP": { // see https://github.com/andris9/Nodemailer#possible-transport-methods
-              "host": "smtp.example.com", "port": 465,
-              "secureConnection": true,
-              "auth": {
-                  "user": "foo@example.com",
-                  "pass": "bar_foo"
-              }
-            }
-          }
-        }
-      */
 
       ]
     }, // logconfig
@@ -609,3 +585,10 @@
   /* Override any strings found in locale directories */
   "customLocaleStrings": {}
 }
+
+
+  /*
+   * Plugins installed
+   *
+   * ep_align, ep_font_size, ep_font_color, ep_comments_page, ep_headings2, ep_table_of_contents, ep_set_title_on_pad, ep_hash_auth, ep_who_did_what, ep_what_have_i_missed, ep_offline_edit, ep_image_upload
+   */
