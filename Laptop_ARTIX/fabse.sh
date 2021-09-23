@@ -14,19 +14,10 @@
 
   sudo cp /home/fabse/Konfiguration/Scripts/Installation/Config/pacman.conf /etc/pacman.conf
 
-  sudo pacman -S terminator nautilus git-lfs kdialog spellcheck i3status-rust fzf btrfs-progs git curl wget gammastep tlp-runit foliate neovim zsh zsh-autosuggestions zsh-syntax-highlighting bashtop spectacle zathura zathura-pdf-poppler pipewire pipewire-alsa pipewire-pulse easyeffects pavucontrol sway swaylock arduino arduino-avr-core openshot mousepad wine wine-mono wine-gecko kicad-library kicad-library-3d links gnome-sudoku gnome-mahjongg gnome-calculator cups-runit dolphin dolphin-plugins qutebrowser geogebra kalzium step neofetch gthumb unrar unzip bc lz4 texlive-most atom libreoffice-fresh ark sddm-runit nodejs rclone syncthing-runit discord wayland gimp plasma ffmpegthumbs kdegraphics-thumbnailers linux-firmware alsa-utils networkmanager-runit alacritty stlink rsync asp lutris qemu virt-manager libvirt libvirt-python virt-install xdg-desktop-portal-kde xdg-desktop-portal-wlr pipewire-media-session gnuplot python3 realtime-privileges libva-intel-driver brightnessctl wl-clipboard ld-lsb lsd imv freecad artools iso-profiles aisleriot bsd-games vlc ufw brave obs-studio firefox kicad libpipewire02 polkit-gnome waybar moc artix-archlinux-support fcron-runit steam mypaint slurp grim android-tools qemu-user-static figlet
-
+sudo pacman -S terminator nautilus i3status-rust fzf curl wget gammastep tlp-runit foliate neovim zsh zsh-autosuggestions zsh-syntax-highlighting bashtop spectacle zathura zathura-pdf-poppler pipewire pipewire-alsa pipewire-pulse easyeffects pavucontrol sway swaylock arduino arduino-avr-core openshot mousepad wine wine-mono wine-gecko kicad-library kicad-library-3d links gnome-sudoku gnome-mahjongg gnome-calculator cups-runit dolphin dolphin-plugins qutebrowser geogebra kalzium step neofetch gthumb unrar unzip texlive-most atom libreoffice-fresh ark sddm-runit nodejs rclone syncthing-runit discord wayland gimp plasma ffmpegthumbs kdegraphics-thumbnailers linux-firmware alsa-utils networkmanager-runit alacritty stlink rsync asp lutris qemu virt-manager libvirt libvirt-python virt-install xdg-desktop-portal-kde xdg-desktop-portal-wlr pipewire-media-session gnuplot python3 realtime-privileges libva-intel-driver brightnessctl wl-clipboard ld-lsb lsd imv freecad artools iso-profiles aisleriot bsd-games vlc ufw brave obs-studio firefox kicad libpipewire02 polkit-gnome waybar moc artix-archlinux-support fcron-runit steam mypaint slurp grim android-tools qemu-user-static figlet shellcheck kdialog bitwarden
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # yay-installation
-
-  cd /opt || return
-  sudo git clone https://aur.archlinux.org/yay-git.git
-  sudo chown -R fabse:wheel ./yay-git
-  cd yay-git || return
-  makepkg -si
-
-  cd /home/fabse || return
 
   sudo cp /home/fabse/Konfiguration/Scripts/Installation/Config/makepkg.conf /etc/makepkg.conf
 
@@ -34,7 +25,6 @@
 
 # Files for stm32x
 
-  xdg-open https://www.st.com/en/development-tools/stm32cubeprog.html
   xdg-open https://www.st.com/en/development-tools/stm32cubeide.html
   xdg-open https://www.st.com/en/development-tools/stm32cubemx.html
 
@@ -44,8 +34,7 @@
 
 # Installation of packages from AUR
 
-  yay -S spicetify-cli spotify stm32cubemx stm32flash bastet cbonsai stm32cubeprog stm32cubeide openrgb osp-tracker balena-etcher bitwarden-bin onlyoffice-bin standardnotes-bin toilet
-
+yay -S spicetify-cli spotify stm32cubemx stm32flash bastet cbonsai stm32cubemonitor stm32cubeide stm32cubemx openrgb osp-tracker balena-etcher onlyoffice-bin standardnotes-bin toilet
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # ZSH-theme + fonts
@@ -96,15 +85,8 @@
 # Maple + chemsketch
 
   xdg-open https://www.acdlabs.com/resources/freeware/chemsketch/download.php
-  xdg-open https://portfolio.otg.dk/otgnet/adm/restr/portfolio_v2/swdl.asp?sw=\Linux\Maple\Maple2020\Software\Maple2020.0LinuxX64Installer.run
-  xdg-open https://portfolio.otg.dk/otgnet/adm/restr/portfolio_v2/swdl.asp?sw=\Linux\Maple\Maple2020\Gympakken\Maple2020LinuxX64GYMUpgrade.run
-  xdg-open https://portfolio.otg.dk/otgnet/adm/restr/portfolio_v2/swdl.asp?sw=\Linux\Maple\Maple2020\Software\Kode2020.txt
 
   read -rp "Are you ready again? Type anything for yes: " Science_ready
-
-  chmod u+x Hentet/*
-  ./Hentet/Maple2020.0LinuxX64Installer.run
-  ./Hentet/Maple2020LinuxX64GYMUpgrade.run
 
   unzip /home/fabse/Hentet/ACDLabs202021_ChemSketchFree_Install.zip
   wine /home/fabse/Hentet/ACDLabs202021_ChemSketchFree_Install/setup.exe
@@ -113,8 +95,6 @@
 
 # Pulseeffects-presets + pipewire-config
   
-  bash -c "$(curl -fsSL https://raw.githubusercontent.com/JackHack96/PulseEffects-Presets/master/install.sh)"
-
   sudo cp /home/fabse/Konfiguration/Scripts/Installation/Config/pipewire.conf /etc/pipewire.conf
 
 #----------------------------------------------------------------------------------------------------------------------------------
