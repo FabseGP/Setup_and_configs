@@ -29,7 +29,7 @@ ARG INSTALL_ABIWORD=
 #
 # EXAMPLE:
 #   INSTALL_LIBREOFFICE=true
-ARG INSTALL_SOFFICE=
+ARG INSTALL_SOFFICE=true
 
 # By default, Etherpad container is built and run in "production" mode. This is
 # leaner (development dependencies are not installed) and runs faster (among
@@ -95,7 +95,7 @@ COPY --chown=etherpad:etherpad ./settings.json.docker "${EP_DIR}"/settings.json
 # Fix group permissions
 RUN chmod -R g=u .
 
-HEALTHCHECK --interval=20s --timeout=3s CMD curl -f http://localhost:9001 || exit 1
+HEALTHCHECK --interval=20s --timeout=3s CMD curl -f http://localhost:19263 || exit 1
 
 EXPOSE 9001
 CMD ["node", "src/node/server.js"]
