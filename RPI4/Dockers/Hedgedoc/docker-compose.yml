@@ -1,1 +1,39 @@
-
+version: "3.8"
+services:
+  mariadb:
+    image: ghcr.io/linuxserver/mariadb:latest
+    container_name: Hedgedoc_mariadb
+    restart: unless-stopped
+    volumes:
+      - ./data:/config
+    environment:
+      - MYSQL_ROOT_PASSWORD=Piz72363Za/"&"Ket827ChUP8
+      - MYSQL_DATABASE=hedgedoc
+      - MYSQL_USER=hedgedoc_user
+      - MYSQL_PASSWORD=Hedge73626Doc983737Mar262
+      - TZ=Europe/Copenhagen
+  hedgedoc:
+    image: ghcr.io/linuxserver/hedgedoc:latest
+    container_name: Hedgedoc
+    restart: unless-stopped
+    depends_on:
+      - mariadb
+    volumes:
+      - ./config:/config
+    environment:
+      - DB_HOST=mariadb
+      - DB_USER=hedgedoc_user
+      - DB_PASS=Hedge73626Doc983737Mar262
+      - DB_NAME=hedgedoc
+      - DB_PORT=3306
+      - TZ=Europe/Copenhagen
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test: ["CMD", "/bin/check-health"]
+      interval: 1m
+      timeout: 3s
+networks:
+  default:
+    external:
+      name: pacman
