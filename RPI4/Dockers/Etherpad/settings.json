@@ -585,7 +585,7 @@
 
       , { "type": "logLevelFilter"
         , "level": "warn" // filters out all log messages that have a lower level than "error"
-
+        }
       ]
     }, // logconfig
 
