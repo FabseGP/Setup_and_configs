@@ -2,7 +2,7 @@ version: '3.8'
 services:
   yacht:
     container_name: Yacht
-    restart: unless-stopped
+    restart: always
     ports:
       - 6582:8000
     volumes:
