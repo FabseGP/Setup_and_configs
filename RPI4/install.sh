@@ -51,3 +51,15 @@
   sudo mkdir /media/SEAGATE
 
   sudo passwd root
+
+  cat << EOF > .zshrc
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+EOF
+
+  cat << EOF > .bashrc
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+EOF
