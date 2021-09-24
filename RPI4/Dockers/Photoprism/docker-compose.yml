@@ -3,7 +3,7 @@ services:
   photoprism:
     image: photoprism/photoprism-arm64:preview
     container_name: photoprism
-    restart: unless-stopped
+    restart: always
     security_opt:
       - seccomp:unconfined
       - apparmor:unconfined
