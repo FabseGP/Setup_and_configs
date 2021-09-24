@@ -3,7 +3,7 @@ services:
   openhab:
     image: "openhab/openhab:milestone-alpine"
     container_name: Openhab
-    restart: unless-stopped
+    restart: always
     network_mode: host
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
