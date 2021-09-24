@@ -5,7 +5,7 @@ services:
     container_name: Navidrome
     ports:
       - "4533:4533"
-    restart: unless-stopped
+    restart: always
     environment:
       # Optional: put your config options customization here. Examples:
       ND_SCANSCHEDULE: 1h
