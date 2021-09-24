@@ -5,7 +5,7 @@ services:
     container_name: Docspell-restserver
     command:
       - /opt/docspell.conf
-    restart: unless-stopped
+    restart: always
     ports:
       - "7880:7880"
     volumes:
@@ -18,7 +18,7 @@ services:
     container_name: Docspell-joex
     command:
       - /opt/docspell.conf
-    restart: unless-stopped
+    restart: always
     env_file: ./.env
     ports:
       - "7878:7878"
@@ -39,7 +39,7 @@ services:
       - "--header"
       - "Docspell-Integration:$DOCSPELL_HEADER_VALUE"
       - "/opt/docs"
-    restart: unless-stopped
+    restart: always
     env_file: ./.env
     volumes:
       - ./docs:/opt/docs
@@ -48,7 +48,7 @@ services:
   db:
     image: postgres:latest
     container_name: Postgres_db
-    restart: unless-stopped
+    restart: always
     volumes:
       - docspell-postgres_data:/var/lib/postgresql/data/
     environment:
@@ -58,7 +58,7 @@ services:
   solr:
     image: solr:latest
     container_name: Docspell-solr
-    restart: unless-stopped
+    restart: always
     volumes:
       - docspell-solr_data:/var/solr
     command:
