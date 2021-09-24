@@ -163,6 +163,22 @@
   "showSettingsInAdminPage": true,
 
   /*
+   * Node native SSL support
+   *
+   * This is disabled by default.
+   * Make sure to have the minimum and correct file access permissions set so
+   * that the Etherpad server can access them
+   */
+
+  /*
+  "ssl" : {
+            "key"  : "/path-to-your/epl-server.key",
+            "cert" : "/path-to-your/epl-server.crt",
+            "ca": ["/path-to-your/epl-intermediate-cert1.crt", "/path-to-your/epl-intermediate-cert2.crt"]
+          },
+  */
+
+  /*
    * The type of the database.
    *
    * You can choose between many DB drivers, for example: dirty, postgres,
@@ -178,12 +194,6 @@
    *
    * For a complete list of the supported drivers, please refer to:
    * https://www.npmjs.com/package/ueberdb2
-   */
-
-  /*
-   * An Example of MySQL Configuration (commented out).
-   *
-   * See: https://github.com/ether/etherpad-lite/wiki/How-to-use-Etherpad-Lite-with-MySQL
    */
 
   "dbType" : "mysql",
@@ -297,7 +307,7 @@
    * LibreOffice can be used in lieu of Abiword to export pads.
    * Setting it to null disables LibreOffice exporting.
    */
-  "soffice": /usr/bin/soffice,
+  "soffice": "/usr/bin/soffice",
 
   /*
    * Path to the Tidy executable.
@@ -391,7 +401,7 @@
      * Time (in milliseconds) used to animate the scroll transition.
      * Set to 0 to disable animation
      */
-    "duration": 2,
+    "duration": 1,
 
     /*
      * Flag to control if it should scroll when user places the caret in the
@@ -533,13 +543,11 @@
    * Uncomment to customize.
    */
 
-  /*
   "toolbar": {
     "left": [
       ["bold", "italic", "underline", "strikethrough"],
       ["orderedlist", "unorderedlist", "indent", "outdent"],
-      ["undo", "redo"],
-      ["clearauthorship"]
+      ["undo", "redo"]
     ],
     "right": [
       ["importexport", "timeslider", "savedrevision"],
@@ -550,7 +558,6 @@
       ["timeslider_export", "timeslider_returnToPad"]
     ]
   },
-  */
 
   /*
    * Expose Etherpad version in the web interface and in the Server http header.
@@ -575,17 +582,46 @@
   "logconfig" :
     { "appenders": [
         { "type": "console"
+        //, "category": "access"// only logs pad access
         }
 
+      /*
       , { "type": "file"
-      , "filename": "Ether_logs.log"
+      , "filename": "your-log-file-here.log"
       , "maxLogSize": 1024
       , "backups": 3 // how many log files there're gonna be at max
+      //, "category": "test" // only log a specific category
         }
+      */
 
+      /*
       , { "type": "logLevelFilter"
         , "level": "warn" // filters out all log messages that have a lower level than "error"
+        , "appender":
+          {  Use whatever appender you want here  }
         }
+      */
+
+      /*
+      , { "type": "logLevelFilter"
+        , "level": "error" // filters out all log messages that have a lower level than "error"
+        , "appender":
+          { "type": "smtp"
+          , "subject": "An error occurred in your EPL instance!"
+          , "recipients": "bar@blurdybloop.com, baz@blurdybloop.com"
+          , "sendInterval": 300 // 60 * 5 = 5 minutes -- will buffer log messages; set to 0 to send a mail for every message
+          , "transport": "SMTP", "SMTP": { // see https://github.com/andris9/Nodemailer#possible-transport-methods
+              "host": "smtp.example.com", "port": 465,
+              "secureConnection": true,
+              "auth": {
+                  "user": "foo@example.com",
+                  "pass": "bar_foo"
+              }
+            }
+          }
+        }
+      */
+
       ]
     }, // logconfig
 
