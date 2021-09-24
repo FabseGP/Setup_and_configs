@@ -3,7 +3,7 @@ services:
   watchtower:
     container_name: Watchtower
     image: containrrr/watchtower:latest
-    restart: unless-stopped
+    restart: always
     environment:
       TZ: "Europe/Copenhagen"
       WATCHTOWER_CLEANUP: "true"
