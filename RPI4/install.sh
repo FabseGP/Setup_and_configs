@@ -48,7 +48,7 @@
 
   sudo rm -rf /home/fabse
 
-  sudo addgroup docker fabsepi
+  sudo addgroup fabsepi docker
 
   sudo mkdir /media/SEAGATE
 
