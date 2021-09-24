@@ -43,8 +43,6 @@
   sudo adduser sftpfabse sftpusers
 
   git clone https://github.com/xmansyx/Pro-Fox.git
-  git clone --branch master https://github.com/ether/etherpad-lite.git
-  git clone -b master https://github.com/leon-ai/leon.git leon
 
   sudo rm -rf /home/fabse
 
