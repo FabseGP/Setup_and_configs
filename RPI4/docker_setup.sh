@@ -19,8 +19,9 @@
 # Etherpad (npm)
 
   git clone --branch master https://github.com/ether/etherpad-lite.git
+  mv Dockers/Etherpad/settings.json /home/fabsepi
   mv etherpad-lite Dockers/Etherpad
-  mv Setup_and_configs/RPI4/Dockers/Etherpad/settings.json Dockers/Etherpad/etherpad-lite
+  mv /home/fabsepi/settings.json Dockers/Etherpad/etherpad-lite
   cd Dockers/Etherpad/etherpad-lite || exit
   chmod u+x src/bin/run.sh
   ./src/bin/run.sh
