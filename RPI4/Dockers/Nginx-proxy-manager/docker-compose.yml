@@ -3,7 +3,7 @@ services:
   app:
     container_name: Nginx-proxy-manager
     image: 'jc21/nginx-proxy-manager:latest'
-    restart: unless-stopped
+    restart: always
     ports:
       # Public HTTP Port:
       - '80:80'
@@ -30,7 +30,7 @@ services:
       timeout: 3s
   db:
     image: yobasystems/alpine-mariadb:latest
-    restart: unless-stopped
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: "Ro653On9720HDG26v"
       MYSQL_DATABASE: "npm"
