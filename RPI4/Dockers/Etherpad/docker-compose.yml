@@ -3,7 +3,7 @@ services:
   web:
     image: fabsepi/etherpad
     container_name: Etherpad
-    restart: unless-stopped
+    restart: always
     depends_on:
       - mydb
     ports:
