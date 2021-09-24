@@ -11,7 +11,6 @@
 
 # Pipewire
 
-  sudo mkdir /etc/pipewire
   sudo cp /usr/share/pipewire/pipewire.conf /etc/pipewire/
 
 #----------------------------------------------------------------------------------------------------------------------------------
@@ -37,17 +36,17 @@
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # Extra's
-
+  
+  mv Setup_and_configs/RPI4/Scripts /home/fabsepi
   chmod u+x Scripts/*
 
   sudo groupadd sftpusers
+  sudo addusee sftpfabse
   sudo adduser sftpfabse sftpusers
 
   git clone https://github.com/xmansyx/Pro-Fox.git
 
   sudo rm -rf /home/fabse
-
-  sudo addgroup fabsepi docker
 
   sudo mkdir /media/SEAGATE
 
