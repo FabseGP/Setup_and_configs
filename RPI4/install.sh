@@ -17,7 +17,7 @@
 
 # Services
 
-  for service in fcron syncthing docker mariadb tlp; do
+  for service in fcron syncthing podman mariadb tlp; do
     sudo rc-update add $service default
   done
 
