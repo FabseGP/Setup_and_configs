@@ -30,6 +30,7 @@
 
 # Etherpad (npm)
 
+  cd /home/fabsepi
   git clone --branch master https://github.com/ether/etherpad-lite.git
   mv Dockers/Etherpad/settings.json /home/fabsepi
   mv etherpad-lite Dockers/Etherpad
@@ -66,6 +67,7 @@
 
 # Leon-AI (npm)
 
+  cd /home/fabsepi
   git clone --branch master https://github.com/leon-ai/leon.git leon
   mv leon Dockers/Leon-AI
   cd Dockers/Leon-AI/leon || exit
