@@ -5,8 +5,11 @@ services:
     image: containrrr/watchtower:latest
     restart: always
     environment:
-      TZ: "Europe/Copenhagen"
-      WATCHTOWER_CLEANUP: "true"
+      - TZ=Europe/Copenhagen
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_REMOVE_VOLUMES=true
+      - WATCHTOWER_INCLUDE_RESTARTING=true
+      - WATCHTOWER_ROLLING_RESTART=true
     volumes:
       - /var/run/podman/podman.sock:/var/run/docker.sock
 networks:
