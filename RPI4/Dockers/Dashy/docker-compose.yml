@@ -11,13 +11,6 @@ services:
     environment:
       - NODE_ENV=production
     restart: always
-    # Configure healthchecks
-    healthcheck:
-      test: ['CMD', 'node', '/app/services/healthcheck']
-      interval: 1m
-      timeout: 10s
-      retries: 3
-      start_period: 40s
 networks:
   default:
     external:
