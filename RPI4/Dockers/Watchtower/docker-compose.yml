@@ -11,7 +11,7 @@ services:
       - WATCHTOWER_INCLUDE_RESTARTING=true
       - WATCHTOWER_ROLLING_RESTART=true
     volumes:
-      - /var/run/podman/podman.sock:/var/run/docker.sock
+      - /var/run/podman/podman.sock:/var/run/docker.sock # /var/run/docker.sock
 networks:
   default:
     external:
