@@ -104,6 +104,16 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 EOF
 
+  rm -f /etc/motd
+  touch /etc/motd
+
+  cat <<EOF > /etc/apk/repositories
+Welcome to Alpine Linux - delivered to you by Fabse Inc.!
+
+Proceed with caution, as puns is looming around :D
+
+EOF
+
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # Swapfile
