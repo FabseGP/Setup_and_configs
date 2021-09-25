@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# Edit repositories
+
+  rm -f /etc/apk/repositories
+  touch /etc/apk/repositories
+
+  cat <<EOF > /etc/apk/repositories
+http://mirrors.dotsrc.org/alpine/edge/community/
+http://mirrors.dotsrc.org/alpine/edge/testing/
+http://mirrors.dotsrc.org/alpine/edge/main/
+EOF
+
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # All packages to install
