@@ -110,7 +110,8 @@ EOF
   sudo rm -f /etc/motd
   sudo touch /etc/motd
 
-  sudo cat <<EOF > /etc/apk/repositories
+  sudo bash -c 'cat > /etc/motd' << EOF
+  
 Welcome to Alpine Linux - delivered to you by Fabse Inc.!
 
 Proceed with caution, as puns is looming around :D
@@ -138,7 +139,7 @@ EOF
 
   sudo touch /boot/usercfg.txt
 
-  sudo cat <<EOF > /boot/usercfg.txt
+sudo bash -c 'cat > /boot/usercfg.txt' << EOF
 dtparam=audio=on
 dtoverlay=vc4-fkms-v3d
 gpu_mem=256
