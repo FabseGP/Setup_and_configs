@@ -64,12 +64,6 @@ services:
     command:
       - solr-precreate
       - docspell
-    healthcheck:
-      test: ["CMD", "curl", "f", "http://localhost:8983/solr/docspell/admin/ping"]
-      interval: 1m
-      timeout: 10s
-      retries: 2
-      start_period: 30s
 volumes:
   docspell-postgres_data:
   docspell-solr_data:
