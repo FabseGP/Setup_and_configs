@@ -69,7 +69,7 @@
 # Leon-AI (npm)
 
   cd /home/fabsepi
-  git clone --branch master https://github.com/leon-ai/leon.git leon
+  git clone https://github.com/leon-ai/leon.git leon
   mv leon Dockers/Leon-AI
   cd Dockers/Leon-AI/leon || exit
   npm install
