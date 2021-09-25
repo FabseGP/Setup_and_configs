@@ -2,10 +2,10 @@
 
 # Edit repositories
 
-  rm -f /etc/apk/repositories
-  touch /etc/apk/repositories
+  sudo rm -f /etc/apk/repositories
+  sudo touch /etc/apk/repositories
 
-  cat <<EOF > /etc/apk/repositories
+  sudo cat <<EOF > /etc/apk/repositories
 http://mirrors.dotsrc.org/alpine/edge/community/
 http://mirrors.dotsrc.org/alpine/edge/testing/
 http://mirrors.dotsrc.org/alpine/edge/main/
@@ -15,15 +15,15 @@ EOF
 
 # All packages to install
 
-  apk update
-  apk upgrade
+  sudo apk update
+  sudo apk upgrade
   
   read -rp "Type yes to use docker, no to use podman: " docker
 
   if [[ "$docker" == "yes" ]]; then
-    apk add neofetch git py3-pip nautilus kbd-bkeymaps htop curl wget lsblk e2fsprogs-extra networkmanager iptables bluez docker docker-compose tzdata mysql-client firefox mysql pipewire ttf-opensans pipewire-pulse libuser ksysguard libreoffice pavucontrol i3status fzf rclone syncthing rsync tlp terminator fcron unrar unzip zsh zsh-autosuggestions zsh-syntax-highlighting neovim gammastep btrfs-progs mousepad ark vlc spectacle htop plasma podman fuse-overlayfs shadow slirp4netns nodejs npm lsof sddm zathura zathura-pdf-poppler eudev sway swaylock swayidle mesa-dri-gallium xdg-desktop-portal-wlr xdg-desktop-portal-kde wl-clipboard gnome-calculator polkit-gnome brightnessctl pipewire-media-session scrot kdialog swaylockd
+    sudo apk add neofetch git py3-pip nautilus kbd-bkeymaps htop curl wget lsblk e2fsprogs-extra networkmanager iptables bluez docker docker-compose tzdata mysql-client firefox mysql pipewire ttf-opensans pipewire-pulse libuser ksysguard libreoffice pavucontrol i3status fzf rclone syncthing rsync tlp terminator fcron unrar unzip zsh zsh-autosuggestions zsh-syntax-highlighting neovim gammastep btrfs-progs mousepad ark vlc spectacle htop plasma podman fuse-overlayfs shadow slirp4netns nodejs npm lsof sddm zathura zathura-pdf-poppler eudev sway swaylock swayidle mesa-dri-gallium xdg-desktop-portal-wlr xdg-desktop-portal-kde wl-clipboard gnome-calculator polkit-gnome brightnessctl pipewire-media-session scrot kdialog swaylockd
   elif [[ "$docker" == "no" ]]; then
-    apk add neofetch git py3-pip nautilus kbd-bkeymaps htop curl wget lsblk e2fsprogs-extra networkmanager iptables bluez podman podman-docker tzdata py3-podman fuse-overlayfs shadow slirp4netns docker-compose mysql-client firefox mysql pipewire ttf-opensans pipewire-pulse libuser ksysguard libreoffice pavucontrol i3status fzf rclone syncthing rsync tlp terminator fcron unrar unzip zsh zsh-autosuggestions zsh-syntax-highlighting neovim gammastep btrfs-progs mousepad ark vlc spectacle htop plasma podman fuse-overlayfs shadow slirp4netns nodejs npm lsof sddm zathura zathura-pdf-poppler eudev sway swaylock swayidle mesa-dri-gallium xdg-desktop-portal-wlr xdg-desktop-portal-kde wl-clipboard gnome-calculator polkit-gnome brightnessctl pipewire-media-session scrot kdialog swaylockd
+    sudo apk add neofetch git py3-pip nautilus kbd-bkeymaps htop curl wget lsblk e2fsprogs-extra networkmanager iptables bluez podman podman-docker tzdata py3-podman fuse-overlayfs shadow slirp4netns docker-compose mysql-client firefox mysql pipewire ttf-opensans pipewire-pulse libuser ksysguard libreoffice pavucontrol i3status fzf rclone syncthing rsync tlp terminator fcron unrar unzip zsh zsh-autosuggestions zsh-syntax-highlighting neovim gammastep btrfs-progs mousepad ark vlc spectacle htop plasma podman fuse-overlayfs shadow slirp4netns nodejs npm lsof sddm zathura zathura-pdf-poppler eudev sway swaylock swayidle mesa-dri-gallium xdg-desktop-portal-wlr xdg-desktop-portal-kde wl-clipboard gnome-calculator polkit-gnome brightnessctl pipewire-media-session scrot kdialog swaylockd
   fi
 
 #----------------------------------------------------------------------------------------------------------------------------------
@@ -32,14 +32,14 @@ EOF
 
   if [[ "$docker" == "yes" ]]; then
     for service in fcron syncthing docker mariadb networkmanager bluetooth tlp; do
-      rc-update add $service default
+      sudo rc-update add $service default
     done
   elif [[ "$docker" == "no" ]]; then
     for service in fcron syncthing podman mariadb networkmanager bluetooth tlp; do
-      rc-update add $service default
+      sudo rc-update add $service default
     done
   fi
-  rc-update add swap boot
+  sudo rc-update add swap boot
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -47,8 +47,8 @@ EOF
 
   mkdir -p ~/.local/share/fonts
 
-  lchsh fabsepi
-  lchsh
+  sudo lchsh fabsepi
+  sudo lchsh
 
   touch ~/.zshrc
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
@@ -71,29 +71,29 @@ EOF
   fi
   
   for GRP in spi i2c gpio; do
-    addgroup --system $GRP
+    sudo addgroup --system $GRP
   done
 
   for GRP in adm dialout cdrom audio users video games wheel input tty gpio spi i2c plugdev netdev; do
-    adduser fabsepi $GRP 
+    sudo adduser fabsepi $GRP 
   done
 
   chmod u+x Scripts/*
 
-  groupadd sftpusers
-  adduser sftpfabse
-  adduser sftpfabse sftpusers
+  sudo groupadd sftpusers
+  sudo adduser sftpfabse
+  sudo adduser sftpfabse sftpusers
 
   if [[ "$docker" == "yes" ]]; then
-    adduser fabsepi docker
+    sudo adduser fabsepi docker
   elif [[ "$docker" == "no" ]]; then
-    groupadd docker
-    adduser fabsepi docker
+    sudo groupadd docker
+    sudo adduser fabsepi docker
   fi
 
   git clone https://github.com/xmansyx/Pro-Fox.git
 
-  mkdir /media/SEAGATE
+  sudo mkdir /media/SEAGATE
 
   cat << EOF > .zshrc
 if [ -d "$HOME/.local/bin" ] ; then
@@ -107,10 +107,10 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 EOF
 
-  rm -f /etc/motd
-  touch /etc/motd
+  sudo rm -f /etc/motd
+  sudo touch /etc/motd
 
-  cat <<EOF > /etc/apk/repositories
+  sudo cat <<EOF > /etc/apk/repositories
 Welcome to Alpine Linux - delivered to you by Fabse Inc.!
 
 Proceed with caution, as puns is looming around :D
@@ -122,23 +122,23 @@ EOF
 # Swapfile
 
   cd /
-  truncate -s 0 ./swapfile
-  chattr +C ./swapfile
-  btrfs property set ./swapfile compression none
+  sudo truncate -s 0 ./swapfile
+  sudo chattr +C ./swapfile
+  sudo btrfs property set ./swapfile compression none
  
-  dd if=/dev/zero of=/swapfile bs=1M count=8192
-  chmod 600 /swapfile
-  mkswap /swapfile
-  swapon /swapfile
-  echo '/swapfile   none    swap    sw    0   0' | tee -a /etc/fstab
+  sudo dd if=/dev/zero of=/swapfile bs=1M count=8192
+  sudo chmod 600 /swapfile
+  sudo mkswap /swapfile
+  sudo swapon /swapfile
+  sudo echo '/swapfile   none    swap    sw    0   0' | sudo tee -a /etc/fstab
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # usercfg.txt
 
-  touch /boot/usercfg.txt
+  sudo touch /boot/usercfg.txt
 
-  cat <<EOF > /boot/usercfg.txt
+  sudo cat <<EOF > /boot/usercfg.txt
 dtparam=audio=on
 dtoverlay=vc4-fkms-v3d
 gpu_mem=256
@@ -149,7 +149,7 @@ EOF
 
 # Add fcron jobs
 
-   rc-service fcron start
+   sudo rc-service fcron start
    (crontab -l; echo "@reboot /home/fabsepi/Scipts/syncthing.sh")|awk '!x[$0]++'|crontab -
    (crontab -l; echo "@reboot /home/fabsepi/Scipts/leon.sh")|awk '!x[$0]++'|crontab -
    (crontab -l; echo "@reboot /home/fabsepi/Scipts/etherpad.sh")|awk '!x[$0]++'|crontab -
