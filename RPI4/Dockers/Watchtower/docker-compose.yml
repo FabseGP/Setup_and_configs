@@ -11,6 +11,7 @@ services:
       - WATCHTOWER_INCLUDE_RESTARTING=true
       - WATCHTOWER_ROLLING_RESTART=true
       - WATCHTOWER_POLL_INTERVAL=30
+      - WATCHTOWER_DEBUG=true
     volumes:
       - /var/run/podman/podman.sock:/var/run/docker.sock # /var/run/docker.sock
 networks:
