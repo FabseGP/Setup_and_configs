@@ -97,7 +97,6 @@ EOF
   git clone https://github.com/xmansyx/Pro-Fox.git
 
   mkdir /media/SEAGATE
-  passwd root
 
   cat << EOF > .zshrc
 if [ -d "$HOME/.local/bin" ] ; then
@@ -144,6 +143,7 @@ EOF
 
 # Add fcron jobs
 
+   rc-service fcron start
    (crontab -l; echo "@reboot /home/fabsepi/Scipts/syncthing.sh")|awk '!x[$0]++'|crontab -
    (crontab -l; echo "@reboot /home/fabsepi/Scipts/leon.sh")|awk '!x[$0]++'|crontab -
    (crontab -l; echo "@reboot /home/fabsepi/Scipts/etherpad.sh")|awk '!x[$0]++'|crontab -
