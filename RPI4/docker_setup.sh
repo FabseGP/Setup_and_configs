@@ -4,6 +4,8 @@
 
 # Dependencies
 
+  podman network create pacman
+
   pip3 install pipenv
   pip3 install wheel
   pip3 install podman-compose
