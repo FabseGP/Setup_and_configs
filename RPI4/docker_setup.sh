@@ -21,6 +21,9 @@
 # Docspell
 
   cd /home/fabsepi/Dockers/Docspell || exit
+  mkdir docs
+  mkdir docspell-postgres_data
+  mkdir docspell-solr_data
   podman-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
