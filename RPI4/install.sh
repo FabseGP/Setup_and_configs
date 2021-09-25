@@ -136,7 +136,6 @@ EOF
   touch /boot/usercfg.txt
 
   cat <<EOF > /boot/usercfg.txt
-enable_gic=1
 dtparam=audio=on
 dtoverlay=vc4-fkms-v3d
 gpu_mem=256
