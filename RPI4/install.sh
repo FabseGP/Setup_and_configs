@@ -153,7 +153,7 @@ EOF
    (crontab -l; echo "@reboot /home/fabsepi/Scipts/syncthing.sh")|awk '!x[$0]++'|crontab -
    (crontab -l; echo "@reboot /home/fabsepi/Scipts/leon.sh")|awk '!x[$0]++'|crontab -
    (crontab -l; echo "@reboot /home/fabsepi/Scipts/etherpad.sh")|awk '!x[$0]++'|crontab -
-   (crontab -l; echo "@reboot /home/fabsepi/Scipts/seagate.sh")|awk '!x[$0]++'|crontab -
+   sudo (crontab -l; echo "@reboot /home/fabsepi/Scipts/seagate.sh")|awk '!x[$0]++'|crontab -
    (crontab -l; echo "@reboot /home/fabsepi/Scipts/pipewire.sh")|awk '!x[$0]++'|crontab -
 
 #----------------------------------------------------------------------------------------------------------------------------------
