@@ -1,25 +1,16 @@
 #!/usr/bin/bash
 
-# Parameters
-
-  STM32_ready=""
-  Science_ready=""
-  Brave_ready=""
-  Spotify_ready=""
-  Firefox_ready=""
-
-#----------------------------------------------------------------------------------------------------------------------------------
-
 # Package-installation
 
-  sudo cp /home/fabse/Konfiguration/Scripts/Installation/Config/pacman.conf /etc/pacman.conf
+  cp /home/fabse/Konfiguration/Scripts/Installation/Config/pacman.conf /etc/pacman.conf
 
-sudo pacman -S terminator nautilus i3status-rust fzf curl jdk-openjdk wget gammastep tlp-runit foliate neovim zsh zsh-autosuggestions zsh-syntax-highlighting bashtop spectacle zathura zathura-pdf-poppler pipewire pipewire-alsa pipewire-pulse easyeffects pavucontrol sway swaylock arduino arduino-avr-core openshot mousepad wine wine-mono wine-gecko kicad-library kicad-library-3d links gnome-sudoku gnome-mahjongg gnome-calculator cups-runit dolphin dolphin-plugins qutebrowser geogebra kalzium step neofetch gthumb unrar unzip texlive-most atom libreoffice-fresh ark sddm-runit nodejs rclone syncthing-runit discord wayland gimp plasma ffmpegthumbs kdegraphics-thumbnailers linux-firmware alsa-utils networkmanager-runit alacritty stlink rsync asp lutris qemu virt-manager libvirt libvirt-python virt-install xdg-desktop-portal-kde xdg-desktop-portal-wlr pipewire-media-session gnuplot python3 realtime-privileges libva-intel-driver brightnessctl wl-clipboard ld-lsb lsd imv freecad artools iso-profiles aisleriot bsd-games vlc ufw brave obs-studio firefox kicad libpipewire02 polkit-gnome waybar moc artix-archlinux-support fcron-runit steam mypaint slurp grim android-tools qemu-user-static figlet shellcheck kdialog bitwarden
+  pacman -S terminator nautilus i3status-rust fzf curl wget gammastep tlp-runit foliate neovim zsh zsh-autosuggestions zsh-syntax-highlighting bashtop spectacle zathura zathura-pdf-poppler pipewire pipewire-alsa pipewire-pulse easyeffects pavucontrol sway swaylock arduino arduino-avr-core openshot mousepad wine wine-mono wine-gecko kicad-library kicad-library-3d links gnome-sudoku gnome-mahjongg gnome-calculator cups-runit dolphin dolphin-plugins qutebrowser geogebra kalzium step neofetch gthumb unrar unzip texlive-most atom libreoffice-fresh ark sddm-runit nodejs rclone syncthing-runit discord wayland gimp plasma ffmpegthumbs kdegraphics-thumbnailers linux-firmware alsa-utils networkmanager-runit alacritty stlink rsync asp lutris qemu virt-manager libvirt libvirt-python virt-install xdg-desktop-portal-kde xdg-desktop-portal-wlr pipewire-media-session gnuplot python3 realtime-privileges libva-intel-driver brightnessctl wl-clipboard ld-lsb lsd imv freecad artools iso-profiles aisleriot bsd-games vlc ufw brave obs-studio firefox kicad libpipewire02 polkit-gnome waybar moc artix-archlinux-support fcron-runit steam mypaint slurp grim android-tools qemu-user-static figlet shellcheck kdialog bitwarden jdk-openjdk
+
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # yay-installation
 
-  sudo cp /home/fabse/Konfiguration/Scripts/Installation/Config/makepkg.conf /etc/makepkg.conf
+  cp /home/fabse/Konfiguration/Scripts/Installation/Config/makepkg.conf /etc/makepkg.conf
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -34,13 +25,14 @@ sudo pacman -S terminator nautilus i3status-rust fzf curl jdk-openjdk wget gamma
 
 # Installation of packages from AUR
 
-yay -S spicetify-cli spotify stm32cubemx stm32flash bastet cbonsai stm32cubemonitor stm32cubeide stm32cubemx openrgb osp-tracker balena-etcher onlyoffice-bin standardnotes-bin toilet
+  yay -S spicetify-cli spotify stm32cubemx stm32flash bastet cbonsai stm32cubemonitor stm32cubeide stm32cubemx openrgb osp-tracker balena-etcher onlyoffice-bin standardnotes-bin toilet
+
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # ZSH-theme + fonts
 
-  sudo chsh -s /usr/bin/zsh fabse
-  sudo chsh -s /usr/bin/zsh root
+  chsh -s /usr/bin/zsh fabse
+  chsh -s /usr/bin/zsh root
 
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
   echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
@@ -63,7 +55,7 @@ yay -S spicetify-cli spotify stm32cubemx stm32flash bastet cbonsai stm32cubemoni
   git clone https://github.com/vinceliuice/grub2-themes.git
   cd grub2-themes || return
 
-  sudo ./install.sh -b -t tela
+  ./install.sh -b -t tela
   cd /home/fabse || return
 
 #----------------------------------------------------------------------------------------------------------------------------------
@@ -95,7 +87,7 @@ yay -S spicetify-cli spotify stm32cubemx stm32flash bastet cbonsai stm32cubemoni
 
 # Pulseeffects-presets + pipewire-config
   
-  sudo cp /home/fabse/Konfiguration/Scripts/Installation/Config/pipewire.conf /etc/pipewire.conf
+  cp /home/fabse/Konfiguration/Scripts/Installation/Config/pipewire.conf /etc/pipewire.conf
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -124,8 +116,8 @@ yay -S spicetify-cli spotify stm32cubemx stm32flash bastet cbonsai stm32cubemoni
 
   read -rp "Are you ready again? Type anything for yes: " Spotify_ready
 
-  sudo chmod a+wr /opt/spotify
-  sudo chmod a+wr /opt/spotify/Apps -R
+  chmod a+wr /opt/spotify
+  chmod a+wr /opt/spotify/Apps -R
 
   git clone https://github.com/morpheusthewhite/spicetify-themes.git
   cd spicetify-themes || return
@@ -145,13 +137,13 @@ yay -S spicetify-cli spotify stm32cubemx stm32flash bastet cbonsai stm32cubemoni
 
 # User groups + Runit
 
-  sudo usermod -a -G video,audio,input,power,storage,optical,lp,scanner,dbus,daemon,disk,uucp,vboxusers,realtime,wheel fabse 
+  usermod -a -G video,audio,input,power,storage,optical,lp,scanner,dbus,daemon,disk,uucp,vboxusers,realtime,wheel fabse 
 
-  sudo ln -s /etc/runit/sv/cupsd /run/runit/service/ 
-  sudo ln -s /etc/runit/sv/syncthing /run/runit/service/
-  sudo ln -s /etc/runit/sv/fcron /run/runit/service/
-  sudo ln -s /etc/runit/sv/tlp /run/runit/service/                                                                                                                                                   
-  sudo ln -s /etc/runit/sv/ufw /run/runit/service/
+  ln -s /etc/runit/sv/cupsd /run/runit/service/ 
+  ln -s /etc/runit/sv/syncthing /run/runit/service/
+  ln -s /etc/runit/sv/fcron /run/runit/service/
+  ln -s /etc/runit/sv/tlp /run/runit/service/                                                                                                                                                   
+  ln -s /etc/runit/sv/ufw /run/runit/service/
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -161,9 +153,3 @@ yay -S spicetify-cli spotify stm32cubemx stm32flash bastet cbonsai stm32cubemoni
 
   cp -r /home/fabse/Konfiguration/Scripts/Installation/Config/i3status-rust .config
   cp -r /home/fabse/Konfiguration/Scripts/Installation/Config/sway .config
-
-#----------------------------------------------------------------------------------------------------------------------------------
-
-# KDE-config
-
-  xdg-open https://store.kde.org/p/1298955/
