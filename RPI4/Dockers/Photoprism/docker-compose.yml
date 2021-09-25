@@ -1,8 +1,8 @@
 version: '3.8'
 services:
   photoprism:
-    image: photoprism/photoprism-arm64:preview
-    container_name: photoprism
+    image: photoprism/photoprism:preview
+    container_name: Photoprism
     restart: always
     security_opt:
       - seccomp:unconfined
@@ -33,7 +33,7 @@ services:
       PHOTOPRISM_SITE_URL: "http://192.168.0.108:2342/"  # Public PhotoPrism URL
       PHOTOPRISM_SITE_TITLE: "PhotoPrism by Fabse Inc."
       PHOTOPRISM_SITE_CAPTION: "Browse Fabse's life"
-      PHOTOPRISM_SITE_DESCRIPTION: "A dive into the wondors of Fabse's magneficent life!"
+      PHOTOPRISM_SITE_DESCRIPTION: "A dive into the wonders of Fabse's magnificent life!"
     volumes:
       # Your photo and video files ([local path]:[container path]):
       - "/media/SEAGATE/FABSE_GATE/Billeder_samt_videoer:/photoprism/originals"
@@ -45,7 +45,7 @@ services:
       # Permanent storage for settings, index & sidecar files (DON'T REMOVE):
       - "./data:/photoprism/storage"
   mariadb:
-    image: yobasystems/alpine-mariadb:latest
+    image: mariadb:latest
     container_name: mariadb
     restart: unless-stopped
     security_opt:
