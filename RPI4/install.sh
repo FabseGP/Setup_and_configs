@@ -16,6 +16,8 @@ EOF
 # All packages to install
 
   apk update
+  apk upgrade
+  
   read -rp "Type yes to use docker, no to use podman: " docker
 
   if [[ "$docker" == "yes" ]]; then
