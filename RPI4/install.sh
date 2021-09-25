@@ -158,6 +158,21 @@ EOF
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
+# Mariadb (etherpad)
+
+  sudo /etc/init.d/mariadb setup
+  sudo rc-service mariadb start
+  sudo mysql_secure_installation
+  
+  mysql -u root -p \
+      create database etherpad_lite_db; \
+      CREATE USER etherpad_fabsepi@localhost identified by Ether54321Pad67890FABsePI; \
+      grant CREATE,ALTER,SELECT,INSERT,UPDATE,DELETE on etherpad_lite_db.* to etherpad_fabsepi@localhost;   
+  
+  sudo rc-service mariadb restart
+
+#----------------------------------------------------------------------------------------------------------------------------------
+
 # Goodbye
 
   echo "Add this to /boot/cmdline.txt":
