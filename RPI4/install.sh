@@ -5,7 +5,7 @@
   sudo rm -f /etc/apk/repositories
   sudo touch /etc/apk/repositories
 
-  sudo cat <<EOF > /etc/apk/repositories
+  sudo bash -c 'cat > /etc/apk/repositories' << EOF
 http://mirrors.dotsrc.org/alpine/edge/community/
 http://mirrors.dotsrc.org/alpine/edge/testing/
 http://mirrors.dotsrc.org/alpine/edge/main/
