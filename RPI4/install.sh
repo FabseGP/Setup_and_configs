@@ -153,7 +153,7 @@ EOF
 
   echo "Add this to /etc/fstab":
   echo
-  echo "UUID=dd95ebda-f291-497c-8313-d27dbdafa82f       /media/SEAGATE  btrfs   defaults,noatime        0       3"
+  echo "UUID=SEAGAT       /media/SEAGATE  btrfs   defaults,noatime,autodefrag,barrier,datacow        0       3"
   echo
 
   echo "And you're welcome :))"
