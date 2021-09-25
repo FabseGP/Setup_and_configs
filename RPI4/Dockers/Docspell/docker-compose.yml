@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   restserver:
-    image: docspell/restserver:latest
+    image: docspell/restserver:nightly
     container_name: Docspell-restserver
     command:
       - /opt/docspell.conf
@@ -14,7 +14,7 @@ services:
     depends_on:
       - solr
   joex:
-    image: docspell/joex:latest
+    image: docspell/joex:nightly
     container_name: Docspell-joex
     command:
       - /opt/docspell.conf
@@ -27,7 +27,7 @@ services:
     depends_on:
       - solr
   consumedir:
-    image: docspell/dsc:latest
+    image: docspell/dsc:nightly
     container_name: Docspell-consumedir
     command:
       - dsc
