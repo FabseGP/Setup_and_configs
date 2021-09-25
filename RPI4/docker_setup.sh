@@ -8,7 +8,6 @@
 
   pip3 install pipenv
   pip3 install wheel
-  pip3 install docker-compose
   sudo ln -sf /home/fabsepi/.local/bin/* /usr/bin
 
 #----------------------------------------------------------------------------------------------------------------------------------
