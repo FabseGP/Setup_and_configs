@@ -33,6 +33,7 @@
   cd /home/fabsepi
   git clone --branch master https://github.com/ether/etherpad-lite.git
   mv Dockers/Etherpad/settings.json /home/fabsepi
+  rm Dockers/Etherpad/*
   mv etherpad-lite Dockers/Etherpad
   mv /home/fabsepi/settings.json Dockers/Etherpad/etherpad-lite
   cd Dockers/Etherpad/etherpad-lite || exit
