@@ -150,11 +150,11 @@ EOF
 # Add fcron jobs
 
    sudo rc-service fcron start
-   (crontab -l; echo "@reboot /home/fabsepi/Scipts/syncthing.sh")|awk '!x[$0]++'|crontab -
-   (crontab -l; echo "@reboot /home/fabsepi/Scipts/leon.sh")|awk '!x[$0]++'|crontab -
-   (crontab -l; echo "@reboot /home/fabsepi/Scipts/etherpad.sh")|awk '!x[$0]++'|crontab -
-   sudo (crontab -l; echo "@reboot /home/fabsepi/Scipts/seagate.sh")|awk '!x[$0]++'|crontab -
-   (crontab -l; echo "@reboot /home/fabsepi/Scipts/pipewire.sh")|awk '!x[$0]++'|crontab -
+   (crontab -l; echo "@reboot /home/fabsepi/Scripts/syncthing.sh")|awk '!x[$0]++'|crontab -
+   (crontab -l; echo "@reboot /home/fabsepi/Scripts/leon.sh")|awk '!x[$0]++'|crontab -
+   (crontab -l; echo "@reboot /home/fabsepi/Scripts/etherpad.sh")|awk '!x[$0]++'|crontab -
+   sudo (crontab -l; echo "@reboot /home/fabsepi/Scripts/seagate.sh")|awk '!x[$0]++'|crontab -
+   (crontab -l; echo "@reboot /home/fabsepi/Scripts/pipewire.sh")|awk '!x[$0]++'|crontab -
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
