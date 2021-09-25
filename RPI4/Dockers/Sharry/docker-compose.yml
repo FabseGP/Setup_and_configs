@@ -10,6 +10,7 @@ services:
       - ./sharry.conf:/opt/sharry.conf
     depends_on:
       - db
+    restart: always
   db:
     image: postgres:latest
     container_name: postgres_db
@@ -19,6 +20,7 @@ services:
       - POSTGRES_USER=sharrypi
       - POSTGRES_PASSWORD=Hs7s7SABN837NDFg637
       - POSTGRES_DB=db_sharry
+    restart: always
 volumes:
   postgres_data:
 networks:
