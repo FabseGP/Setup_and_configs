@@ -5,7 +5,7 @@ services:
     container_name: Netdata
     hostname: fabsepi_data
     ports:
-      - 19998:19998
+      - 19998:19999
     restart: always
     cap_add:
       - SYS_PTRACE
