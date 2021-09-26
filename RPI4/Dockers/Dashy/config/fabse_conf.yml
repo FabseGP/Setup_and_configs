@@ -6,8 +6,8 @@ pageInfo:
   navLinks:
   - title: Home
     path: /
-  - title: Example 2
-    path: https://example.com
+  - title: I'm bored
+    path: https://theuselessweb.com/
 appConfig:
   statusCheck: true
   enableFontAwesome: true
@@ -24,22 +24,22 @@ sections:
   items:
   - title: Filebrowser
     description: Accessing all synchronized files
-    icon: fab fa-github
+    icon: generative
     url: https://filebrowser.fabsemanpi.space
     target: sametab
   - title: Photoprism
     description: Photo and video gallery
-    icon: fab fa-github
+    icon: generative
     url: https://photoprism.fabsemanpi.space
     target: sametab
   - title: Synthing_RPI4
     description: Synchronizing files adjust all platforms
-    icon: fab fa-github
+    icon: generative
     url: https://syncthing_rpi4.fabsemanpi.space
     target: sametab
   - title: Syncthing_ARTIX
     description: Laptop interface regarding synchronizing
-    icon: fab fa-github
+    icon: generative
     url: https://syncthing_artix.fabsemanpi.space
     target: sametab
 - name: Productivity
@@ -52,22 +52,22 @@ sections:
   items:
   - title: Etherpad
     description: Open-source online editor
-    icon: fab fa-github
+    icon: generative
     url: https://etherpad.fabsemanpi.space
     target: sametab
   - title: Hedgedoc
     description: Open-source markdown editor
-    icon: fab fa-github
+    icon: generative
     url: https://hedgedoc.fabsemanpi.space
     target: sametab
   - title: Docspell
     description: Document organizer
-    icon: fab fa-github
+    icon: generative
     url: https://docspell.fabsemanpi.space
     target: sametab
   - title: Vikunja
     description: South American camelids
-    icon: fab fa-github
+    icon: generative
     url: https://vikunja.fabsemanpi.space
     target: sametab
 - name: Media and file transfers
@@ -80,17 +80,17 @@ sections:
   items:
   - title: Navidrome
     description: Music server and collector
-    icon: fab fa-github
+    icon: generative
     url: https://navidrome.fabsemanpi.space
     target: sametab
   - title: Sharry
     description: File transfers with link-sharing
-    icon: fab fa-github
+    icon: generative
     url: https://sharry.fabsemanpi.space
     target: sametab
   - title: Exatorrent
     description: Beautiful torrent client
-    icon: fab fa-github
+    icon: generative
     url: https://exatorrent.fabsemanpi.space
     target: sametab
 - name: Automation
@@ -103,17 +103,17 @@ sections:
   items:
   - title: OpenHAB
     description: Home-automation
-    icon: fab fa-github
+    icon: generative
     url: https://openhab.fabsemanpi.space
     target: sametab
   - title: Leon-AI
     description: Open-source AI
-    icon: fab fa-github
+    icon: generative
     url: https://leon.fabsemanpi.space
     target: sametab
 - name: System management
   displayData:
-    cols: 1
+    cols: 2
     rows: 1
     sortby: random
     collapsed: false
@@ -121,32 +121,32 @@ sections:
   items:
   - title: Nginx proxy manager
     description: Managing reverse-proxies
-    icon: fab fa-github
+    icon: generative
     url: https://nginx.fabsemanpi.space
     target: sametab
   - title: Netdata
     description: Frontend for system management
-    icon: fab fa-github
+    icon: generative
     url: https://netdata.fabsemanpi.space
     target: sametab
   - title: Uptime-kuma
     description: Monitoring status of my services
-    icon: fab fa-github
+    icon: generative
     url: https://uptime.fabsemanpi.space
     target: sametab
   - title: Yacht
     description: A sailing or power vessel used for pleasure
-    icon: fab fa-github
+    icon: generative
     url: https://yacht.fabsemanpi.space
     target: sametab
   - title: Grafana
     description: Open-source data visualiser with modularity
-    icon: fab fa-github
+    icon: generative
     url: https://grafana.fabsemanpi.space
     target: sametab
   - title: Prometheus
     description: Open-source database indexer with monitoring
-    icon: fab fa-github
+    icon: generative
     url: https://prometheus.fabsemanpi.space
     target: sametab
 - name: External services
@@ -159,16 +159,16 @@ sections:
   items:
   - title: Definely not a Rick-roll
     description: I really mean it
-    icon: fab fa-github
+    icon: generative
     url: https://fabsepi.space
     target: newtab
   - title: Xkcd
     description: Best webcomic since Donald Duck
-    icon: fab fa-github
+    icon: generative
     url: https://xkcd.com
     target: newtab
   - title: Librespeed
     description: Speedtest with quote no bullshit
-    icon: fab fa-github
+    icon: generative
     url: https://https://librespeed.org/
     target: newtab
