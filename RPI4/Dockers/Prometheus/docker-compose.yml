@@ -5,7 +5,7 @@ services:
             - '12827:9090'
         volumes:
             - '/docker/prometheus:/etc/prometheus'
-        image: prom/prometheus
+        image: prom/prometheus:main
         restart: always
         container-name: Prometheus
  networks:
