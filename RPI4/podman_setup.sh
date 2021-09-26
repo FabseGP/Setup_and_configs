@@ -45,6 +45,13 @@
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
+# Grafana
+
+  cd /home/fabsepi/Dockers/Grafana || exit
+  podman-compose up -d
+
+#----------------------------------------------------------------------------------------------------------------------------------
+
 # Hedgedoc
 
   cd /home/fabsepi/Dockers/Hedgedoc || exit
@@ -58,6 +65,16 @@
 
   cd /home/fabsepi/Dockers/Navidrome || exit
   mkdir data
+  podman-compose up -d
+
+#----------------------------------------------------------------------------------------------------------------------------------
+
+# Netdata
+
+  cd /home/fabsepi/Dockers/Netdata || exit
+  mkdir netdatalib
+  mkdir netdatacache
+  mkdir -p netdataconfig/netdata
   podman-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
@@ -91,6 +108,13 @@
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
+# Prometheus
+
+  cd /home/fabsepi/Dockers/Prometheus || exit
+  podman-compose up -d
+
+#----------------------------------------------------------------------------------------------------------------------------------
+
 # Sharry
 
   cd /home/fabsepi/Dockers/Sharry || exit
@@ -110,7 +134,6 @@
 # Watchtower
 
   cd /home/fabsepi/Dockers/Watchtower || exit
-  sed -i 's|/var/run/docker.socket:/var/run/docker.socket|/var/run/podman/podman.socket:/var/run/docker.socket|g' docker-compose.yml
   podman-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
@@ -123,9 +146,17 @@
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
+# Vikunja
+
+  cd /home/fabsepi/Dockers/Vikunja || exit
+  mkdir files
+  podman-compose up -d
+
+#----------------------------------------------------------------------------------------------------------------------------------
+
 # Etherpad (npm)
 
-  cd /home/fabsepi || exit
+  cd /home/fabsepi
   git clone --branch master https://github.com/ether/etherpad-lite.git
   mv Dockers/Etherpad/settings.json /home/fabsepi
   rm Dockers/Etherpad/*
@@ -140,7 +171,7 @@
 
 # Leon-AI (npm)
 
-  cd /home/fabsepi || exit
+  cd /home/fabsepi
   git clone https://github.com/leon-ai/leon.git leon
   mv leon Dockers/Leon-AI
   cd Dockers/Leon-AI/leon || exit
