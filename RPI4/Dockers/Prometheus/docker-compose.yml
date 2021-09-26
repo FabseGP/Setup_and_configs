@@ -7,7 +7,7 @@ services:
       - './data:/etc/prometheus'
     image: prom/prometheus:main
     restart: always
-    container-name: Prometheus
+    container_name: Prometheus
 networks:
   default:
     external:
