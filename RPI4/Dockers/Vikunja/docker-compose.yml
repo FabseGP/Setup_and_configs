@@ -20,7 +20,7 @@ services:
       VIKUNJA_DATABASE_USER: vikunja
       VIKUNJA_DATABASE_DATABASE: vikunja_db
     ports:
-      - 17261:17261
+      - 17261:3456
     volumes:
       - ./files:/app/vikunja/files
     depends_on:
@@ -29,7 +29,7 @@ services:
   frontend:
     image: vikunja/frontend:unstable
     ports:
-      - 80:80
+      - 7777:80
     environment:
       VIKUNJA_API_URL: http://192.168.0.108:3456/
     restart: always
