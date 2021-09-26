@@ -1,11 +1,11 @@
 version: '3.8'
 services:
-    grafana:
-        ports:
-            - '6625:3000'
-        container_name: Grafana
-        image: grafana/grafana:main
-        restart: always
+  grafana:
+    ports:
+      - '6625:3000'
+    container_name: Grafana
+    image: grafana/grafana:main
+    restart: always
 networks:
   default:
     external:
