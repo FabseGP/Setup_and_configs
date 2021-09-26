@@ -171,9 +171,12 @@
 
 # Leon-AI (npm)
 
-  cd /home/fabsepi
+  cd /home/fabsepi || exit
+  mv Dockers/Leon-AI/.env /home/fabsepi
+  rm Dockers/Leon-AI/*
   git clone https://github.com/leon-ai/leon.git leon
   mv leon Dockers/Leon-AI
+  mv .env Dockers/Leon-AI/leon
   cd Dockers/Leon-AI/leon || exit
   npm install
   npm run build
