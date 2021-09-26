@@ -3,7 +3,7 @@ services:
   netdata:
     image: netdata/netdata:edge
     container_name: Netdata
-    hostname: fabsemanpi
+    hostname: fabsepi_data
     ports:
       - 19998:19998
     restart: always
@@ -12,7 +12,7 @@ services:
     security_opt:
       - apparmor:unconfined
     volumes:
-      - netdataconfig:/etc/netdata
+      - ./netdataconfig/netdata:/etc/netdata:ro
       - netdatalib:/var/lib/netdata
       - netdatacache:/var/cache/netdata
       - /etc/passwd:/host/etc/passwd:ro
@@ -21,10 +21,10 @@ services:
       - /sys:/host/sys:ro
       - /etc/os-release:/host/etc/os-release:ro
 volumes:
-  netdataconfig:
   netdatalib:
   netdatacache:
 networks:
   default:
     external:
       name: pacman
+      
