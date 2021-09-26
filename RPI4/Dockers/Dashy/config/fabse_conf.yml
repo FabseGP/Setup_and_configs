@@ -1,45 +1,174 @@
 pageInfo:
-  title: Dashy
-  description: My Awesome Dashboard
+  title: Dashy by Fabse Inc.
+  description: My awesome dashboard with free puns :)
+  footerText: If curious about the source code, please check fabsepi.space
+  logo: https://i.ibb.co/yhbt6CY/dashy.png
   navLinks:
   - title: Home
     path: /
-  - title: Example 1
-    path: https://example.com
   - title: Example 2
     path: https://example.com
 appConfig:
+  statusCheck: true
   enableFontAwesome: true
-  fontAwesomeKey: e9076c7025
-  theme: thebe
-  cssThemes: ['example-theme-1', 'example-theme-2']
+  theme: colorful
+  enableErrorReporting: true
 sections:
-- name: Getting Started
+- name: File management
+  displayData:
+    cols: 1
+    rows: 1
+    sortby: random
+    collapsed: false
+    itemSize: large
+  items:
+  - title: Filebrowser
+    description: Accessing all synchronized files
+    icon: fab fa-github
+    url: https://filebrowser.fabsemanpi.space
+    target: sametab
+  - title: Photoprism
+    description: Photo and video gallery
+    icon: fab fa-github
+    url: https://photoprism.fabsemanpi.space
+    target: sametab
+  - title: Synthing_RPI4
+    description: Synchronizing files adjust all platforms
+    icon: fab fa-github
+    url: https://syncthing_rpi4.fabsemanpi.space
+    target: sametab
+  - title: Syncthing_ARTIX
+    description: Laptop interface regarding synchronizing
+    icon: fab fa-github
+    url: https://syncthing_artix.fabsemanpi.space
+    target: sametab
+- name: Productivity
+  displayData:
+    cols: 1
+    rows: 1
+    sortby: random
+    collapsed: false
+    itemSize: large
+  items:
+  - title: Etherpad
+    description: Open-source online editor
+    icon: fab fa-github
+    url: https://etherpad.fabsemanpi.space
+    target: sametab
+  - title: Hedgedoc
+    description: Open-source markdown editor
+    icon: fab fa-github
+    url: https://hedgedoc.fabsemanpi.space
+    target: sametab
+  - title: Docspell
+    description: Document organizer
+    icon: fab fa-github
+    url: https://docspell.fabsemanpi.space
+    target: sametab
+  - title: Vikunja
+    description: South American camelids
+    icon: fab fa-github
+    url: https://vikunja.fabsemanpi.space
+    target: sametab
+- name: Media and file transfers
+  displayData:
+    cols: 1
+    rows: 1
+    sortby: random
+    collapsed: false
+    itemSize: large
+  items:
+  - title: Navidrome
+    description: Music server and collector
+    icon: fab fa-github
+    url: https://navidrome.fabsemanpi.space
+    target: sametab
+  - title: Sharry
+    description: File transfers with link-sharing
+    icon: fab fa-github
+    url: https://sharry.fabsemanpi.space
+    target: sametab
+  - title: Exatorrent
+    description: Beautiful torrent client
+    icon: fab fa-github
+    url: https://exatorrent.fabsemanpi.space
+    target: sametab
+- name: Automation
+  displayData:
+    cols: 1
+    rows: 1
+    sortby: random
+    collapsed: false
+    itemSize: large
+  items:
+  - title: OpenHAB
+    description: Home-automation
+    icon: fab fa-github
+    url: https://openhab.fabsemanpi.space
+    target: sametab
+  - title: Leon-AI
+    description: Open-source AI
+    icon: fab fa-github
+    url: https://leon.fabsemanpi.space
+    target: sametab
+- name: System management
+  displayData:
+    cols: 1
+    rows: 1
+    sortby: random
+    collapsed: false
+    itemSize: large
+  items:
+  - title: Nginx proxy manager
+    description: Managing reverse-proxies
+    icon: fab fa-github
+    url: https://nginx.fabsemanpi.space
+    target: sametab
+  - title: Netdata
+    description: Frontend for system management
+    icon: fab fa-github
+    url: https://netdata.fabsemanpi.space
+    target: sametab
+  - title: Uptime-kuma
+    description: Monitoring status of my services
+    icon: fab fa-github
+    url: https://uptime.fabsemanpi.space
+    target: sametab
+  - title: Yacht
+    description: A sailing or power vessel used for pleasure
+    icon: fab fa-github
+    url: https://yacht.fabsemanpi.space
+    target: sametab
+  - title: Grafana
+    description: Open-source data visualiser with modularity
+    icon: fab fa-github
+    url: https://grafana.fabsemanpi.space
+    target: sametab
+  - title: Prometheus
+    description: Open-source database indexer with monitoring
+    icon: fab fa-github
+    url: https://prometheus.fabsemanpi.space
+    target: sametab
+- name: External services
   displayData:
     cols: 2
-    collapsed: true
+    rows: 1
+    sortby: random
+    collapsed: false
     itemSize: large
-    customStyles: 'border: 2px dashed red;'
   items:
-  - title: Source
-    description: Source code and documentation on GitHub
+  - title: Definely not a Rick-roll
+    description: I really mean it
     icon: fab fa-github
-    url: https://github.com/Lissy93/dashy
-    target: sametab
-    color: '#00ffc9'
-    backgroundColor: '#0079ff'
-  - title: Issues
-    description: View currently open issues, or raise a new one
-    icon: fas fa-bug
-    url: https://github.com/Lissy93/dashy/issues
-  - title: Demo 1
-    description: 'Live Demo #1'
-    icon: fas fa-rocket
-    url: https://dashy-demo-1.as93.net
-    target: iframe
-  - title: Demo 2
-    description: 'Live Demo #2'
-    icon: favicon
-    url: https://dashy-demo-2.as93.net
+    url: https://fabsepi.space
     target: newtab
-  
+  - title: Xkcd
+    description: Best webcomic since Donald Duck
+    icon: fab fa-github
+    url: https://xkcd.com
+    target: newtab
+  - title: Librespeed
+    description: Speedtest with quote no bullshit
+    icon: fab fa-github
+    url: https://https://librespeed.org/
+    target: newtab
