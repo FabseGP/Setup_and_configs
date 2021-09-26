@@ -180,3 +180,4 @@
   cd Dockers/Leon-AI/leon || exit
   npm install
   npm run build
+  npm audit fix
