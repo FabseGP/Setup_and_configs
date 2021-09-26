@@ -144,6 +144,7 @@ EOF
 
   sudo bash -c 'cat > /boot/usercfg.txt' << EOF
 dtparam=audio=on
+dtparam=i2c_arm=on
 dtoverlay=vc4-fkms-v3d
 gpu_mem=256
 enable_uart=1
