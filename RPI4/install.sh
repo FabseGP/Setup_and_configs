@@ -194,6 +194,8 @@ EOF
 
 # Goodbye
 
+  rm -rf Scripts
+
   echo
   echo "And you're welcome :))"
   echo
