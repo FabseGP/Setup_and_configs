@@ -120,6 +120,7 @@ Proceed with caution, as puns is looming around :D
 EOF
 
   sudo rc-service syncthing start
+  syncthing
   sed -i 's/127.0.0.1/192.168.0.108/g' /home/fabsepi/.config/syncthing/config.xml
 
 #----------------------------------------------------------------------------------------------------------------------------------
