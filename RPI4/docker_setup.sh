@@ -44,6 +44,13 @@
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
+# Grafana
+
+  cd /home/fabsepi/Dockers/Grafana || exit
+  docker-compose up -d
+
+#----------------------------------------------------------------------------------------------------------------------------------
+
 # Hedgedoc
 
   cd /home/fabsepi/Dockers/Hedgedoc || exit
@@ -57,6 +64,16 @@
 
   cd /home/fabsepi/Dockers/Navidrome || exit
   mkdir data
+  docker-compose up -d
+
+#----------------------------------------------------------------------------------------------------------------------------------
+
+# Netdata
+
+  cd /home/fabsepi/Dockers/Netdata || exit
+  mkdir netdatalib
+  mkdir netdatacache
+  mkdir -p netdataconfig/netdata
   docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
@@ -86,6 +103,13 @@
   cd /home/fabsepi/Dockers/Photoprism || exit
   mkdir data
   mkdir database
+  docker-compose up -d
+
+#----------------------------------------------------------------------------------------------------------------------------------
+
+# Prometheus
+
+  cd /home/fabsepi/Dockers/Prometheus || exit
   docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
@@ -121,9 +145,17 @@
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
+# Vikunja
+
+  cd /home/fabsepi/Dockers/Vikunja || exit
+  mkdir files
+  docker-compose up -d
+
+#----------------------------------------------------------------------------------------------------------------------------------
+
 # Etherpad (npm)
 
-  cd /home/fabsepi
+  cd /home/fabsepi || exit
   git clone --branch master https://github.com/ether/etherpad-lite.git
   mv Dockers/Etherpad/settings.json /home/fabsepi
   rm Dockers/Etherpad/*
@@ -138,7 +170,7 @@
 
 # Leon-AI (npm)
 
-  cd /home/fabsepi
+  cd /home/fabsepi || exit
   git clone https://github.com/leon-ai/leon.git leon
   mv leon Dockers/Leon-AI
   cd Dockers/Leon-AI/leon || exit
