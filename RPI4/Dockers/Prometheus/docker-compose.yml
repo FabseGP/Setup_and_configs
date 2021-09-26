@@ -9,6 +9,6 @@ services:
     restart: always
     container-name: Prometheus
  networks:
-  default:
-    external:
-      name: pacman
+   default:
+     external:
+       name: pacman
