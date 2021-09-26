@@ -20,7 +20,7 @@ services:
       VIKUNJA_DATABASE_USER: vikunja
       VIKUNJA_DATABASE_DATABASE: vikunja_db
     ports:
-      - 17261:3456
+      - 3456:3456
     volumes:
       - ./files:/app/vikunja/files
     depends_on:
