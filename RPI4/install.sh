@@ -118,6 +118,9 @@ Proceed with caution, as puns is looming around :D
 
 EOF
 
+  sudo rc-service start syncthing
+  sed -i 's/127.0.0.1/192.168.0.108/g' /home/fabsepi/.config/syncthing/config.xml
+
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # Swapfile
@@ -139,7 +142,7 @@ EOF
 
   sudo touch /boot/usercfg.txt
 
-sudo bash -c 'cat > /boot/usercfg.txt' << EOF
+  sudo bash -c 'cat > /boot/usercfg.txt' << EOF
 dtparam=audio=on
 dtoverlay=vc4-fkms-v3d
 gpu_mem=256
@@ -150,12 +153,12 @@ EOF
 
 # Add fcron jobs
 
-   sudo rc-service fcron start
-   (crontab -l; echo "@reboot /home/fabsepi/Scripts/syncthing.sh")|awk '!x[$0]++'|crontab -
-   (crontab -l; echo "@reboot /home/fabsepi/Scripts/leon.sh")|awk '!x[$0]++'|crontab -
-   (crontab -l; echo "@reboot /home/fabsepi/Scripts/etherpad.sh")|awk '!x[$0]++'|crontab -
-   sudo /bin/bash -c 'echo "@reboot /home/fabsepi/Scripts/seagate.sh" >> /etc/crontab'
-   (crontab -l; echo "@reboot /home/fabsepi/Scripts/pipewire.sh")|awk '!x[$0]++'|crontab -
+  sudo rc-service fcron start
+  (crontab -l; echo "@reboot /home/fabsepi/Scripts/syncthing.sh")|awk '!x[$0]++'|crontab -
+  (crontab -l; echo "@reboot /home/fabsepi/Scripts/leon.sh")|awk '!x[$0]++'|crontab -
+  (crontab -l; echo "@reboot /home/fabsepi/Scripts/etherpad.sh")|awk '!x[$0]++'|crontab -
+  sudo /bin/bash -c 'echo "@reboot /home/fabsepi/Scripts/seagate.sh" >> /etc/crontab'
+  (crontab -l; echo "@reboot /home/fabsepi/Scripts/pipewire.sh")|awk '!x[$0]++'|crontab -
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -174,17 +177,22 @@ EOF
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
+# /etc/fstab
+
+  sudo bash -c 'cat > /etc/fstab' << EOF
+UUID=523872dd-991a-44a7-a1d4-7050b7646236       /media/SEAGATE  btrfs   defaults,noatime,autodefrag,barrier,datacow        0       3
+EOF
+
+#----------------------------------------------------------------------------------------------------------------------------------
+
+# cmdline.txt
+
+  sudo sed -i 's/modules=sd-mod,usb-storage,btrfs quiet rootfstype=btrfs/modules=modules=sd-mod,usb-storage,btrfs,iptables quiet rootfstype=btrfs fsck.repair cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory swapaccount=1/' cmdline.txt
+
+#----------------------------------------------------------------------------------------------------------------------------------
+
 # Goodbye
 
-  echo "Add this to /boot/cmdline.txt":
   echo
-  echo "modules=...btrfs,ip_tables fsck.repair cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory swapaccount=1"
-  echo
-
-  echo "Add this to /etc/fstab":
-  echo
-  echo "UUID=523872dd-991a-44a7-a1d4-7050b7646236       /media/SEAGATE  btrfs   defaults,noatime,autodefrag,barrier,datacow        0       3"
-  echo
-
   echo "And you're welcome :))"
   echo
