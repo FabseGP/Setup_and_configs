@@ -35,12 +35,12 @@ sections:
   - title: Synthing_RPI4
     description: Synchronizing files adjust all platforms
     icon: generative
-    url: https://syncthing_rpi4.fabsemanpi.space
+    url: https://syncthing.rpi4.fabsemanpi.space
     target: sametab
   - title: Syncthing_ARTIX
     description: Laptop interface regarding synchronizing
     icon: generative
-    url: https://syncthing_artix.fabsemanpi.space
+    url: https://syncthing.artix.fabsemanpi.space
     target: sametab
 - name: Productivity
   displayData:
