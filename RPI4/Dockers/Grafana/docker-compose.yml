@@ -6,4 +6,7 @@ services:
         container_name: Grafana
         image: grafana/grafana:main
         restart: always
-        
+networks:
+  default:
+    external:
+      name: pacman
