@@ -81,9 +81,9 @@
 # Nginx-proxy-manager
 
   cd /home/fabsepi/Dockers/Nginx-proxy-manager || exit
-  mkdir data/nginx
+  mkdir -p data/nginx
   mkdir letsencrypt
-  mkdir data/mariadb
+  mkdir -p data/mariadb
   docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
