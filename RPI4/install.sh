@@ -182,9 +182,7 @@ EOF
 
 # /etc/fstab
 
-  sudo bash -c 'cat > /etc/fstab' << EOF
-UUID=523872dd-991a-44a7-a1d4-7050b7646236       /media/SEAGATE  btrfs   defaults,noatime,autodefrag,barrier,datacow        0       3
-EOF
+  echo 'UUID=523872dd-991a-44a7-a1d4-7050b7646236       /media/SEAGATE  btrfs   defaults,noatime,autodefrag,barrier,datacow        0       3' | sudo tee -a /etc/fstab
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
