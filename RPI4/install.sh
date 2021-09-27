@@ -46,29 +46,29 @@ EOF
 
 # Powerlevel10k-theme
 
-  sudo --user=fabsepi mkdir -p ~/.local/share/fonts
+  sudo --user=fabsepi mkdir -p /home/fabsepi/.local/share/fonts
 
   lchsh fabsepi
   lchsh
 
   sudo --user=fabsepi touch ~/.zshrc
-  sudo --user=fabsepi git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-  sudo --user=fabsepi echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' | sudo --user=fabsepi tee -a .zshrc > /dev/null
+  sudo --user=fabsepi git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/fabsepi/powerlevel10k
+  sudo --user=fabsepi echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' | sudo --user=fabsepi tee -a /home/fabsepi/.zshrc > /dev/null
 
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # Extra's
   
-  sudo --user=fabsepi mv Setup_and_configs/RPI4/Scripts /home/fabsepi
-  sudo --user=fabsepi mv Setup_and_configs/RPI4/Dockers /home/fabsepi
+  sudo --user=fabsepi mv /home/fabsepi/Setup_and_configs/RPI4/Scripts /home/fabsepi
+  sudo --user=fabsepi mv /home/fabsepi/Setup_and_configs/RPI4/Dockers /home/fabsepi
 
   if [[ "$docker" == "yes" ]]; then
-    sudo --user=fabsepi mv Setup_and_configs/RPI4/docker_setup.sh /home/fabsepi
-    sudo --user=fabsepi chmod u+x docker_setup.sh
+    sudo --user=fabsepi mv /home/fabsepi/Setup_and_configs/RPI4/docker_setup.sh /home/fabsepi
+    sudo --user=fabsepi chmod u+x /home/fabsepi/docker_setup.sh
   elif [[ "$docker" == "no" ]]; then
-    sudo --user=fabsepi mv Setup_and_configs/RPI4/podman_setup.sh /home/fabsepi
-    sudo --user=fabsepi chmod u+x podman_setup.sh
+    sudo --user=fabsepi mv /home/fabsepi/Setup_and_configs/RPI4/podman_setup.sh /home/fabsepi
+    sudo --user=fabsepi chmod u+x /home/fabsepi/podman_setup.sh
   fi
   
   for GRP in spi i2c gpio; do
@@ -79,7 +79,7 @@ EOF
     adduser fabsepi $GRP 
   done
 
-  sudo --user=fabsepi chmod u+x Scripts/*
+  sudo --user=fabsepi chmod u+x /home/fabsepi/Scripts/*
 
   groupadd sftpusers
   adduser sftpfabse
@@ -92,17 +92,17 @@ EOF
     adduser fabsepi docker
   fi
 
-  sudo --user=fabsepi git clone https://github.com/xmansyx/Pro-Fox.git
+  sudo --user=fabsepi git clone https://github.com/xmansyx/Pro-Fox.git /home/fabsepi/Pro-Fox
 
   mkdir /media/SEAGATE
 
-  cat << EOF | sudo --user=fabsepi tee -a .zshrc > /dev/null
+  cat << EOF | sudo --user=fabsepi tee -a /home/fabsepi/.zshrc > /dev/null
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 EOF
 
-  cat << EOF | sudo --user=fabsepi tee -a .bashrc > /dev/null
+  cat << EOF | sudo --user=fabsepi tee -a /home/fabsepi/.bashrc > /dev/null
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
@@ -160,7 +160,6 @@ EOF
   sudo --user=fabsepi (crontab -l; echo "@reboot /home/fabsepi/Scripts/syncthing.sh")|awk '!x[$0]++'|crontab -
   sudo --user=fabsepi (crontab -l; echo "@reboot /home/fabsepi/Scripts/leon.sh")|awk '!x[$0]++'|crontab -
   sudo --user=fabsepi (crontab -l; echo "@reboot /home/fabsepi/Scripts/etherpad.sh")|awk '!x[$0]++'|crontab -
-  sudo --user=fabsepi (crontab -l; echo "@reboot /home/fabsepi/Scripts/dashy.sh")|awk '!x[$0]++'|crontab -
   /bin/bash -c 'echo "@reboot /home/fabsepi/Scripts/seagate.sh" >> sudo /etc/crontab'
   sudo --user=fabsepi (crontab -l; echo "@reboot /home/fabsepi/Scripts/pipewire.sh")|awk '!x[$0]++'|crontab -
 
