@@ -169,6 +169,7 @@
   cd Dockers/Etherpad/etherpad-lite || exit
   chmod u+x src/bin/run.sh
   ./src/bin/run.sh
+  export NODE_ENV=production
   npm install ep_align && npm install ep_font_size && npm install ep_font_color && npm install ep_comments_page && npm install ep_headings2 && npm install ep_table_of_contents && npm install ep_set_title_on_pad && npm install ep_hash_auth && npm install ep_who_did_what && npm install ep_what_have_i_missed && npm install ep_offline_edit && npm install ep_image_upload
   npm audit fix
 
