@@ -31,11 +31,11 @@ EOF
 # Services
 
   if [[ "$docker" == "yes" ]]; then
-    for service in fcron syncthing docker mariadb networkmanager bluetooth tlp; do
+    for service in fcron syncthing docker mariadb fuse networkmanager bluetooth tlp; do
       rc-update add $service default
     done
   elif [[ "$docker" == "no" ]]; then
-    for service in fcron syncthing podman mariadb networkmanager bluetooth tlp; do
+    for service in fcron syncthing podman mariadb fuse networkmanager bluetooth tlp; do
       rc-update add $service default
     done
   fi
