@@ -7,7 +7,7 @@ services:
     volumes:
       - ./data:/config
     environment:
-      - MYSQL_ROOT_PASSWORD=Piz72363Za/"&"Ket827ChUP8
+      - MYSQL_ROOT_PASSWORD=Piz72363ZaKet827ChUP8
       - MYSQL_DATABASE=hedgedoc
       - MYSQL_USER=hedgedoc_user
       - MYSQL_PASSWORD=Hedge73626Doc983737Mar262
