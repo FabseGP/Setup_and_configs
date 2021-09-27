@@ -46,29 +46,29 @@ EOF
 
 # Powerlevel10k-theme
 
-  sudo -u fabsepi mkdir -p ~/.local/share/fonts
+  sudo --user=fabsepi mkdir -p ~/.local/share/fonts
 
   lchsh fabsepi
   lchsh
 
-  sudo -u fabsepi touch ~/.zshrc
-  sudo -u fabsepi git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-  sudo -u fabsepi echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' | sudo -u fabsepi tee -a .zshrc > /dev/null
+  sudo --user=fabsepi touch ~/.zshrc
+  sudo --user=fabsepi git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+  sudo --user=fabsepi echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' | sudo --user=fabsepi tee -a .zshrc > /dev/null
 
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # Extra's
   
-  sudo -u fabsepi mv Setup_and_configs/RPI4/Scripts /home/fabsepi
-  sudo -u fabsepi mv Setup_and_configs/RPI4/Dockers /home/fabsepi
+  sudo --user=fabsepi mv Setup_and_configs/RPI4/Scripts /home/fabsepi
+  sudo --user=fabsepi mv Setup_and_configs/RPI4/Dockers /home/fabsepi
 
   if [[ "$docker" == "yes" ]]; then
-    sudo -u fabsepi mv Setup_and_configs/RPI4/docker_setup.sh /home/fabsepi
-    sudo -u fabsepi chmod u+x docker_setup.sh
+    sudo --user=fabsepi mv Setup_and_configs/RPI4/docker_setup.sh /home/fabsepi
+    sudo --user=fabsepi chmod u+x docker_setup.sh
   elif [[ "$docker" == "no" ]]; then
-    sudo -u fabsepi mv Setup_and_configs/RPI4/podman_setup.sh /home/fabsepi
-    sudo -u fabsepi chmod u+x podman_setup.sh
+    sudo --user=fabsepi mv Setup_and_configs/RPI4/podman_setup.sh /home/fabsepi
+    sudo --user=fabsepi chmod u+x podman_setup.sh
   fi
   
   for GRP in spi i2c gpio; do
@@ -79,7 +79,7 @@ EOF
     adduser fabsepi $GRP 
   done
 
-  sudo -u fabsepi chmod u+x Scripts/*
+  sudo --user=fabsepi chmod u+x Scripts/*
 
   groupadd sftpusers
   adduser sftpfabse
@@ -92,17 +92,17 @@ EOF
     adduser fabsepi docker
   fi
 
-  sudo -u fabsepi git clone https://github.com/xmansyx/Pro-Fox.git
+  sudo --user=fabsepi git clone https://github.com/xmansyx/Pro-Fox.git
 
   mkdir /media/SEAGATE
 
-  cat << EOF | sudo -u fabsepi tee -a .zshrc > /dev/null
+  cat << EOF | sudo --user=fabsepi tee -a .zshrc > /dev/null
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 EOF
 
-  cat << EOF | sudo -u fabsepi tee -a .bashrc > /dev/null
+  cat << EOF | sudo --user=fabsepi tee -a .bashrc > /dev/null
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
@@ -120,8 +120,8 @@ Proceed with caution, as puns is looming around :D
 EOF
 
   rc-service syncthing start
-  sudo -u fabsepi syncthing
-  sudo -u fabsepi sed -i 's/127.0.0.1/192.168.0.108/g' /home/fabsepi/.config/syncthing/config.xml
+  sudo --user=fabsepi syncthing
+  sudo --user=fabsepi sed -i 's/127.0.0.1/192.168.0.108/g' /home/fabsepi/.config/syncthing/config.xml
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -157,12 +157,12 @@ EOF
 # Add fcron jobs
 
   rc-service fcron start
-  sudo -u fabsepi (crontab -l; echo "@reboot /home/fabsepi/Scripts/syncthing.sh")|awk '!x[$0]++'|crontab -
-  sudo -u fabsepi (crontab -l; echo "@reboot /home/fabsepi/Scripts/leon.sh")|awk '!x[$0]++'|crontab -
-  sudo -u fabsepi (crontab -l; echo "@reboot /home/fabsepi/Scripts/etherpad.sh")|awk '!x[$0]++'|crontab -
-  sudo -u fabsepi (crontab -l; echo "@reboot /home/fabsepi/Scripts/dashy.sh")|awk '!x[$0]++'|crontab -
+  sudo --user=fabsepi (crontab -l; echo "@reboot /home/fabsepi/Scripts/syncthing.sh")|awk '!x[$0]++'|crontab -
+  sudo --user=fabsepi (crontab -l; echo "@reboot /home/fabsepi/Scripts/leon.sh")|awk '!x[$0]++'|crontab -
+  sudo --user=fabsepi (crontab -l; echo "@reboot /home/fabsepi/Scripts/etherpad.sh")|awk '!x[$0]++'|crontab -
+  sudo --user=fabsepi (crontab -l; echo "@reboot /home/fabsepi/Scripts/dashy.sh")|awk '!x[$0]++'|crontab -
   /bin/bash -c 'echo "@reboot /home/fabsepi/Scripts/seagate.sh" >> sudo /etc/crontab'
-  sudo -u fabsepi (crontab -l; echo "@reboot /home/fabsepi/Scripts/pipewire.sh")|awk '!x[$0]++'|crontab -
+  sudo --user=fabsepi (crontab -l; echo "@reboot /home/fabsepi/Scripts/pipewire.sh")|awk '!x[$0]++'|crontab -
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -172,9 +172,9 @@ EOF
   rc-service mariadb start
   mysql_secure_installation
   
-  sudo -u fabsepi mysql -u root --password=Alpine54321DB67890Maria -e "CREATE database etherpad_lite_db"
-  sudo -u fabsepi mysql -u root --password=Alpine54321DB67890Maria -e "CREATE USER etherpad_fabsepi@localhost identified by 'Ether54321Pad67890FABsePI'"
-  sudo -u fabsepi mysql -u root --password=Alpine54321DB67890Maria -e "grant CREATE,ALTER,SELECT,INSERT,UPDATE,DELETE on etherpad_lite_db.* to etherpad_fabsepi@localhost"   
+  sudo --user=fabsepi mysql -u root --password=Alpine54321DB67890Maria -e "CREATE database etherpad_lite_db"
+  sudo --user=fabsepi mysql -u root --password=Alpine54321DB67890Maria -e "CREATE USER etherpad_fabsepi@localhost identified by 'Ether54321Pad67890FABsePI'"
+  sudo --user=fabsepi mysql -u root --password=Alpine54321DB67890Maria -e "grant CREATE,ALTER,SELECT,INSERT,UPDATE,DELETE on etherpad_lite_db.* to etherpad_fabsepi@localhost"   
   
   rc-service mariadb restart
 
@@ -194,7 +194,7 @@ EOF
 
 # Goodbye
 
-  sudo -u fabsepi rm -rf Setup_and_configs
+  sudo --user=fabsepi rm -rf Setup_and_configs
 
   echo
   echo "And you're welcome :))"
