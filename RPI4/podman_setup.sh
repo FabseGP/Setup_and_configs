@@ -49,7 +49,6 @@
 # Grafana
 
   cd /home/fabsepi/Dockers/Grafana || exit
-  docker volume create grafana-storage
   podman-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
