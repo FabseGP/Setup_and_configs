@@ -8,6 +8,10 @@ services:
     restart: always
     volumes:
       - grafana-storage:/var/lib/grafana
+    environment:
+      - GF_SERVER_ENABLE_GZIP=true
+      - GF_SECURITY_COOKIE_SECURE=true
+      - GF_PANELS_ENABLE_ALPHA=true
 networks:
   default:
     external:
