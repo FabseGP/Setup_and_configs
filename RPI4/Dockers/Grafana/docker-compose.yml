@@ -12,6 +12,9 @@ services:
       - GF_SERVER_ENABLE_GZIP=true
       - GF_SECURITY_COOKIE_SECURE=true
       - GF_PANELS_ENABLE_ALPHA=true
+volumes:
+  grafana-storage:
+    external: true
 networks:
   default:
     external:
