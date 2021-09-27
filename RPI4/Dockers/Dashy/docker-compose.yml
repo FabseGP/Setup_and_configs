@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   dashy:
-    image: lissy93/dashy:arm64v8
+    image: lissy93/dashy:mulit-arch
     container_name: Dashy
     volumes:
       - ./config/fabse_conf.yml:/app/public/conf.yml
