@@ -53,7 +53,7 @@ EOF
 
   sudo -u fabsepi touch ~/.zshrc
   sudo -u fabsepi git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-  sudo -u fabsepi echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+  sudo -u fabsepi echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' | sudo -u fabsepi tee -a .zshrc > /dev/null
 
 
 #----------------------------------------------------------------------------------------------------------------------------------
@@ -96,13 +96,13 @@ EOF
 
   mkdir /media/SEAGATE
 
-  sudo -u fabsepi cat << EOF > .zshrc
+  cat << EOF | sudo -u fabsepi tee -a .zshrc > /dev/null
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 EOF
 
-  sudo -u fabsepi cat << EOF > .bashrc
+  cat << EOF | sudo -u fabsepi tee -a .bashrc > /dev/null
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
