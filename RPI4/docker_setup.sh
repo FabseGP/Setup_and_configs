@@ -57,7 +57,6 @@
 
   cd /home/fabsepi/Dockers/Hedgedoc || exit
   mkdir data
-  mkdir config
   docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
