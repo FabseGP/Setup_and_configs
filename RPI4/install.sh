@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
   read -rp "Type yes to use docker, no to use podman: " docker
 
