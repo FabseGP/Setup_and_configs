@@ -58,6 +58,7 @@
 
   cd /home/fabsepi/Dockers/Hedgedoc || exit
   mkdir data
+  mkdir config
   podman-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
