@@ -170,5 +170,5 @@ sections:
   - title: Librespeed
     description: Speedtest with quote no bullshit
     icon: librespeed.png
-    url: https://https://librespeed.org/
+    url: https://librespeed.org/
     target: newtab
