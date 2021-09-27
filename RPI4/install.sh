@@ -1,5 +1,7 @@
 #!/bin/bash
 
+  read -rp "Type yes to use docker, no to use podman: " docker
+
 # Edit repositories
 
   rm -f /etc/apk/repositories
@@ -18,8 +20,6 @@ EOF
   apk update
   apk upgrade
   
-  read -rp "Type yes to use docker, no to use podman: " docker
-
   if [[ "$docker" == "yes" ]]; then
     apk add neofetch git py3-pip nautilus haveged kbd-bkeymaps htop curl wget i2c-tools lm_sensors perl lsblk e2fsprogs-extra networkmanager iptables bluez docker docker-compose tzdata mysql-client firefox mysql pipewire ttf-opensans pipewire-pulse libuser ksysguard libreoffice pavucontrol i3status fzf rclone syncthing rsync tlp terminator fcron unrar unzip zsh zsh-autosuggestions zsh-syntax-highlighting neovim gammastep btrfs-progs mousepad ark vlc spectacle htop plasma nodejs-current npm lsof sddm zathura zathura-pdf-poppler eudev sway swaylock swayidle mesa-dri-gallium xdg-desktop-portal-wlr xdg-desktop-portal-kde wl-clipboard gnome-calculator polkit-gnome brightnessctl pipewire-media-session scrot kdialog swaylockd
   elif [[ "$docker" == "no" ]]; then
