@@ -19,6 +19,9 @@ services:
       VIKUNJA_DATABASE_TYPE: mysql
       VIKUNJA_DATABASE_USER: vikunja
       VIKUNJA_DATABASE_DATABASE: vikunja_db
+      VIKUNJA_SERVICE_TIMEZONE: Europe/Copenhagen
+      VIKUNJA_DATABASE_TLS: preferred
+      VIKUNJA_FILES_MAXSIZE: 50MB
     ports:
       - 3456:3456
     volumes:
