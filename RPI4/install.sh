@@ -1,5 +1,10 @@
 #!/usr/bin/bash
 
+  read -rp "Is script executed as sudo bash ./install.sh? Type either yes or no: " pacman
+  if [[ "$pacman" == "no" ]]; then
+    exit 1
+  fi
+  
   read -rp "Type yes to use docker, no to use podman: " docker
 
 # Edit repositories
