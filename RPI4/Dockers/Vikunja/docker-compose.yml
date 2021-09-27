@@ -12,7 +12,7 @@ services:
       - ./db:/var/lib/mysql
     restart: always
   api:
-    image: vikunja/api:unstable
+    image: vikunja/api:latest
     environment:
       VIKUNJA_DATABASE_HOST: db
       VIKUNJA_DATABASE_PASSWORD: Vi5432Kunja18749Alpine7sdgdhs
@@ -30,7 +30,7 @@ services:
       - db
     restart: always
   frontend:
-    image: vikunja/frontend:unstable
+    image: vikunja/frontend:latest
     ports:
       - 7777:80
     environment:
