@@ -83,7 +83,6 @@ EOF
 
   groupadd sftpusers
   adduser sftpfabse
-  passwd sftpfabse
   adduser sftpfabse sftpusers
 
   if [[ "$docker" == "yes" ]]; then
