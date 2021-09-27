@@ -2,7 +2,7 @@ version: '3.8'
 services:
   uptime-kuma:
     container_name: Uptime-kuma
-    image: louislam/uptime-kuma:nightly-alpine
+    image: louislam/uptime-kuma:nightly
     restart: always
     volumes:
       - ./uptime-kuma:/app/data
