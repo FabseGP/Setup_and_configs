@@ -5,6 +5,7 @@ services:
     container_name: Dashy
     volumes:
       - ./config/fabse_conf.yml:/app/public/conf.yml
+      . ./icons:/app/public/item-icons/
     ports:
       - 7632:80
     # Set any environmental variables
