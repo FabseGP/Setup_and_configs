@@ -6,6 +6,8 @@ services:
     container_name: Grafana
     image: grafana/grafana:main
     restart: always
+    volumes:
+      - grafana-storage:/var/lib/grafana
 networks:
   default:
     external:
