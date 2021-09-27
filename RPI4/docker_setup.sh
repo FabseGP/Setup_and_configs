@@ -135,6 +135,7 @@
 # Watchtower
 
   cd /home/fabsepi/Dockers/Watchtower || exit
+  sed -i 's/var\/run\/podman\/podman.sock/var\/run\/docker.sock/g' docker-compose.yml
   docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
@@ -143,6 +144,7 @@
 
   cd /home/fabsepi/Dockers/Yacht || exit
   mkdir yacht
+  sed -i 's/var\/run\/podman\/podman.sock/var\/run\/docker.sock/g' docker-compose.yml
   docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
