@@ -195,7 +195,7 @@ EOF
 
 # Goodbye
 
-  rm -rf Scripts
+  rm -rf Setup_and_configs
 
   echo
   echo "And you're welcome :))"
