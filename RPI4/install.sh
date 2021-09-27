@@ -172,9 +172,9 @@ EOF
   rc-service mariadb start
   mysql_secure_installation
   
-  sudo -u fabsepi mysql -u root -p -e "CREATE database etherpad_lite_db"
-  sudo -u fabsepi mysql -u root -p -e "CREATE USER etherpad_fabsepi@localhost identified by 'Ether54321Pad67890FABsePI'"
-  sudo -u fabsepi mysql -u root -p -e "grant CREATE,ALTER,SELECT,INSERT,UPDATE,DELETE on etherpad_lite_db.* to etherpad_fabsepi@localhost"   
+  sudo -u fabsepi mysql -u root --password=Alpine54321DB67890Maria -e "CREATE database etherpad_lite_db"
+  sudo -u fabsepi mysql -u root --password=Alpine54321DB67890Maria -e "CREATE USER etherpad_fabsepi@localhost identified by 'Ether54321Pad67890FABsePI'"
+  sudo -u fabsepi mysql -u root --password=Alpine54321DB67890Maria -e "grant CREATE,ALTER,SELECT,INSERT,UPDATE,DELETE on etherpad_lite_db.* to etherpad_fabsepi@localhost"   
   
   rc-service mariadb restart
 
