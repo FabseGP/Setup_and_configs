@@ -32,14 +32,14 @@ sections:
     icon: photoprism.png
     url: https://photoprism.fabsemanpi.space
     target: sametab
-  - title: syncthing.png
-    description: Synchronizing files adjust all platforms
-    icon: generative
+  - title: Syncthing_100
+    description: Synchronizing files across all platforms
+    icon: syncthing.png
     url: https://syncthing.rpi4.fabsemanpi.space
     target: sametab
-  - title: syncthing_artix.png
+  - title: Syncthing_99
     description: Laptop interface regarding synchronizing
-    icon: generative
+    icon: syncthing_artix.png
     url: https://syncthing.artix.fabsemanpi.space
     target: sametab
 - name: Productivity
