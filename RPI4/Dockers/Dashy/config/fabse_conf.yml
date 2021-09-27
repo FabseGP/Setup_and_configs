@@ -160,7 +160,7 @@ sections:
   - title: Definely not a Rick-roll
     description: I really mean it
     icon: fabsepi.png
-    url: https://fabsepi.space
+    url: http://fabsepi.space
     target: newtab
   - title: Xkcd
     description: Best webcomic since Donald Duck
