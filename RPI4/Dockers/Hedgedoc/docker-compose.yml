@@ -28,6 +28,11 @@ services:
       - DB_PORT=3306
       - TZ=Europe/Copenhagen
       - CMD_ALLOW_FREEURL=true
+      - CMD_DOMAIN=192.168.0.108
+      - CMD_PROTOCOL_USESSL=true
+      - CMD_SESSION_SECRET=ansh73jdsbd72hss
+      - CMD_URL_ADDPORT=true
+      - CMD_ALLOW_ORIGIN=hedgedoc.fabsemanpi.space
     ports:
       - "3000:3000"
 networks:
