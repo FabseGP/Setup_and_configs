@@ -160,7 +160,7 @@
 # Etherpad (npm)
 
   cd /home/fabsepi
-  git clone --branch master https://github.com/ether/etherpad-lite.git
+  git clone --branch develop https://github.com/ether/etherpad-lite.git
   mv Dockers/Etherpad/settings.json /home/fabsepi
   rm Dockers/Etherpad/*
   mv etherpad-lite Dockers/Etherpad
