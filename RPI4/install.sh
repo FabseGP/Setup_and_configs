@@ -51,7 +51,7 @@ EOF
   lchsh fabsepi
   lchsh
 
-  sudo --user=fabsepi touch ~/.zshrc
+  sudo --user=fabsepi touch /home/fabsepi/.zshrc
   sudo --user=fabsepi git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/fabsepi/powerlevel10k
   sudo --user=fabsepi echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' | sudo --user=fabsepi tee -a /home/fabsepi/.zshrc > /dev/null
 
