@@ -160,6 +160,7 @@ EOF
   (crontab -l; echo "@reboot /home/fabsepi/Scripts/syncthing.sh")|awk '!x[$0]++'|crontab -
   (crontab -l; echo "@reboot /home/fabsepi/Scripts/leon.sh")|awk '!x[$0]++'|crontab -
   (crontab -l; echo "@reboot /home/fabsepi/Scripts/etherpad.sh")|awk '!x[$0]++'|crontab -
+  (crontab -l; echo "@reboot /home/fabsepi/Scripts/dashy.sh")|awk '!x[$0]++'|crontab -
   sudo /bin/bash -c 'echo "@reboot /home/fabsepi/Scripts/seagate.sh" >> sudo /etc/crontab'
   (crontab -l; echo "@reboot /home/fabsepi/Scripts/pipewire.sh")|awk '!x[$0]++'|crontab -
 
