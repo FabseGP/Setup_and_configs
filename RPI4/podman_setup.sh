@@ -181,6 +181,8 @@
   mv leon Dockers/Leon-AI
   mv .env Dockers/Leon-AI/leon
   cd Dockers/Leon-AI/leon || exit
+  npm install --save-dev @babel/node
+  npm install -g node-gyp
   npm install
   npm run build
   npm audit fix
