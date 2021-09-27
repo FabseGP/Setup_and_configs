@@ -25,6 +25,7 @@
   mkdir docs
   mkdir docspell-postgres_data
   mkdir docspell-solr_data
+  export DOCSPELL_HEADER_VALUE=7hd737sghs7afsus7sgsj
   docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
