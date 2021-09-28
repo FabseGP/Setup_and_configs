@@ -111,6 +111,11 @@ sections:
     icon: leon.png
     url: https://leon.fabsemanpi.space
     target: sametab
+  - title: Firefly
+    description: Tracking my expenses
+    icon: firefly.png
+    url: https://firefly.fabsemanpi.space
+    target: sametab
 - name: System management
   displayData:
     cols: 2
