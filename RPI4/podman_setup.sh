@@ -10,6 +10,8 @@
   pip3 install wheel
   pip3 install podman-compose
   sudo ln -sf /home/fabsepi/.local/bin/* /usr/bin
+  
+  npm update -g
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -186,6 +188,8 @@
   export NODE_ENV=production
   npm install ep_align ep_font_size ep_font_color ep_comments_page ep_headings2 ep_table_of_contents ep_set_title_on_pad ep_who_did_what ep_what_have_i_missed ep_offline_edit ep_image_upload
   npm audit fix
+  npm update -g
+  
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # Leon-AI (npm)
