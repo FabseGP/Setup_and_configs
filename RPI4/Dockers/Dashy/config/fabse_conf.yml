@@ -70,29 +70,6 @@ sections:
     icon: vikunja.png
     url: https://vikunja.fabsemanpi.space
     target: sametab
-- name: Media and file transfers
-  displayData:
-    cols: 1
-    rows: 1
-    sortBy: random
-    collapsed: false
-    itemSize: large
-  items:
-  - title: Navidrome
-    description: Music server and collector
-    icon: navidrome.png
-    url: https://navidrome.fabsemanpi.space
-    target: sametab
-  - title: Sharry
-    description: File transfers with link-sharing
-    icon: sharry.png
-    url: https://sharry.fabsemanpi.space
-    target: sametab
-  - title: Exatorrent
-    description: Beautiful torrent client
-    icon: exatorrent.png
-    url: https://exatorrent.fabsemanpi.space
-    target: sametab
 - name: Automation
   displayData:
     cols: 1
@@ -116,6 +93,35 @@ sections:
     icon: firefly.png
     url: https://firefly.fabsemanpi.space
     target: sametab
+  - title: Cryptofolio
+    description: Monitoring my cryptocurrency portfolio
+    icon: cryptofolio.png
+    url: https://cryptofolio.fabsemanpi.space
+    target: sametab
+- name: Media and file transfers
+  displayData:
+    cols: 1
+    rows: 1
+    sortBy: random
+    collapsed: false
+    itemSize: large
+  items:
+  - title: Navidrome
+    description: Music server and collector
+    icon: navidrome.png
+    url: https://navidrome.fabsemanpi.space
+    target: sametab
+  - title: Sharry
+    description: File transfers with link-sharing
+    icon: sharry.png
+    url: https://sharry.fabsemanpi.space
+    target: sametab
+  - title: Exatorrent
+    description: Beautiful torrent client
+    icon: exatorrent.png
+    url: https://exatorrent.fabsemanpi.space
+    target: sametab
+
 - name: System management
   displayData:
     cols: 2
