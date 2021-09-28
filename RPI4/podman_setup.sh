@@ -10,8 +10,6 @@
   pip3 install wheel
   pip3 install podman-compose
   sudo ln -sf /home/fabsepi/.local/bin/* /usr/bin
-  
-  npm update -g
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
