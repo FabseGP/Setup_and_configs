@@ -5,8 +5,6 @@
 # Dependencies
 
   docker network create pacman
-  
-  npm update -g
 
   pip3 install pipenv
   pip3 install wheel
