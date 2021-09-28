@@ -9,7 +9,6 @@ services:
         volumes:
             - ./data:/var/www/html/api/data
 networks:
-  external:
-    default:
-      pacman
-      
+  default:
+    external:
+      name: pacman   
