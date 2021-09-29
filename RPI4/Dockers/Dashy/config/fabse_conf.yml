@@ -183,6 +183,7 @@ sections:
     icon: librespeed.png
     url: https://librespeed.org/
     target: newtab
+    
   - title: Hextris
     description: Tetris-inspired puzzle game
     icon: hextris.PNG
@@ -197,4 +198,9 @@ sections:
     description: Make documentation a joy to write
     icon: wiki_js.PNG
     url: https://wiki.js.fabsemanpi.space
+    target: sametab
+  - title: Crowdsec
+    description: Open-source behavior detection engine
+    icon: crowdsec.png
+    url: https://crowdsec.fabsemanpi.space
     target: sametab
