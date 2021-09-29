@@ -147,6 +147,15 @@
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
+# Vikunja
+
+  cd /home/fabsepi/Dockers/Vikunja || exit
+  mkdir files
+  mkdir db
+  docker-compose up -d
+
+#----------------------------------------------------------------------------------------------------------------------------------
+
 # Watchtower
 
   cd /home/fabsepi/Dockers/Watchtower || exit
@@ -157,7 +166,7 @@
 
 # Wiki_js
 
-  cd /home/fabsepi/Dockers/Wiki_js || exit
+  cd /home/fabsepi/Dockers/Wiki.js || exit
   docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
@@ -167,15 +176,6 @@
   cd /home/fabsepi/Dockers/Yacht || exit
   mkdir yacht
   sed -i 's/var\/run\/podman\/podman.sock/var\/run\/docker.sock/g' docker-compose.yml
-  docker-compose up -d
-
-#----------------------------------------------------------------------------------------------------------------------------------
-
-# Vikunja
-
-  cd /home/fabsepi/Dockers/Vikunja || exit
-  mkdir files
-  mkdir db
   docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
