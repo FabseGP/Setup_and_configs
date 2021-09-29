@@ -25,7 +25,7 @@
 
 # Installation of packages from AUR
 
-  yay -S spicetify-cli spotify stm32cubemx stm32flash bastet cbonsai stm32cubemonitor stm32cubeide stm32cubemx openrgb osp-tracker balena-etcher onlyoffice-bin standardnotes-bin toilet
+  yay -S spicetify-cli-git spotify stm32cubemx stm32flash bastet cbonsai stm32cubemonitor stm32cubeide stm32cubemx openrgb osp-tracker balena-etcher onlyoffice-bin standardnotes-bin toilet
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
