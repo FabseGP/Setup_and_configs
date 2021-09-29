@@ -26,9 +26,9 @@ EOF
   apk upgrade
   
   if [[ "$docker" == "yes" ]]; then
-    apk add neofetch git py3-pip nautilus haveged alpine-sdk make kbd-bkeymaps htop curl wget i2c-tools lm_sensors perl lsblk e2fsprogs-extra networkmanager iptables bluez docker docker-compose tzdata mysql-client firefox mysql pipewire ttf-opensans pipewire-pulse libuser ksysguard libreoffice pavucontrol i3status fzf rclone syncthing rsync terminator fcron unrar unzip zsh zsh-autosuggestions zsh-syntax-highlighting neovim gammastep btrfs-progs mousepad ark vlc spectacle htop plasma nodejs-current npm lsof sddm zathura zathura-pdf-poppler eudev sway swaylock swayidle mesa-dri-gallium xdg-desktop-portal-wlr xdg-desktop-portal-kde wl-clipboard gnome-calculator polkit-gnome brightnessctl pipewire-media-session scrot kdialog swaylockd
+    apk add neofetch git py3-pip nautilus haveged alpine-sdk make fail2ban kbd-bkeymaps htop curl wget i2c-tools lm_sensors perl lsblk e2fsprogs-extra networkmanager iptables bluez docker docker-compose tzdata mysql-client firefox mysql pipewire ttf-opensans pipewire-pulse libuser ksysguard libreoffice pavucontrol i3status fzf rclone syncthing rsync terminator fcron unrar unzip zsh zsh-autosuggestions zsh-syntax-highlighting neovim gammastep btrfs-progs mousepad ark vlc spectacle htop plasma nodejs-current npm lsof sddm zathura zathura-pdf-poppler eudev sway swaylock swayidle mesa-dri-gallium xdg-desktop-portal-wlr xdg-desktop-portal-kde wl-clipboard gnome-calculator polkit-gnome brightnessctl pipewire-media-session scrot kdialog swaylockd
   elif [[ "$docker" == "no" ]]; then
-    apk add neofetch git py3-pip nautilus haveged alpine-sdk make kbd-bkeymaps htop curl wget lsblk i2c-tools lm_sensors perl e2fsprogs-extra networkmanager iptables bluez podman podman-docker tzdata py3-podman fuse-overlayfs shadow slirp4netns docker-compose mysql-client firefox mysql pipewire ttf-opensans pipewire-pulse libuser ksysguard libreoffice pavucontrol i3status fzf rclone syncthing rsync terminator fcron unrar unzip zsh zsh-autosuggestions zsh-syntax-highlighting neovim gammastep btrfs-progs mousepad ark vlc spectacle htop plasma nodejs-current npm lsof sddm zathura zathura-pdf-poppler eudev sway swaylock swayidle mesa-dri-gallium xdg-desktop-portal-wlr xdg-desktop-portal-kde wl-clipboard gnome-calculator polkit-gnome brightnessctl pipewire-media-session scrot kdialog swaylockd
+    apk add neofetch git py3-pip nautilus haveged alpine-sdk make fail2ban kbd-bkeymaps htop curl wget lsblk i2c-tools lm_sensors perl e2fsprogs-extra networkmanager iptables bluez podman podman-docker tzdata py3-podman fuse-overlayfs shadow slirp4netns docker-compose mysql-client firefox mysql pipewire ttf-opensans pipewire-pulse libuser ksysguard libreoffice pavucontrol i3status fzf rclone syncthing rsync terminator fcron unrar unzip zsh zsh-autosuggestions zsh-syntax-highlighting neovim gammastep btrfs-progs mousepad ark vlc spectacle htop plasma nodejs-current npm lsof sddm zathura zathura-pdf-poppler eudev sway swaylock swayidle mesa-dri-gallium xdg-desktop-portal-wlr xdg-desktop-portal-kde wl-clipboard gnome-calculator polkit-gnome brightnessctl pipewire-media-session scrot kdialog swaylockd
   fi
 
 #----------------------------------------------------------------------------------------------------------------------------------
@@ -36,16 +36,19 @@ EOF
 # Services
 
   if [[ "$docker" == "yes" ]]; then
-    for service in fcron syncthing docker mariadb fuse networkmanager bluetooth; do
+    for service in fcron syncthing docker mariadb fuse fail2ban iptables networkmanager bluetooth; do
       rc-update add $service default
     done
   elif [[ "$docker" == "no" ]]; then
-    for service in fcron syncthing podman mariadb fuse networkmanager bluetooth; do
+    for service in fcron syncthing podman mariadb fuse fail2ban iptables networkmanager bluetooth; do
       rc-update add $service default
     done
   fi
   rc-update add swap boot
   rc-update add haveged boot
+  
+  /etc/init.d/iptables save
+  /etc/init.d/fail2ban start
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
