@@ -188,4 +188,13 @@ sections:
     icon: hextris.PNG
     url: https://hextris.io
     target: newtab
-    
+  - title: ArchiveBox
+    description: Web-archiving toolbox
+    icon: archivebox.PNG
+    url: https://archivebox.fabsemanpi.space
+    target: sametab
+  - title: Wiki.js
+    description: Make documentation a joy to write
+    icon: wiki_js.PNG
+    url: https://wiki.js.fabsemanpi.space
+    target: sametab
