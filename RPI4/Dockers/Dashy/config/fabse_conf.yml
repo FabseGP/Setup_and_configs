@@ -1,6 +1,6 @@
 pageInfo:
-  title: Dashy by Fabse Inc.
-  description: My awesome dashboard with free puns :)
+  title: Fabse Inc.
+  description: Welcome to my awesome dashboard with free puns :)
   footerText: If curious about the source code, please check fabsepi.space
   logo: https://i.ibb.co/yhbt6CY/dashy.png
   navLinks:
@@ -14,34 +14,6 @@ appConfig:
   theme: colorful
   enableErrorReporting: true
 sections:
-- name: File management
-  displayData:
-    cols: 1
-    rows: 1
-    sortBy: random
-    collapsed: false
-    itemSize: large
-  items:
-  - title: Filebrowser
-    description: Accessing all synchronized files
-    icon: filebrowser.png
-    url: https://filebrowser.fabsemanpi.space
-    target: sametab
-  - title: Photoprism
-    description: Photo and video gallery
-    icon: photoprism.png
-    url: https://photoprism.fabsemanpi.space
-    target: sametab
-  - title: Syncthing_100
-    description: Synchronizing files across all platforms
-    icon: syncthing.png
-    url: https://syncthing.rpi4.fabsemanpi.space
-    target: sametab
-  - title: Syncthing_99
-    description: Laptop interface regarding synchronizing
-    icon: syncthing_artix.png
-    url: https://syncthing.artix.fabsemanpi.space
-    target: sametab
 - name: Productivity
   displayData:
     cols: 1
@@ -69,6 +41,11 @@ sections:
     description: South American camelids
     icon: vikunja.png
     url: https://vikunja.fabsemanpi.space
+    target: sametab
+  - title: Wiki.js
+    description: Make documentation a joy to write
+    icon: wiki_js.PNG
+    url: https://wiki.js.fabsemanpi.space
     target: sametab
 - name: Automation
   displayData:
@@ -98,6 +75,39 @@ sections:
     icon: cryptofolio.png
     url: https://cryptofolio.fabsemanpi.space
     target: sametab
+  - title: ArchiveBox
+    description: Web-archiving toolbox
+    icon: archivebox.PNG
+    url: https://archivebox.fabsemanpi.space
+    target: sametab
+- name: File management
+  displayData:
+    cols: 1
+    rows: 1
+    sortBy: random
+    collapsed: false
+    itemSize: large
+  items:
+  - title: Filebrowser
+    description: Accessing all synchronized files
+    icon: filebrowser.png
+    url: https://filebrowser.fabsemanpi.space
+    target: sametab
+  - title: Photoprism
+    description: Photo and video gallery
+    icon: photoprism.png
+    url: https://photoprism.fabsemanpi.space
+    target: sametab
+  - title: Syncthing_100
+    description: Synchronizing files across all platforms
+    icon: syncthing.png
+    url: https://syncthing.rpi4.fabsemanpi.space
+    target: sametab
+  - title: Syncthing_99
+    description: Laptop interface regarding synchronizing
+    icon: syncthing_artix.png
+    url: https://syncthing.artix.fabsemanpi.space
+    target: sametab
 - name: Media and file transfers
   displayData:
     cols: 1
@@ -121,11 +131,10 @@ sections:
     icon: exatorrent.png
     url: https://exatorrent.fabsemanpi.space
     target: sametab
-
 - name: System management
   displayData:
     cols: 2
-    rows: 1
+    rows: 2
     sortBy: random
     collapsed: false
     itemSize: large
@@ -160,6 +169,11 @@ sections:
     icon: prometheus.png
     url: https://prometheus.fabsemanpi.space
     target: sametab
+  - title: Crowdsec
+    description: Open-source behavior detection engine
+    icon: crowdsec.png
+    url: https://crowdsec.fabsemanpi.space
+    target: sametab
 - name: External services
   displayData:
     cols: 2
@@ -183,24 +197,8 @@ sections:
     icon: librespeed.png
     url: https://librespeed.org/
     target: newtab
-    
   - title: Hextris
     description: Tetris-inspired puzzle game
     icon: hextris.PNG
     url: https://hextris.io
     target: newtab
-  - title: ArchiveBox
-    description: Web-archiving toolbox
-    icon: archivebox.PNG
-    url: https://archivebox.fabsemanpi.space
-    target: sametab
-  - title: Wiki.js
-    description: Make documentation a joy to write
-    icon: wiki_js.PNG
-    url: https://wiki.js.fabsemanpi.space
-    target: sametab
-  - title: Crowdsec
-    description: Open-source behavior detection engine
-    icon: crowdsec.png
-    url: https://crowdsec.fabsemanpi.space
-    target: sametab
