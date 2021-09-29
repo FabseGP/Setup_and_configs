@@ -1,1 +1,31 @@
 
+version: "3.8"
+services:
+  db:
+    image: mariadb:latest
+    environment:
+      POSTGRES_DB: wiki
+      POSTGRES_PASSWORD: wikijsrocks
+      POSTGRES_USER: wikijs
+    logging:
+      driver: "none"
+    restart: unless-stopped
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  wiki:
+    image: requarks/wiki:latest
+    depends_on:
+      - db
+    environment:
+      DB_TYPE: mysql
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: wikijs_user
+      DB_PASS: wikijsrocks_for_real_i_mean_it
+      DB_NAME: wiki_js
+    restart: unless-stopped
+    ports:
+      - "55555:3000"
+volumes:
+  db-data:
+  
