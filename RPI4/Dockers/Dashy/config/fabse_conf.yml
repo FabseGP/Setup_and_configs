@@ -183,3 +183,9 @@ sections:
     icon: librespeed.png
     url: https://librespeed.org/
     target: newtab
+  - title: Hextris
+    description: Tetris-inspired puzzle game
+    icon: hextris.PNG
+    url: https://hextris.io
+    target: newtab
+    
