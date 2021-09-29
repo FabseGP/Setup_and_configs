@@ -23,3 +23,9 @@ services:
       - SHOW_PROGRESS=False
     volumes:
       - /media/SEAGATe/FABSE_GATE/Diverse/ArchiveBox:/data
+networks:
+  default:
+    external:
+      name: pacman
+      
+      
