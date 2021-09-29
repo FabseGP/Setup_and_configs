@@ -12,7 +12,7 @@ services:
       driver: "none"
     restart: always
     volumes:
-      - ./db-data:/config
+      - db-data:/config
   wiki:
     image: requarks/wiki:latest
     depends_on:
