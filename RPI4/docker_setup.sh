@@ -15,7 +15,7 @@
 # ArchiveBox
 
   cd /home/fabsepi/Dockers/ArchiveBox || exit
-  docker-compose up -d
+  docker compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -23,14 +23,14 @@
 
   cd /home/fabsepi/Dockers/Cryptofolio || exit
   mkdir data
-  docker-compose up -d
+  docker compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # Dashy
 
   cd /home/fabsepi/Dockers/Dashy || exit
-  docker-compose up -d
+  docker compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -41,14 +41,14 @@
   mkdir docspell-postgres_data
   mkdir docspell-solr_data
   export DOCSPELL_HEADER_VALUE=7hd737sghs7afsus7sgsj
-  docker-compose up -d
+  docker compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # Exatorrent
 
   cd /home/fabsepi/Dockers/Exotorrent || exit
-  docker-compose up -d
+  docker compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -56,14 +56,14 @@
 
   cd /home/fabsepi/Dockers/Filebrowser || exit
   mkdir config
-  docker-compose up -d
+  docker compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # Firefly
 
   cd /home/fabsepi/Dockers/Firefly || exit
-  docker-compose up -d
+  docker compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -71,7 +71,7 @@
 
   cd /home/fabsepi/Dockers/Grafana || exit
   docker volume create grafana-storage
-  docker-compose up -d
+  docker compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -80,7 +80,7 @@
   cd /home/fabsepi/Dockers/Hedgedoc || exit
   mkdir data
   mkdir config
-  docker-compose up -d
+  docker compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -88,7 +88,7 @@
 
   cd /home/fabsepi/Dockers/Navidrome || exit
   mkdir data
-  docker-compose up -d
+  docker compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -98,7 +98,7 @@
   mkdir netdatalib
   mkdir netdatacache
   mkdir -p netdataconfig/netdata
-  docker-compose up -d
+  docker compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -108,7 +108,7 @@
   mkdir -p data/nginx
   mkdir letsencrypt
   mkdir -p data/mariadb
-  docker-compose up -d
+  docker compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -118,7 +118,7 @@
   mkdir openhab_addons
   mkdir openhab_conf
   mkdir openhab_userdata
-  docker-compose up -d
+  docker compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -127,14 +127,14 @@
   cd /home/fabsepi/Dockers/Photoprism || exit
   mkdir data
   mkdir database
-  docker-compose up -d
+  docker compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # Prometheus
 
   cd /home/fabsepi/Dockers/Prometheus || exit
-  docker-compose up -d
+  docker compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -142,7 +142,7 @@
 
   cd /home/fabsepi/Dockers/Sharry || exit
   mkdir postgres_data
-  docker-compose up -d
+  docker compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -150,7 +150,7 @@
 
   cd /home/fabsepi/Dockers/Uptime_kuma || exit
   mkdir uptime-kuma
-  docker-compose up -d
+  docker compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -159,22 +159,22 @@
   cd /home/fabsepi/Dockers/Vikunja || exit
   mkdir files
   mkdir db
-  docker-compose up -d
+  docker compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # Watchtower
 
   cd /home/fabsepi/Dockers/Watchtower || exit
-  sed -i 's/var\/run\/podman\/podman.sock/var\/run\/docker.sock/g' docker-compose.yml
-  docker-compose up -d
+  sed -i 's/var\/run\/podman\/podman.sock/var\/run\/docker.sock/g' docker compose.yml
+  docker compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # Wiki_js
 
   cd /home/fabsepi/Dockers/Wiki.js || exit
-  docker-compose up -d
+  docker compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -182,8 +182,8 @@
 
   cd /home/fabsepi/Dockers/Yacht || exit
   mkdir yacht
-  sed -i 's/var\/run\/podman\/podman.sock/var\/run\/docker.sock/g' docker-compose.yml
-  docker-compose up -d
+  sed -i 's/var\/run\/podman\/podman.sock/var\/run\/docker.sock/g' docker compose.yml
+  docker compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -219,3 +219,4 @@
   npm install
   npm run build
   npm audit fix
+  
