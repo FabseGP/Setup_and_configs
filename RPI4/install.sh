@@ -65,19 +65,8 @@ EOF
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
-# Extra's
-  
-  sudo --user=fabsepi mv /home/fabsepi/Setup_and_configs/RPI4/Scripts /home/fabsepi
-  sudo --user=fabsepi mv /home/fabsepi/Setup_and_configs/RPI4/Dockers /home/fabsepi
+# User and groups
 
-  if [[ "$docker" == "yes" ]]; then
-    sudo --user=fabsepi mv /home/fabsepi/Setup_and_configs/RPI4/docker_setup.sh /home/fabsepi
-    sudo --user=fabsepi chmod u+x /home/fabsepi/docker_setup.sh
-  elif [[ "$docker" == "no" ]]; then
-    sudo --user=fabsepi mv /home/fabsepi/Setup_and_configs/RPI4/podman_setup.sh /home/fabsepi
-    sudo --user=fabsepi chmod u+x /home/fabsepi/podman_setup.sh
-  fi
-  
   for GRP in spi i2c gpio; do
     addgroup --system $GRP
   done
@@ -97,6 +86,21 @@ EOF
   elif [[ "$docker" == "no" ]]; then
     groupadd docker
     adduser fabsepi docker
+  fi
+
+#----------------------------------------------------------------------------------------------------------------------------------
+
+# Extra's
+
+  sudo --user=fabsepi mv /home/fabsepi/Setup_and_configs/RPI4/Scripts /home/fabsepi
+  sudo --user=fabsepi mv /home/fabsepi/Setup_and_configs/RPI4/Dockers /home/fabsepi
+
+  if [[ "$docker" == "yes" ]]; then
+    sudo --user=fabsepi mv /home/fabsepi/Setup_and_configs/RPI4/docker_setup.sh /home/fabsepi
+    sudo --user=fabsepi chmod u+x /home/fabsepi/docker_setup.sh
+  elif [[ "$docker" == "no" ]]; then
+    sudo --user=fabsepi mv /home/fabsepi/Setup_and_configs/RPI4/podman_setup.sh /home/fabsepi
+    sudo --user=fabsepi chmod u+x /home/fabsepi/podman_setup.sh
   fi
 
   sudo --user=fabsepi git clone https://github.com/xmansyx/Pro-Fox.git /home/fabsepi/Pro-Fox
