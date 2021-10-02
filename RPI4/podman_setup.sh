@@ -8,7 +8,6 @@
 
   pip3 install pipenv
   pip3 install wheel
-  pip3 install podman-compose
   sudo ln -sf /home/fabsepi/.local/bin/* /usr/bin
 
 #----------------------------------------------------------------------------------------------------------------------------------
@@ -16,7 +15,7 @@
 # Archivebox
 
   cd /home/fabsepi/Dockers/DashyArchiveBox || exit
-  podman-compose up -d
+  DOCKER_HOST=unix:///run/podman/podman.sock docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -31,7 +30,7 @@
 # Dashy
 
   cd /home/fabsepi/Dockers/Dashy || exit
-  podman-compose up -d
+  DOCKER_HOST=unix:///run/podman/podman.sock docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -42,14 +41,14 @@
   mkdir docspell-postgres_data
   mkdir docspell-solr_data
   export DOCSPELL_HEADER_VALUE=7hd737sghs7afsus7sgsj
-  podman-compose up -d
+  DOCKER_HOST=unix:///run/podman/podman.sock docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # Exatorrent
 
   cd /home/fabsepi/Dockers/Exotorrent || exit
-  podman-compose up -d
+  DOCKER_HOST=unix:///run/podman/podman.sock docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -57,7 +56,7 @@
 
   cd /home/fabsepi/Dockers/Filebrowser || exit
   mkdir config
-  podman-compose up -d
+  DOCKER_HOST=unix:///run/podman/podman.sock docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -72,7 +71,7 @@
 
   cd /home/fabsepi/Dockers/Grafana || exit
   docker volume create grafana-storage
-  podman-compose up -d
+  DOCKER_HOST=unix:///run/podman/podman.sock docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -81,7 +80,7 @@
   cd /home/fabsepi/Dockers/Hedgedoc || exit
   mkdir data
   mkdir config
-  podman-compose up -d
+  DOCKER_HOST=unix:///run/podman/podman.sock docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -89,7 +88,7 @@
 
   cd /home/fabsepi/Dockers/Navidrome || exit
   mkdir data
-  podman-compose up -d
+  DOCKER_HOST=unix:///run/podman/podman.sock docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -99,7 +98,7 @@
   mkdir netdatalib
   mkdir netdatacache
   mkdir -p netdataconfig/netdata
-  podman-compose up -d
+  DOCKER_HOST=unix:///run/podman/podman.sock docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -109,7 +108,7 @@
   mkdir -p data/nginx
   mkdir letsencrypt
   mkdir -p data/mariadb
-  podman-compose up -d
+  DOCKER_HOST=unix:///run/podman/podman.sock docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -119,7 +118,7 @@
   mkdir openhab_addons
   mkdir openhab_conf
   mkdir openhab_userdata
-  podman-compose up -d
+  DOCKER_HOST=unix:///run/podman/podman.sock docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -128,14 +127,14 @@
   cd /home/fabsepi/Dockers/Photoprism || exit
   mkdir data
   mkdir database
-  podman-compose up -d
+  DOCKER_HOST=unix:///run/podman/podman.sock docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # Prometheus
 
   cd /home/fabsepi/Dockers/Prometheus || exit
-  podman-compose up -d
+  DOCKER_HOST=unix:///run/podman/podman.sock docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -143,7 +142,7 @@
 
   cd /home/fabsepi/Dockers/Sharry || exit
   mkdir postgres_data
-  podman-compose up -d
+  DOCKER_HOST=unix:///run/podman/podman.sock docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -151,7 +150,7 @@
 
   cd /home/fabsepi/Dockers/Uptime_kuma || exit
   mkdir uptime-kuma
-  podman-compose up -d
+  DOCKER_HOST=unix:///run/podman/podman.sock docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -160,21 +159,21 @@
   cd /home/fabsepi/Dockers/Vikunja || exit
   mkdir files
   mkdir db
-  podman-compose up -d
+  DOCKER_HOST=unix:///run/podman/podman.sock docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # Watchtower
 
   cd /home/fabsepi/Dockers/Watchtower || exit
-  podman-compose up -d
+  DOCKER_HOST=unix:///run/podman/podman.sock docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # Wiki_js
 
   cd /home/fabsepi/Dockers/Wiki.js || exit
-  podman-compose up -d
+  DOCKER_HOST=unix:///run/podman/podman.sock docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -182,7 +181,7 @@
 
   cd /home/fabsepi/Dockers/Yacht || exit
   mkdir yacht
-  podman-compose up -d
+  DOCKER_HOST=unix:///run/podman/podman.sock docker-compose up -d
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
