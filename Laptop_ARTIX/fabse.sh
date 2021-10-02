@@ -6,7 +6,7 @@
 
   cp /home/fabse/Konfiguration/Scripts/Installation/Config/pacman.conf /etc/pacman.conf
 
-  pacman -Syu terminator nautilus i3status-rust fzf curl wget gammastep foliate neovim zsh zsh-autosuggestions zsh-syntax-highlighting bashtop spectacle zathura zathura-pdf-poppler pipewire pipewire-alsa pipewire-pulse easyeffects pavucontrol sway swaylock arduino arduino-avr-core openshot mousepad wine wine-mono wine-gecko kicad-library kicad-library-3d links gnome-sudoku gnome-mahjongg gnome-calculator cups-runit dolphin dolphin-plugins qutebrowser geogebra kalzium step neofetch gthumb unrar unzip texlive-most atom libreoffice-fresh ark nodejs rclone syncthing-runit wayland gimp plasma ffmpegthumbs kdegraphics-thumbnailers linux-firmware alsa-utils networkmanager-runit alacritty rsync asp lutris qemu virt-manager libvirt libvirt-python virt-install xdg-desktop-portal-kde xdg-desktop-portal-wlr pipewire-media-session gnuplot python3 python-pip realtime-privileges libva-intel-driver brightnessctl wl-clipboard ld-lsb lsd imv freecad artools iso-profiles aisleriot bsd-games vlc ufw brave-bin obs-studio firefox kicad libpipewire02 polkit-gnome waybar moc fcron-runit steam mypaint slurp grim android-tools qemu-user-static figlet shellcheck kdialog bitwarden jdk-openjdk
+  pacman -Syu terminator nautilus i3status-rust fzf curl wget gammastep foliate neovim zsh zsh-autosuggestions zsh-syntax-highlighting bashtop spectacle zathura zathura-pdf-poppler pipewire pipewire-alsa pipewire-pulse easyeffects pavucontrol sway swaylock arduino arduino-avr-core openshot mousepad wine wine-mono wine-gecko kicad-library kicad-library-3d links gnome-sudoku gnome-mahjongg gnome-calculator cups-runit dolphin dolphin-plugins qutebrowser geogebra kalzium step neofetch gthumb unrar unzip texlive-most atom libreoffice-fresh ark nodejs rclone syncthing-runit wayland gimp plasma ffmpegthumbs kdegraphics-thumbnailers linux-firmware alsa-utils networkmanager-runit alacritty rsync asp lutris qemu virt-manager libvirt libvirt-python virt-install xdg-desktop-portal-kde xdg-desktop-portal-wlr pipewire-media-session gnuplot python3 python-pip realtime-privileges libva-intel-driver brightnessctl wl-clipboard ld-lsb lsd imv freecad artools iso-profiles aisleriot bsd-games vlc iptables-runit brave-bin obs-studio firefox kicad libpipewire02 polkit-gnome waybar moc fcron-runit steam mypaint slurp grim android-tools qemu-user-static figlet shellcheck kdialog bitwarden jdk-openjdk
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -144,8 +144,7 @@
   ln -s /etc/runit/sv/cupsd /run/runit/service/ 
   ln -s /etc/runit/sv/syncthing /run/runit/service/
   ln -s /etc/runit/sv/fcron /run/runit/service/
-  ln -s /etc/runit/sv/tlp /run/runit/service/                                                                                                                                                   
-  ln -s /etc/runit/sv/ufw /run/runit/service/
+  ln -s /etc/runit/sv/iptables /run/runit/service/
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
