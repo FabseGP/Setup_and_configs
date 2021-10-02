@@ -43,6 +43,11 @@ EOF
     for service in fcron syncthing podman mariadb fuse iptables networkmanager; do
       rc-update add $service default
     done
+    rc-service podman start
+    modprobe tun
+    usermod --add-subuids 100000-165535 fabsepi
+    usermod --add-subgids 100000-165535 fabsepi
+    podman system migrate
   fi
   rc-update add swap boot
   rc-update add haveged boot
@@ -198,7 +203,7 @@ EOF
 
 # cmdline.txt
 
-  sed -i 's/modules=sd-mod,usb-storage,btrfs quiet rootfstype=btrfs/modules=modules=sd-mod,usb-storage,btrfs,iptables,i2c-dev,fuse quiet rootfstype=btrfs fsck.repair cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory swapaccount=1/' /boot/cmdline.txt
+  sed -i 's/modules=sd-mod,usb-storage,btrfs quiet rootfstype=btrfs/modules=modules=sd-mod,usb-storage,btrfs,iptables,i2c-dev,fuse,tun quiet rootfstype=btrfs fsck.repair cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory swapaccount=1/' /boot/cmdline.txt
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
