@@ -110,8 +110,7 @@
 
   read -rp "Is the path copied? Then type the full path here: " Firefox_ready
 
-  sudo --user=fabse cp -r /home/fabse/Konfiguration/Scripts/Installation/Config/chrome "$Firefox_ready"
-  sudo --user=fabse cp -r /home/fabse/Konfiguration/Scripts/Installation/user.js "$Firefox_ready"
+  sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/firefox/* "$Firefox_ready"
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
