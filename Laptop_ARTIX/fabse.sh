@@ -4,15 +4,15 @@
 
   pacman -S artix-archlinux-support
 
-  cp /home/fabse/Konfiguration/Scripts/Installation/Config/pacman.conf /etc/pacman.conf
+  cp /home/fabse/Setup_and_configs/Laptop_ARTIX/pacman.conf /etc/pacman.conf
 
-  pacman -Syu terminator nautilus i3status-rust fzf curl wget gammastep foliate neovim zsh zsh-autosuggestions zsh-syntax-highlighting bashtop spectacle zathura zathura-pdf-poppler pipewire pipewire-alsa pipewire-pulse easyeffects pavucontrol sway swaylock arduino arduino-avr-core openshot mousepad wine wine-mono wine-gecko kicad-library kicad-library-3d links gnome-sudoku gnome-mahjongg gnome-calculator cups-runit dolphin dolphin-plugins qutebrowser geogebra kalzium step gthumb unrar unzip texlive-most atom libreoffice-fresh ark nodejs rclone syncthing-runit wayland gimp plasma ffmpegthumbs kdegraphics-thumbnailers linux-firmware alsa-utils networkmanager-runit alacritty rsync asp lutris qemu virt-manager libvirt libvirt-python virt-install xdg-desktop-portal-kde xdg-desktop-portal-wlr pipewire-media-session gnuplot python3 python-pip realtime-privileges libva-intel-driver brightnessctl wl-clipboard ld-lsb lsd imv freecad artools iso-profiles aisleriot bsd-games vlc iptables-runit brave-bin obs-studio firefox kicad libpipewire02 polkit-gnome waybar moc fcron-runit steam mypaint slurp grim android-tools qemu-user-static figlet shellcheck kdialog bitwarden jdk-openjdk
+  pacman -Syu terminator nautilus curl wget gammastep foliate xlsclients neovim zsh zsh-autosuggestions zsh-syntax-highlighting zathura zathura-pdf-poppler pipewire pipewire-alsa pipewire-pulse easyeffects pavucontrol sway swaylock arduino arduino-avr-core openshot mousepad wine-staging wine-mono wine-gecko kicad-library kicad-library-3d links gnome-mahjongg gnome-calculator cups-runit dolphin dolphin-plugins qutebrowser geogebra kalzium step gthumb unrar unzip texlive-most atom libreoffice-fresh ark nodejs rclone syncthing-runit wayland gimp plasma ffmpegthumbs kdegraphics-thumbnailers linux-firmware alsa-utils networkmanager-runit alacritty rsync lutris xdg-desktop-portal-kde xdg-desktop-portal-wlr pipewire-media-session gnuplot python3 python-pip realtime-privileges libva-intel-driver brightnessctl ld-lsb lsd imv freecad artools iso-profiles aisleriot bsd-games mpv iptables-runit brave-bin obs-studio firefox kicad libpipewire02 polkit-gnome moc fcron-runit steam mypaint grim android-tools qemu-user-static figlet shellcheck kdialog bitwarden jdk-openjdk
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # yay-installation
 
-  cp /home/fabse/Konfiguration/Scripts/Installation/Config/makepkg.conf /etc/makepkg.conf
+  cp /home/fabse/Setup_and_configs/Laptop_ARTIX/makepkg.conf /etc/makepkg.conf
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -27,11 +27,11 @@
 
 # Installation of packages from AUR
 
-  yay -S spicetify-cli spotify bastet cbonsai stm32cubeide stm32cubemx openrgb-bin osp-tracker balena-etcher fastfetch onlyoffice-bin standardnotes-bin revolt-desktop toilet
+  yay -S spicetify-cli spotify bastet cbonsai stm32cubeide fuzzel nudoku nwg-dock fnott yambar swappy clipman stm32cubemx openrgb-bin osp-tracker glances balena-etcher fastfetch onlyoffice-bin standardnotes-bin revolt-desktop toilet
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
-# ZSH-theme + fonts
+# ZSH-theme + fonts + ZSH-config (wayland-related)
 
   chsh -s /usr/bin/zsh fabse
   chsh -s /usr/bin/zsh root
@@ -49,6 +49,9 @@
   sudo --user=fabse mv MesloLGS.ttf ~/.local/share/fonts/MesloLGS.ttf
 
   sudo --user=fabse fc-cache -f -v
+
+  sudo --user=fabse echo 'set -x MOZ_ENABLE_WAYLAND 1' | sudo --user=fabse tee -a /home/fabse/.zshrc > /dev/null
+  sudo --user=fabse echo 'set -x SDL_VIDEODRIVER '"'wayland'" | sudo --user=fabse tee -a /home/fabse/.zshrc > /dev/null
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -89,7 +92,7 @@
 
 # Pulseeffects-presets + pipewire-config
   
-  cp /home/fabse/Konfiguration/Scripts/Installation/Config/pipewire.conf /etc/pipewire.conf
+  cp /home/fabse/Setup_and_configs/Laptop_ARTIX/pipewire.conf /etc/pipewire.conf
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -151,6 +154,6 @@
 # Sway-config
 
   sudo --user=fabse cd /home/fabse || return
-
-  sudo --user=fabse cp -r /home/fabse/Konfiguration/Scripts/Installation/Config/i3status-rust .config
-  sudo --user=fabse cp -r /home/fabse/Konfiguration/Scripts/Installation/Config/sway .config
+  
+  mkdir .config/sway
+  sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/confih .config/sway
