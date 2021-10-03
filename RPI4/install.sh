@@ -36,11 +36,11 @@ EOF
 # Services
 
   if [[ "$docker" == "yes" ]]; then
-    for service in fcron syncthing docker mariadb fuse iptables networkmanager; do
+    for service in fcron syncthing dbus docker mariadb fuse iptables networkmanager; do
       rc-update add $service default
     done
   elif [[ "$docker" == "no" ]]; then
-    for service in fcron syncthing podman mariadb fuse iptables networkmanager; do
+    for service in fcron syncthing dbus podman mariadb fuse iptables networkmanager; do
       rc-update add $service default
     done
     rc-service podman start
