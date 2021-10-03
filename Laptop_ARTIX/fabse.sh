@@ -156,4 +156,4 @@
   sudo --user=fabse cd /home/fabse || return
   
   mkdir .config/sway
-  sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/confih .config/sway
+  sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/config .config/sway
