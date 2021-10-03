@@ -27,7 +27,7 @@
 
 # Installation of packages from AUR
 
-  yay -S spicetify-cli spotify bastet cbonsai stm32cubeide fuzzel nudoku nwg-dock fnott yambar swappy clipman stm32cubemx openrgb-bin osp-tracker glances balena-etcher fastfetch onlyoffice-bin standardnotes-bin revolt-desktop toilet
+  yay -S spicetify-cli spotify bastet cbonsai stm32cubeide fuzzel nudoku nwg-dock fnott yambar swappy clipman stm32cubemx openrgb-bin osp-tracker glances balena-etcher macchina onlyoffice-bin standardnotes-bin revolt-desktop toilet
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
