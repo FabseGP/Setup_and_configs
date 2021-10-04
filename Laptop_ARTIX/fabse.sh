@@ -2,11 +2,14 @@
 
 # Package-installation
 
-  pacman -S artix-archlinux-support
-
   cp /home/fabse/Setup_and_configs/Laptop_ARTIX/pacman.conf /etc/pacman.conf
 
-  pacman -Syu terminator nautilus bc lz4 curl wget go make gammastep foliate xlsclients neovim zsh zsh-autosuggestions zsh-syntax-highlighting zathura zathura-pdf-poppler pipewire pipewire-alsa pipewire-pulse easyeffects pavucontrol sway swaylock arduino arduino-avr-core openshot mousepad wine-staging kicad-library kicad-library-3d links gnome-mahjongg gnome-calculator cups-runit dolphin dolphin-plugins qutebrowser geogebra kalzium step gthumb unrar unzip texlive-most atom libreoffice-fresh ark nodejs rclone syncthing-runit wayland gimp plasma ffmpegthumbs kdegraphics-thumbnailers linux-firmware alsa-utils networkmanager-runit alacritty rsync lutris xdg-desktop-portal-kde xdg-desktop-portal-wlr pipewire-media-session gnuplot python3 python-pip realtime-privileges libva-intel-driver brightnessctl ld-lsb lsd imv freecad artools iso-profiles aisleriot bsd-games mpv iptables-runit brave-bin obs-studio firefox kicad libpipewire02 polkit-gnome moc fcron-runit steam mypaint grim android-tools qemu-user-static figlet shellcheck kdialog bitwarden jdk-openjdk
+  pacman -Sy --noconfirm archlinux-keyring artix-keyring
+  pacman-key --init
+  pacman-key --populate archlinux artix
+  pacman -Scc
+
+  pacman -Syyu terminator nautilus bc lz4 curl wget fzf zsh-theme-powerlevel10k go make ttf-opensans gammastep foliate xorg-xlsclients neovim zsh swappy zsh-autosuggestions glances zsh-syntax-highlighting zathura zathura-pdf-poppler pipewire pipewire-alsa pipewire-pulse easyeffects sway swaylock arduino arduino-avr-core openshot mousepad wine-staging kicad-library kicad-library-3d links gnome-mahjongg gnome-calculator cups-runit dolphin dolphin-plugins qutebrowser geogebra kalzium step gthumb unrar unzip texlive-most atom libreoffice-fresh ark nodejs rclone syncthing-runit wayland gimp plasma ffmpegthumbs kdegraphics-thumbnailers linux-firmware alsa-utils networkmanager-runit alacritty rsync lutris xdg-desktop-portal-kde xdg-desktop-portal-wlr pipewire-media-session gnuplot python3 python-pip realtime-privileges libva-intel-driver brightnessctl ld-lsb lsd imv freecad artools iso-profiles aisleriot bsd-games mpv iptables-runit brave-bin obs-studio firefox kicad libpipewire02 polkit-gnome moc fcron-runit steam mypaint grim android-tools qemu figlet shellcheck kdialog bitwarden jdk-openjdk
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -27,7 +30,7 @@
 
 # Installation of packages from AUR
 
-  yay -S spicetify-cli spotify bastet freshfetch-git cbonsai stm32cubeide fuzzel nudoku nwg-dock fnott yambar swappy clipman stm32cubemx openrgb-bin osp-tracker glances balena-etcher macchina onlyoffice-bin standardnotes-bin revolt-desktop toilet
+  yay -S spicetify-cli-git spotify bastet freshfetch-git cbonsai nerd-fonts-git stm32cubeide fuzzel nudoku nwg-dock fnott yambar clipman stm32cubemx openrgb-bin osp-tracker balena-etcher macchina onlyoffice-bin standardnotes-bin revolt-desktop toilet
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -36,22 +39,49 @@
   chsh -s /usr/bin/zsh fabse
   chsh -s /usr/bin/zsh root
 
-  sudo --user=fabse git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
-  sudo --user=fabse echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' | sudo --user=fabse tee -a /home/fabse/.zshrc > /dev/null
+  sudo --user=fabse touch /home/fabse/.config/zsh/.zshenv
+  sudo --user=fabse touch /home/fabse/.config/zsh/.zshrc
 
-  sudo --user=fabse wget https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
-  sudo --user=fabse mv 'MesloLGS NF Regular.ttf' MesloLGS.ttf
-  sudo --user=fabse wget https://www.opensans.com/download/open-sans.zip
-  sudo --user=fabse unzip open-sans.zip
+  cat << EOF | sudo --user=fabse tee -a /home/fabse/.config/zsh/.zshenv > /dev/null
+
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:/usr/local/bin"
+fi
+
+set -x MOZ_ENABLE_WAYLAND 1
+set -x SDL_VIDEODRIVER 'wayland'
+
+export EDITOR="nvim"
+export VISUAL="nvim"
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$XDG_CONFIG_HOME/local/share"
+export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
+
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
+export HISTFILE="$ZDOTDIR/.zhistory"    # History filepath
+export HISTSIZE=10000                   # Maximum events for internal history
+export SAVEHIST=10000                   # Maximum events in history file
+
+EOF
+
+  cat << EOF | sudo --user=fabse tee -a /home/fabse/.config/zsh/.zshrc > /dev/null
+
+autoload -U compinit; compinit
+
+_comp_options+=(globdots) # With hidden files
+
+cbonsai -p
+
+bindkey -v
+export KEYTIMEOUT=1
+
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+
+EOF
 
   sudo --user=fabse mkdir ~/.local/share/fonts
-  sudo --user=fabse mv OpenSans-Regular.ttf ~/.local/share/fonts/OpenSans.ttf
-  sudo --user=fabse mv MesloLGS.ttf ~/.local/share/fonts/MesloLGS.ttf
-
-  sudo --user=fabse fc-cache -f -v
-
-  sudo --user=fabse echo 'set -x MOZ_ENABLE_WAYLAND 1' | sudo --user=fabse tee -a /home/fabse/.zshrc > /dev/null
-  sudo --user=fabse echo 'set -x SDL_VIDEODRIVER '"'wayland'" | sudo --user=fabse tee -a /home/fabse/.zshrc > /dev/null
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -74,7 +104,6 @@
 
   sudo --user=fabse cd /home/fabse || return
 
-  sudo --user=fabse npm install --save slides-js
   sudo --user=fabse npm install chart.js
 
 #----------------------------------------------------------------------------------------------------------------------------------
@@ -96,21 +125,16 @@
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
-# Brave-theme
-
-  sudo --user=fabse xdg-open https://www.deviantart.com/sublime9-design/art/Nord-Theme-for-Chrome-V2-837463227
-
-  read -rp "Are you ready again? Type anything for yes: " Brave_ready
-
-#----------------------------------------------------------------------------------------------------------------------------------
-
 # Firefox-theme
 
   sudo --user=fabse firefox about:support &
 
   read -rp "Is the path copied? Then type the full path here: " Firefox_ready
 
-  sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/firefox/* "$Firefox_ready"
+  sudo --user=fabse mkdir "$Firefox_ready"/chrome
+
+  sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/firefox/userChrome.css "$Firefox_ready"/chrome
+  sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/firefox/user.js "$Firefox_ready"
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -140,8 +164,6 @@
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # User groups + Runit
-
-  usermod -a -G video,audio,input,power,storage,optical,lp,scanner,dbus,daemon,disk,uucp,vboxusers,realtime,wheel fabse 
 
   ln -s /etc/runit/sv/cupsd /run/runit/service/ 
   ln -s /etc/runit/sv/syncthing /run/runit/service/
