@@ -26,31 +26,34 @@ EOF
   apk upgrade
   
   if [[ "$docker" == "yes" ]]; then
-    apk add afetch git py3-pip nautilus bc lz4 haveged alpine-sdk kbd-bkeymaps curl wget i2c-tools lm_sensors perl lsblk e2fsprogs-extra networkmanager iptables docker docker-cli-compose tzdata mysql-client firefox mysql pipewire ttf-opensans pipewire-pulse libuser ksysguard libreoffice pavucontrol yambar fuzzel rclone syncthing rsync terminator fcron unrar unzip zsh zsh-autosuggestions zsh-syntax-highlighting neovim btrfs-progs mousepad ark mpv swappy glances plasma nodejs-current npm lsof zathura zathura-pdf-poppler eudev sway swaylock swayidle mesa-dri-gallium xdg-desktop-portal-wlr xdg-desktop-portal-kde clipman gnome-calculator polkit-gnome pipewire-media-session grim kdialog swaylockd
+    apk add docker docker-cli-compose
   elif [[ "$docker" == "no" ]]; then
-    apk add afetch git py3-pip nautilus haveged alpine-sdk bc lz4 kbd-bkeymaps curl wget lsblk i2c-tools lm_sensors perl e2fsprogs-extra networkmanager iptables podman podman-docker tzdata py3-podman podman-remote fuse-overlayfs shadow slirp4netns mysql-client firefox mysql pipewire ttf-opensans pipewire-pulse libuser ksysguard libreoffice pavucontrol yambar fuzzel rclone syncthing rsync terminator fcron unrar unzip zsh zsh-autosuggestions zsh-syntax-highlighting neovim btrfs-progs mousepad ark mpv swappy glances plasma nodejs-current npm lsof zathura zathura-pdf-poppler eudev sway swaylock swayidle mesa-dri-gallium xdg-desktop-portal-wlr xdg-desktop-portal-kde clipman gnome-calculator polkit-gnome pipewire-media-session grim kdialog swaylockd
+    apk add podman podman-docker py3-podman podman-remote fuse-overlayfs shadow slirp4netns
   fi
+  
+  apk add afetch git py3-pip nautilus bc lz4 cbonsai nerd-fonts haveged alpine-sdk kbd-bkeymaps curl wget i2c-tools lm_sensors perl lsblk e2fsprogs-extra networkmanager iptables tzdata mysql-client firefox mysql pipewire ttf-opensans pipewire-pulse libuser ksysguard libreoffice pavucontrol yambar fuzzel rclone syncthing rsync alacritty terminator fcron unrar unzip zsh zsh-autosuggestions zsh-syntax-highlighting neovim btrfs-progs mousepad ark mpv swappy glances plasma nodejs-current npm lsof zathura zathura-pdf-poppler eudev sway swaylock swayidle mesa-dri-gallium xdg-desktop-portal-wlr xdg-desktop-portal-kde clipman gnome-calculator polkit-gnome pipewire-media-session grim kdialog swaylockd
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # Services
 
   if [[ "$docker" == "yes" ]]; then
-    for service in fcron syncthing dbus docker mariadb fuse iptables networkmanager; do
-      rc-update add $service default
-    done
+    rc-update add docker default
   elif [[ "$docker" == "no" ]]; then
-    for service in fcron syncthing dbus podman mariadb fuse iptables networkmanager; do
-      rc-update add $service default
-    done
+    rc-update add podman default
     rc-service podman start
     modprobe tun
     usermod --add-subuids 100000-165535 fabsepi
     usermod --add-subgids 100000-165535 fabsepi
     podman system migrate
   fi
+
   rc-update add swap boot
   rc-update add haveged boot
+
+  for service in fcron syncthing dbus mariadb fuse iptables networkmanager; do
+    rc-update add $service default
+  done
   
   /etc/init.d/iptables save
 
@@ -65,8 +68,48 @@ EOF
 
   sudo --user=fabsepi touch /home/fabsepi/.zshrc
   sudo --user=fabsepi git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /home/fabsepi/powerlevel10k
-  sudo --user=fabsepi echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' | sudo --user=fabsepi tee -a /home/fabsepi/.zshrc > /dev/null
 
+  sudo --user=fabsepi touch /home/fabsepi/.config/zsh/.zshenv
+  sudo --user=fabsepi touch /home/fabsepi/.config/zsh/.zshrc
+
+  cat << EOF | sudo --user=fabsepi tee -a /home/fabsepi/.config/zsh/.zshenv > /dev/null
+
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:/usr/local/bin"
+fi
+
+set -x MOZ_ENABLE_WAYLAND 1
+set -x SDL_VIDEODRIVER 'wayland'
+
+export EDITOR="nvim"
+export VISUAL="nvim"
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$XDG_CONFIG_HOME/local/share"
+export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
+
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
+export HISTFILE="$ZDOTDIR/.zhistory"    # History filepath
+export HISTSIZE=10000                   # Maximum events for internal history
+export SAVEHIST=10000                   # Maximum events in history file
+
+EOF
+
+  cat << EOF | sudo --user=fabsepi tee -a /home/fabsepi/.config/zsh/.zshrc > /dev/null
+
+autoload -U compinit; compinit
+
+_comp_options+=(globdots) # With hidden files
+
+cbonsai -p
+
+bindkey -v
+export KEYTIMEOUT=1
+
+source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+EOF
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -80,18 +123,18 @@ EOF
     adduser fabsepi $GRP 
   done
 
-  sudo --user=fabsepi chmod u+x /home/fabsepi/Scripts/*
-
-  groupadd sftpusers
-  adduser sftpfabse
-  adduser sftpfabse sftpusers
-
   if [[ "$docker" == "yes" ]]; then
     adduser fabsepi docker
   elif [[ "$docker" == "no" ]]; then
     groupadd docker
     adduser fabsepi docker
   fi
+
+  sudo --user=fabsepi chmod u+x /home/fabsepi/Scripts/*
+
+  groupadd sftpusers
+  adduser sftpfabse
+  adduser sftpfabse sftpusers
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -108,21 +151,10 @@ EOF
     sudo --user=fabsepi chmod u+x /home/fabsepi/podman_setup.sh
   fi
 
+  sudo --user=fabsepi mkdir /home/fabsepi/Pro-Fox
   sudo --user=fabsepi git clone https://github.com/xmansyx/Pro-Fox.git /home/fabsepi/Pro-Fox
 
   mkdir /media/SEAGATE
-
-  cat << EOF | sudo --user=fabsepi tee -a /home/fabsepi/.zshrc > /dev/null
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
-EOF
-
-  cat << EOF | sudo --user=fabsepi tee -a /home/fabsepi/.bashrc > /dev/null
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
-EOF
 
   rm -f /etc/motd
   touch /etc/motd
