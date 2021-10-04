@@ -31,7 +31,7 @@ EOF
     apk add podman podman-docker py3-podman podman-remote fuse-overlayfs shadow slirp4netns
   fi
   
-  apk add afetch git py3-pip nautilus bc lz4 cbonsai nerd-fonts haveged alpine-sdk kbd-bkeymaps curl wget i2c-tools lm_sensors perl lsblk e2fsprogs-extra networkmanager iptables tzdata mysql-client firefox mysql pipewire ttf-opensans pipewire-pulse libuser ksysguard libreoffice pavucontrol yambar fuzzel rclone syncthing rsync alacritty terminator fcron unrar unzip zsh zsh-autosuggestions zsh-syntax-highlighting neovim btrfs-progs mousepad ark mpv swappy glances plasma nodejs-current npm lsof zathura zathura-pdf-poppler eudev sway swaylock swayidle mesa-dri-gallium xdg-desktop-portal-wlr xdg-desktop-portal-kde clipman gnome-calculator polkit-gnome pipewire-media-session grim kdialog swaylockd
+  apk add afetch git py3-pip swaybg nautilus bc fnott lz4 cbonsai nerd-fonts haveged alpine-sdk kbd-bkeymaps curl wget i2c-tools lm_sensors perl lsblk e2fsprogs-extra networkmanager iptables tzdata mysql-client firefox mysql pipewire ttf-opensans pipewire-pulse libuser ksysguard libreoffice pavucontrol yambar fuzzel rclone syncthing rsync alacritty terminator fcron unrar unzip zsh zsh-autosuggestions zsh-syntax-highlighting neovim btrfs-progs mousepad ark mpv swappy glances plasma nodejs-current npm lsof zathura zathura-pdf-poppler eudev sway swaylock-effects swayidle figlet mesa-dri-gallium xdg-desktop-portal-wlr xdg-desktop-portal-kde clipman gnome-calculator polkit-gnome pipewire-media-session grim kdialog swaylockd
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -78,12 +78,15 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:/usr/local/bin"
 fi
 
-set -x MOZ_ENABLE_WAYLAND 1
-set -x SDL_VIDEODRIVER 'wayland'
+export MOZ_ENABLE_WAYLAND=1
+export SDL_VIDEODRIVER=wayland
+
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 export EDITOR="nvim"
 export VISUAL="nvim"
 
+export XDG_SESSION_TYPE=wayland
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$XDG_CONFIG_HOME/local/share"
 export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
