@@ -9,7 +9,7 @@
   pacman-key --populate archlinux artix
   pacman -Scc
 
-  pacman -Syyu terminator nautilus bc lz4 curl wget fzf zsh-theme-powerlevel10k go make otf-font-awesome ttf-opensans gammastep foliate xorg-xlsclients neovim zsh swappy zsh-autosuggestions glances zsh-syntax-highlighting zathura zathura-pdf-poppler pipewire pipewire-alsa pipewire-pulse easyeffects sway swaylock arduino arduino-avr-core openshot mousepad wine-staging kicad-library kicad-library-3d links gnome-mahjongg gnome-calculator cups-runit dolphin dolphin-plugins qutebrowser geogebra kalzium step gthumb unrar unzip texlive-most atom libreoffice-fresh ark nodejs rclone syncthing-runit wayland gimp plasma ffmpegthumbs kdegraphics-thumbnailers linux-firmware alsa-utils networkmanager-runit alacritty rsync lutris xdg-desktop-portal-kde xdg-desktop-portal-wlr pipewire-media-session gnuplot python3 python-pip realtime-privileges libva-intel-driver brightnessctl ld-lsb lsd imv freecad artools iso-profiles aisleriot bsd-games mpv iptables-runit brave-bin obs-studio firefox kicad libpipewire02 polkit-gnome moc fcron-runit steam mypaint grim android-tools qemu figlet shellcheck kdialog bitwarden jdk-openjdk
+  pacman -Syyu terminator nautilus bc lz4 wallutils curl wget fzf zsh-theme-powerlevel10k go make otf-font-awesome swayidle ttf-opensans gammastep foliate xorg-xlsclients neovim zsh swappy zsh-autosuggestions glances zsh-syntax-highlighting zathura zathura-pdf-poppler pipewire pipewire-alsa pipewire-pulse easyeffects sway arduino arduino-avr-core openshot mousepad wine-staging kicad-library kicad-library-3d links gnome-mahjongg gnome-calculator cups-runit dolphin dolphin-plugins qutebrowser geogebra kalzium step gthumb unrar unzip texlive-most atom libreoffice-fresh ark nodejs rclone syncthing-runit wayland gimp plasma ffmpegthumbs kdegraphics-thumbnailers linux-firmware alsa-utils networkmanager-runit alacritty rsync lutris xdg-desktop-portal-kde xdg-desktop-portal-wlr pipewire-media-session gnuplot python3 python-pip realtime-privileges libva-intel-driver brightnessctl ld-lsb lsd imv freecad artools iso-profiles aisleriot bsd-games mpv iptables-runit brave-bin obs-studio firefox kicad libpipewire02 polkit-gnome moc fcron-runit steam mypaint grim android-tools qemu figlet shellcheck kdialog bitwarden jdk-openjdk
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -30,7 +30,7 @@
 
 # Installation of packages from AUR
 
-  yay -S spicetify-cli-git spotify bastet freshfetch-git cbonsai nerd-fonts-git stm32cubeide fuzzel nudoku nwg-dock fnott yambar clipman stm32cubemx openrgb-bin osp-tracker balena-etcher macchina onlyoffice-bin standardnotes-bin revolt-desktop toilet
+  yay -S spicetify-cli-git spotify sunwait-git swaylock-fancy-git bastet foot freshfetch-git cbonsai nerd-fonts-git stm32cubeide fuzzel nudoku fnott yambar clipman stm32cubemx openrgb-bin osp-tracker balena-etcher macchina onlyoffice-bin standardnotes-bin revolt-desktop toilet
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -48,12 +48,15 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:/usr/local/bin"
 fi
 
-set -x MOZ_ENABLE_WAYLAND 1
-set -x SDL_VIDEODRIVER 'wayland'
+export MOZ_ENABLE_WAYLAND=1
+export SDL_VIDEODRIVER=wayland
+
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 export EDITOR="nvim"
 export VISUAL="nvim"
 
+export XDG_SESSION_TYPE=wayland
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$XDG_CONFIG_HOME/local/share"
 export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
@@ -177,4 +180,13 @@ EOF
   sudo --user=fabse cd /home/fabse || return
   
   mkdir .config/sway
-  sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/config .config/sway
+  mkdir .config/swappy
+  mkdir .config/fnott
+  mkdir .config/yambar
+  mkdir .config/fuzzel
+
+  sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/config_sway .config/sway/config
+  sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/config_swappy .config/swappy/config
+  sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/fnott.ini .config/fnott/fnott.ini
+  sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/config.yml .config/yambar/config.yml
+  sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/config_fuzzel .config/fuzzel/config_fuzzel
