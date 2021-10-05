@@ -9,7 +9,7 @@
   pacman-key --populate archlinux artix
   pacman -Scc
 
-  pacman -Syyu terminator wmctrl nautilus bc lz4 rust wallutils curl wget fzf zsh-theme-powerlevel10k go make otf-font-awesome swayidle ttf-opensans gammastep foliate xorg-xlsclients neovim zsh swappy zsh-autosuggestions glances zsh-syntax-highlighting zathura zathura-pdf-poppler pipewire pipewire-alsa pipewire-pulse easyeffects sway arduino arduino-avr-core openshot mousepad wine-staging kicad-library kicad-library-3d links gnome-mahjongg gnome-calculator cups-runit dolphin dolphin-plugins qutebrowser geogebra kalzium step gthumb unrar unzip texlive-most atom libreoffice-fresh ark nodejs rclone syncthing-runit wayland gimp plasma ffmpegthumbs kdegraphics-thumbnailers linux-firmware alsa-utils networkmanager-runit alacritty rsync lutris xdg-desktop-portal-kde xdg-desktop-portal-wlr pipewire-media-session gnuplot python3 python-pip realtime-privileges libva-intel-driver brightnessctl ld-lsb lsd imv freecad artools iso-profiles aisleriot bsd-games mpv iptables-runit brave-bin obs-studio firefox kicad libpipewire02 polkit-gnome moc fcron-runit steam mypaint grim android-tools qemu figlet shellcheck kdialog bitwarden jdk-openjdk
+  pacman -Syyu terminator wmctrl libnotify lm_sensors-runit nautilus bc lz4 man-db i3status-rust rust wallutils curl mako wget fzf python-pywal zsh-theme-powerlevel10k go make otf-font-awesome swayidle ttf-opensans gammastep foliate xorg-xlsclients neovim zsh swappy zsh-autosuggestions glances zsh-syntax-highlighting zathura zathura-pdf-poppler pipewire pipewire-alsa pipewire-pulse easyeffects sway arduino arduino-avr-core openshot mousepad wine-staging kicad-library kicad-library-3d links gnome-mahjongg gnome-calculator cups-runit dolphin dolphin-plugins qutebrowser geogebra kalzium step gthumb unrar unzip texlive-most atom libreoffice-fresh ark nodejs rclone syncthing-runit wayland gimp plasma ffmpegthumbs kdegraphics-thumbnailers linux-firmware alsa-utils networkmanager-runit alacritty rsync lutris xdg-desktop-portal-kde xdg-desktop-portal-wlr pipewire-media-session gnuplot python3 python-pip realtime-privileges libva-intel-driver brightnessctl ld-lsb lsd imv freecad artools iso-profiles aisleriot bsd-games mpv iptables-runit brave-bin obs-studio firefox kicad libpipewire02 polkit-gnome moc fcron-runit steam mypaint grim android-tools qemu figlet shellcheck kdialog bitwarden jdk-openjdk
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -30,7 +30,7 @@
 
 # Installation of packages from AUR
 
-  yay -S spicetify-cli-git spotify sunwait-git swaylock-fancy-git bastet foot freshfetch-git cbonsai nerd-fonts-git stm32cubeide fuzzel nudoku fnott yambar clipman stm32cubemx openrgb-bin osp-tracker balena-etcher macchina onlyoffice-bin standardnotes-bin revolt-desktop toilet
+  yay -S spicetify-cli-git spotify sunwait-git sway-launcher-desktop swaylock-fancy-git bastet foot freshfetch-git cbonsai nerd-fonts-git stm32cubeide fuzzel nudoku clipman stm32cubemx openrgb-bin osp-tracker balena-etcher macchina onlyoffice-bin standardnotes-bin revolt-desktop toilet
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -39,10 +39,11 @@
   chsh -s /usr/bin/zsh fabse
   chsh -s /usr/bin/zsh root
 
-  sudo --user=fabse touch /home/fabse/.config/zsh/.zshenv
-  sudo --user=fabse touch /home/fabse/.config/zsh/.zshrc
+  sudo --user=fabse touch /home/fabse/.zshenv
+  sudo --user=fabse touch /home/fabse/.zshrc
+  sudo --user=fabse touch /home/fabse/.zhistory
 
-  cat << EOF | sudo --user=fabse tee -a /home/fabse/.config/zsh/.zshenv > /dev/null
+  cat << EOF | sudo --user=fabse tee -a /home/fabse/.zshenv > /dev/null
 
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:/usr/local/bin"
@@ -58,18 +59,15 @@ export VISUAL="nvim"
 
 export XDG_SESSION_TYPE=wayland
 export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$XDG_CONFIG_HOME/local/share"
-export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
+export XDG_CACHE_HOME="$XDG_CONFIG_HOME/.cache"
 
-export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-
-export HISTFILE="$ZDOTDIR/.zhistory"    # History filepath
+export HISTFILE="home/fabse/.zhistory"    # History filepath
 export HISTSIZE=10000                   # Maximum events for internal history
 export SAVEHIST=10000                   # Maximum events in history file
 
 EOF
 
-  cat << EOF | sudo --user=fabse tee -a /home/fabse/.config/zsh/.zshrc > /dev/null
+  cat << EOF | sudo --user=fabse tee -a /home/fabse/.zshrc > /dev/null
 
 autoload -U compinit; compinit
 
@@ -81,6 +79,8 @@ bindkey -v
 export KEYTIMEOUT=1
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+
+alias fabse=macchina
 
 EOF
 
@@ -172,21 +172,29 @@ EOF
   ln -s /etc/runit/sv/syncthing /run/runit/service/
   ln -s /etc/runit/sv/fcron /run/runit/service/
   ln -s /etc/runit/sv/iptables /run/runit/service/
+  ln -s /etc/runit/sv/lm_sensors /run/runit/service/
+
+  sensors-detect
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
-# Sway-config
+# Sway-related
 
   sudo --user=fabse cd /home/fabse || return
   
-  mkdir -p .config/{sway,swappy,fnott,yambar,fuzzel,macchina/ascii}
-  mkdir -p .local/share/macchina/themes
+  sudo --user=fabse mkdir -p .config/{sway,swappy,mako,i3status-rust,macchina/ascii}
+  sudo --user=fabse mkdir -p .local/share/macchina/themes
+  sudo --user=fabse mkdir /home/fabse/Scripts
 
   sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/config_sway .config/sway/config
   sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/config_swappy .config/swappy/config
-  sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/fnott.ini .config/fnott/fnott.ini
-  sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/config.yml .config/yambar/config.yml
-  sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/config_fuzzel .config/fuzzel/config_fuzzel
+  sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/config_mako .config/mako/config
+  sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/config.toml .config/i3status-rust/config.toml
   sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/macchina.toml .config/macchina/macchina.toml
   sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/Fabse.json .local/share/macchina/themes/Fabse.json
   sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/fabse.ascii .config/macchina/ascii/fabse.ascii
+
+  sudo --user=fabse git clone https://github.com/hexive/sunpaper.git
+  sudo --user=fabse rm -rf !(images) /home/fabse/sunpaper/*
+  sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/sunpaper.sh /home/fabse/Scripts
+  sudo --user=fabse chmod u+x /home/fabse/Scripts/*
