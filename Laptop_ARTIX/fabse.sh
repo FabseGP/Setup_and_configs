@@ -9,7 +9,7 @@
   pacman-key --populate archlinux artix
   pacman -Scc
 
-  pacman -Syyu terminator nautilus bc lz4 wallutils curl wget fzf zsh-theme-powerlevel10k go make otf-font-awesome swayidle ttf-opensans gammastep foliate xorg-xlsclients neovim zsh swappy zsh-autosuggestions glances zsh-syntax-highlighting zathura zathura-pdf-poppler pipewire pipewire-alsa pipewire-pulse easyeffects sway arduino arduino-avr-core openshot mousepad wine-staging kicad-library kicad-library-3d links gnome-mahjongg gnome-calculator cups-runit dolphin dolphin-plugins qutebrowser geogebra kalzium step gthumb unrar unzip texlive-most atom libreoffice-fresh ark nodejs rclone syncthing-runit wayland gimp plasma ffmpegthumbs kdegraphics-thumbnailers linux-firmware alsa-utils networkmanager-runit alacritty rsync lutris xdg-desktop-portal-kde xdg-desktop-portal-wlr pipewire-media-session gnuplot python3 python-pip realtime-privileges libva-intel-driver brightnessctl ld-lsb lsd imv freecad artools iso-profiles aisleriot bsd-games mpv iptables-runit brave-bin obs-studio firefox kicad libpipewire02 polkit-gnome moc fcron-runit steam mypaint grim android-tools qemu figlet shellcheck kdialog bitwarden jdk-openjdk
+  pacman -Syyu terminator wmctrl nautilus bc lz4 rust wallutils curl wget fzf zsh-theme-powerlevel10k go make otf-font-awesome swayidle ttf-opensans gammastep foliate xorg-xlsclients neovim zsh swappy zsh-autosuggestions glances zsh-syntax-highlighting zathura zathura-pdf-poppler pipewire pipewire-alsa pipewire-pulse easyeffects sway arduino arduino-avr-core openshot mousepad wine-staging kicad-library kicad-library-3d links gnome-mahjongg gnome-calculator cups-runit dolphin dolphin-plugins qutebrowser geogebra kalzium step gthumb unrar unzip texlive-most atom libreoffice-fresh ark nodejs rclone syncthing-runit wayland gimp plasma ffmpegthumbs kdegraphics-thumbnailers linux-firmware alsa-utils networkmanager-runit alacritty rsync lutris xdg-desktop-portal-kde xdg-desktop-portal-wlr pipewire-media-session gnuplot python3 python-pip realtime-privileges libva-intel-driver brightnessctl ld-lsb lsd imv freecad artools iso-profiles aisleriot bsd-games mpv iptables-runit brave-bin obs-studio firefox kicad libpipewire02 polkit-gnome moc fcron-runit steam mypaint grim android-tools qemu figlet shellcheck kdialog bitwarden jdk-openjdk
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -179,14 +179,14 @@ EOF
 
   sudo --user=fabse cd /home/fabse || return
   
-  mkdir .config/sway
-  mkdir .config/swappy
-  mkdir .config/fnott
-  mkdir .config/yambar
-  mkdir .config/fuzzel
+  mkdir -p .config/{sway,swappy,fnott,yambar,fuzzel,macchina/ascii}
+  mkdir -p .local/share/macchina/themes
 
   sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/config_sway .config/sway/config
   sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/config_swappy .config/swappy/config
   sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/fnott.ini .config/fnott/fnott.ini
   sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/config.yml .config/yambar/config.yml
   sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/config_fuzzel .config/fuzzel/config_fuzzel
+  sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/macchina.toml .config/macchina/macchina.toml
+  sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/Fabse.json .local/share/macchina/themes/Fabse.json
+  sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/fabse.ascii .config/macchina/ascii/fabse.ascii
