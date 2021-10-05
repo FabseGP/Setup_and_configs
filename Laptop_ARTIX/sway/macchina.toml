@@ -17,7 +17,7 @@ no_box = false
 no_ascii = false
 
 # Specify your own ASCII art from a text file (supports ANSI escape codes)
-custom_ascii = "/home/fabse/archlinux.ascii"
+custom_ascii = "/home/fabse/.config/macchina/ascii/fabse.ascii"
 
 # Prefer small ASCII variant.
 small_ascii = false
