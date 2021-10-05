@@ -182,7 +182,7 @@ EOF
 
   sudo --user=fabse cd /home/fabse || return
   
-  sudo --user=fabse mkdir -p .config/{sway,swappy,mako,i3status-rust,macchina/ascii}
+  sudo --user=fabse mkdir -p .config/{sway,swappy,mako,i3status-rust,alacritty,macchina/ascii}
   sudo --user=fabse mkdir -p .local/share/macchina/themes
   sudo --user=fabse mkdir /home/fabse/Scripts
 
@@ -193,6 +193,7 @@ EOF
   sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/macchina.toml .config/macchina/macchina.toml
   sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/Fabse.json .local/share/macchina/themes/Fabse.json
   sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/fabse.ascii .config/macchina/ascii/fabse.ascii
+  sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/alacritty.yml .config/alacritty/alacritty.yml
 
   sudo --user=fabse git clone https://github.com/hexive/sunpaper.git
   sudo --user=fabse rm -rf !(images) /home/fabse/sunpaper/*
