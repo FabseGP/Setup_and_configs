@@ -256,7 +256,7 @@ bar {
   default_border pixel 2
 
   # What to execute on startup
-  exec_always dunst
+  exec_always mako
   exec_always pipewire
   exec_always pipewire-pulse
   exec_always pipewire-media-session
