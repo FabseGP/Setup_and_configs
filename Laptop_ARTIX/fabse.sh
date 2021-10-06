@@ -199,3 +199,6 @@ EOF
   sudo --user=fabse rm -rf !(images) /home/fabse/sunpaper/*
   sudo --user=fabse cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/sunpaper.sh /home/fabse/Scripts
   sudo --user=fabse chmod u+x /home/fabse/Scripts/*
+  
+  sudo --user=fabse rm -rf /home/fabse/Setup_and_configs
+  
