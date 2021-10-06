@@ -99,6 +99,7 @@ export KEYTIMEOUT=1
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 alias fabse=macchina
+alias rm='rm -i'
 
 EOF
 
