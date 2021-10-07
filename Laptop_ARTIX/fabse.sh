@@ -20,20 +20,34 @@
 
 # Package-installation
 
-  cp /home/fabse/Setup_and_configs/Laptop_ARTIX/pacman.conf /etc/pacman.conf
+  pacman -Syyu kmod libelf apparmor-runit avahi-runit cups-filters nss-mdns intel-undervolt-runit cups-pdf thermald-runit tlp-runit cpupower-runit pahole cpio perl tar xz bitwarden-cli chrony-runit networkmanager-openvpn xmlto python-sphinx python-sphinx_rtd_theme graphviz imagemagick terminator noto-fonts-emoji wmctrl libnotify lm_sensors-runit nautilus bc lz4 man-db i3status-rust rust wallutils curl mako wget fzf python-pywal zsh-theme-powerlevel10k go make otf-font-awesome swayidle ttf-opensans gammastep foliate xorg-xlsclients neovim zsh swappy zsh-autosuggestions glances zsh-syntax-highlighting zathura zathura-pdf-poppler pipewire pipewire-alsa pipewire-pulse easyeffects sway arduino arduino-avr-core openshot mousepad wine-staging kicad-library kicad-library-3d links gnome-mahjongg gnome-calculator cups-runit dolphin dolphin-plugins qutebrowser geogebra kalzium step gthumb unrar unzip texlive-most atom libreoffice-fresh ark nodejs rclone syncthing-runit wayland gimp plasma ffmpegthumbs kdegraphics-thumbnailers linux-firmware linux-hardened linux-hardened-headers alsa-utils networkmanager-runit alacritty rsync lutris xdg-desktop-portal-kde xdg-desktop-portal-wlr pipewire-media-session gnuplot python3 python-pip realtime-privileges libva-intel-driver brightnessctl ld-lsb lsd imv freecad artools iso-profiles aisleriot bsd-games mpv iptables-runit brave-bin obs-studio firefox kicad libpipewire02 polkit-gnome moc steam mypaint grim android-tools qemu figlet shellcheck kdialog bitwarden jdk-openjdk
 
-  pacman -Sy --noconfirm archlinux-keyring artix-keyring
-  pacman-key --init
-  pacman-key --populate archlinux artix
-  pacman -Scc --noconfirm
+#----------------------------------------------------------------------------------------------------------------------------------
 
-  pacman -Syyu kmod libelf pahole cpio perl tar xz bitwarden-cli networkmanager-openvpn xmlto python-sphinx python-sphinx_rtd_theme graphviz imagemagick terminator noto-fonts-emoji wmctrl libnotify lm_sensors-runit nautilus bc lz4 man-db i3status-rust rust wallutils curl mako wget fzf python-pywal zsh-theme-powerlevel10k go make otf-font-awesome swayidle ttf-opensans gammastep foliate xorg-xlsclients neovim zsh swappy zsh-autosuggestions glances zsh-syntax-highlighting zathura zathura-pdf-poppler pipewire pipewire-alsa pipewire-pulse easyeffects sway arduino arduino-avr-core openshot mousepad wine-staging kicad-library kicad-library-3d links gnome-mahjongg gnome-calculator cups-runit dolphin dolphin-plugins qutebrowser geogebra kalzium step gthumb unrar unzip texlive-most atom libreoffice-fresh ark nodejs rclone syncthing-runit wayland gimp plasma ffmpegthumbs kdegraphics-thumbnailers linux-firmware linux-hardened linux-hardened-headers alsa-utils networkmanager-runit alacritty rsync lutris xdg-desktop-portal-kde xdg-desktop-portal-wlr pipewire-media-session gnuplot python3 python-pip realtime-privileges libva-intel-driver brightnessctl ld-lsb lsd imv freecad artools iso-profiles aisleriot bsd-games mpv iptables-runit brave-bin obs-studio firefox kicad libpipewire02 polkit-gnome moc fcron-runit steam mypaint grim android-tools qemu figlet shellcheck kdialog bitwarden jdk-openjdk
+# Runit + intel-undervolt + hostname resolution + snapper
+
+  ln -s /etc/runit/sv/cupsd /run/runit/service/ 
+  ln -s /etc/runit/sv/syncthing /run/runit/service/
+  ln -s /etc/runit/sv/iptables /run/runit/service/
+  ln -s /etc/runit/sv/lm_sensors /run/runit/service/
+  ln -s /etc/runit/sv/chrony /run/runit/service/
+  ln -s /etc/runit/sv/cpupower /run/runit/service/
+  ln -s /etc/runit/sv/intel-undervolt /run/runit/service/
+  ln -s /etc/runit/sv/tlp-runit /run/runit/service/
+  ln -s /etc/runit/sv/thermald-runit /run/runit/service
+  ln -s /etc/runit/sv/avahi-daemon /run/runit/service
+  sensors-detect
+  sv start intel-undervolt
+  sv start avahi-daemon
+  mv /home/fabse/Setup_and_configs/Laptop_ARTIX/intel-undervolt.conf /etc/intel-undervolt.conf
+  intel-undervolt apply
+  sed -i 's/hosts: files resolve [!UNAVAIL=return] dns/hosts: files mdns4_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns/' /etc/nsswitch.conf
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # yay-installation
 
-  cp /home/fabse/Setup_and_configs/Laptop_ARTIX/makepkg.conf /etc/makepkg.conf
+  mv /home/fabse/Setup_and_configs/Laptop_ARTIX/makepkg.conf /etc/makepkg.conf
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -41,14 +55,13 @@
 
   "$identity_command" xdg-open https://www.st.com/en/development-tools/stm32cubeide.html
   "$identity_command" xdg-open https://www.st.com/en/development-tools/stm32cubemx.html
-
   read -rp "Are you ready again? Type anything for yes: " STM32_ready
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
-# Installation of packages from AUR
+# Installation of packages from AUR; cnrdrvcups-lb only because of Brother-printer
 
-  yay -S spicetify-cli-git spotify otf-openmoji sunwait-git sway-launcher-desktop swaylock-fancy-git bastet foot freshfetch-git cbonsai nerd-fonts-git stm32cubeide fuzzel nudoku clipman stm32cubemx openrgb-bin osp-tracker balena-etcher macchina onlyoffice-bin standardnotes-bin revolt-desktop toilet
+  yay -S spicetify-cli-git spotify cnrdrvcups-lb otf-openmoji sunwait-git sway-launcher-desktop swaylock-fancy-git bastet foot freshfetch-git cbonsai nerd-fonts-git stm32cubeide fuzzel nudoku clipman stm32cubemx openrgb-bin osp-tracker balena-etcher macchina onlyoffice-bin standardnotes-bin revolt-desktop toilet
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -56,11 +69,9 @@
 
   chsh -s /usr/bin/zsh fabse
   chsh -s /usr/bin/zsh root
-
   "$identity_command" touch /home/fabse/.zshenv
   "$identity_command" touch /home/fabse/.zshrc
   "$identity_command" touch /home/fabse/.zhistory
-
   cat << EOF | "$identity_command" tee -a /home/fabse/.zshenv > /dev/null
 
 if [ -d "$HOME/.local/bin" ] ; then
@@ -84,10 +95,14 @@ export HISTSIZE=10000                   # Maximum events for internal history
 export SAVEHIST=10000                   # Maximum events in history file
 
 EOF
-
   cat << EOF | "$identity_command" tee -a /home/fabse/.zshrc > /dev/null
 
 autoload -U compinit; compinit
+zstyle ':completion::complete:*' gain-privileges 1
+
+exit_zsh() { exit }
+zle -N exit_zsh
+bindkey '^D' exit_zsh
 
 _comp_options+=(globdots) # With hidden files
 
@@ -102,7 +117,6 @@ alias fabse=macchina
 alias rm='rm -i'
 
 EOF
-
   "$identity_command" mkdir ~/.local/share/fonts
 
 #----------------------------------------------------------------------------------------------------------------------------------
@@ -111,7 +125,6 @@ EOF
 
   "$identity_command" git clone https://github.com/vinceliuice/grub2-themes.git
   "$identity_command" cd grub2-themes || return
-
   ./install.sh -b -t tela
   "$identity_command" cd /home/fabse || return
 
@@ -120,12 +133,9 @@ EOF
 # Reveal.js + chart.js + slides.js
 
   "$identity_command" npm install browserify
-
   "$identity_command" git clone https://github.com/hakimel/reveal.js.git
   "$identity_command" cd reveal.js && npm install
-
   "$identity_command" cd /home/fabse || return
-
   "$identity_command" npm install chart.js
 
 #----------------------------------------------------------------------------------------------------------------------------------
@@ -133,9 +143,7 @@ EOF
 # Maple + chemsketch
 
   "$identity_command" xdg-open https://www.acdlabs.com/resources/freeware/chemsketch/download.php
-
   read -rp "Are you ready again? Type anything for yes: " Science_ready
-
   "$identity_command" unzip /home/fabse/Hentet/ACDLabs202021_ChemSketchFree_Install.zip
   "$identity_command" wine /home/fabse/Hentet/ACDLabs202021_ChemSketchFree_Install/setup.exe
 
@@ -150,29 +158,22 @@ EOF
 # Firefox-theme
 
   "$identity_command" firefox about:support &
-
   read -rp "Is the path copied? Then type the full path here: " Firefox_ready
-
   "$identity_command" mkdir "$Firefox_ready"/chrome
-
-  "$identity_command" cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/firefox/userChrome.css "$Firefox_ready"/chrome
-  "$identity_command" cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/firefox/user.js "$Firefox_ready"
+  "$identity_command" mv -r /home/fabse/Setup_and_configs/Laptop_ARTIX/firefox/userChrome.css "$Firefox_ready"/chrome
+  "$identity_command" mv -r /home/fabse/Setup_and_configs/Laptop_ARTIX/firefox/user.js "$Firefox_ready"
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # Spicetify
 
   "$identity_command" spotify
-
   "$identity_command" read -rp "Are you ready again? Type anything for yes: " Spotify_ready
-
   chmod a+wr /opt/spotify
   chmod a+wr /opt/spotify/Apps -R
-
   "$identity_command" git clone https://github.com/morpheusthewhite/spicetify-themes.git
   "$identity_command" cd spicetify-themes || return
   "$identity_command" cp -r -- * ~/.config/spicetify/Themes
-
   "$identity_command" cd "$(dirname "$(spicetify -c)")/Themes/DribbblishDynamic" || return
   "$identity_command" mkdir -p ../../Extensions
   "$identity_command" cp dribbblish-dynamic.js ../../Extensions/.
@@ -180,44 +181,27 @@ EOF
   "$identity_command" spicetify config current_theme DribbblishDynamic color_scheme nord-dark
   "$identity_command" spicetify config inject_css 1 replace_colors 1 overwrite_assets 1
   "$identity_command" spicetify backup apply
-
   "$identity_command" cd /home/fabse || return
-
-#----------------------------------------------------------------------------------------------------------------------------------
-
-# User groups + Runit
-
-  ln -s /etc/runit/sv/cupsd /run/runit/service/ 
-  ln -s /etc/runit/sv/syncthing /run/runit/service/
-  ln -s /etc/runit/sv/fcron /run/runit/service/
-  ln -s /etc/runit/sv/iptables /run/runit/service/
-  ln -s /etc/runit/sv/lm_sensors /run/runit/service/
-
-  sensors-detect
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # Sway-related
 
   "$identity_command" cd /home/fabse || return
-  
   "$identity_command" mkdir -p .config/{sway,swappy,mako,i3status-rust,alacritty,macchina/ascii}
   "$identity_command" mkdir -p .local/share/macchina/themes
   "$identity_command" mkdir /home/fabse/Scripts
-
-  "$identity_command" cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/config_sway .config/sway/config
-  "$identity_command" cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/config_swappy .config/swappy/config
-  "$identity_command" cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/config_mako .config/mako/config
-  "$identity_command" cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/config.toml .config/i3status-rust/config.toml
-  "$identity_command" cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/macchina.toml .config/macchina/macchina.toml
-  "$identity_command" cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/Fabse.json .local/share/macchina/themes/Fabse.json
-  "$identity_command" cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/fabse.ascii .config/macchina/ascii/fabse.ascii
-  "$identity_command" cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/alacritty.yml .config/alacritty/alacritty.yml
-
+  "$identity_command" mv -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/config_sway .config/sway/config
+  "$identity_command" mv -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/config_swappy .config/swappy/config
+  "$identity_command" mv -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/config_mako .config/mako/config
+  "$identity_command" mv -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/config.toml .config/i3status-rust/config.toml
+  "$identity_command" mv -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/macchina.toml .config/macchina/macchina.toml
+  "$identity_command" mv -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/Fabse.json .local/share/macchina/themes/Fabse.json
+  "$identity_command" mv -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/fabse.ascii .config/macchina/ascii/fabse.ascii
+  "$identity_command" mv -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/alacritty.yml .config/alacritty/alacritty.yml
   "$identity_command" git clone https://github.com/hexive/sunpaper.git
   "$identity_command" rm -rf !(images) /home/fabse/sunpaper/*
-  "$identity_command" cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/sunpaper.sh /home/fabse/Scripts
+  "$identity_command" mv -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/sunpaper.sh /home/fabse/Scripts
   "$identity_command" chmod u+x /home/fabse/Scripts/*
-  
   "$identity_command" rm -rf /home/fabse/Setup_and_configs
   
