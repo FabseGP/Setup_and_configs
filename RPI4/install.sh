@@ -51,7 +51,7 @@ EOF
   elif [[ "$docker" == "no" ]]; then
     apk add podman podman-docker py3-podman podman-remote fuse-overlayfs shadow slirp4netns
   fi
-  apk add afetch snapper openssh libressl udisks2 sed man-pages ttf-dejavu cups cups-libs cups-pdf cups-client cups-filters git py3-pip swaybg nautilus bc fnott lz4 cbonsai nerd-fonts haveged gcc make build-base kbd-bkeymaps curl wget i2c-tools lm_sensors perl lsblk e2fsprogs-extra networkmanager iptables tzdata mysql-client firefox mysql pipewire ttf-opensans pipewire-pulse libuser ksysguard libreoffice pavucontrol yambar fuzzel rclone syncthing rsync alacritty terminator fcron unrar unzip zsh zsh-autosuggestions zsh-syntax-highlighting neovim btrfs-progs mousepad ark mpv swappy glances plasma nodejs-current npm lsof zathura zathura-pdf-poppler eudev sway swaylock-effects swayidle figlet mesa-dri-gallium xdg-desktop-portal-wlr xdg-desktop-portal-kde clipman gnome-calculator polkit-gnome pipewire-media-session grim kdialog dialog grep font-awesome swaylockd
+  apk add afetch snapper openssh rsnapshot libressl udisks2 sed man-pages ttf-dejavu cups cups-libs cups-pdf cups-client cups-filters git py3-pip swaybg nautilus bc fnott lz4 cbonsai nerd-fonts haveged gcc make build-base kbd-bkeymaps curl wget i2c-tools lm_sensors perl lsblk e2fsprogs-extra networkmanager iptables tzdata mysql-client firefox mysql pipewire ttf-opensans pipewire-pulse libuser ksysguard libreoffice pavucontrol yambar fuzzel rclone syncthing rsync alacritty terminator fcron unrar unzip zsh zsh-autosuggestions zsh-syntax-highlighting neovim btrfs-progs mousepad ark mpv swappy glances plasma nodejs-current npm lsof zathura zathura-pdf-poppler eudev sway swaylock-effects swayidle figlet mesa-dri-gallium xdg-desktop-portal-wlr xdg-desktop-portal-kde clipman gnome-calculator polkit-gnome pipewire-media-session grim kdialog dialog grep font-awesome swaylockd
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -218,8 +218,11 @@ EOF
   "$identity_command" "$(crontab -l; echo "@reboot /home/fabsepi/Scripts/etherpad.sh")|awk '!x[$0]++'|crontab -)"
   /bin/bash -c 'echo "@reboot /home/fabsepi/Scripts/seagate.sh" >> /etc/crontab'
   "$identity_command" "$(crontab -l; echo "@reboot /home/fabsepi/Scripts/pipewire.sh")|awk '!x[$0]++'|crontab -)"
-  mv /home/fabsepi/Scripts/btrfs_snapshot.sh /etc/cron.daily
-  chmod u+x /etc/cron.daily/btrfs_snapshot.sh
+  mv /home/fabsepi/Setup_and_configs/RPI4/rsnapshot.conf /etc/rsnapshot.conf
+  mv /home/fabsepi/Setup_and_configs/RPI4/Scripts/rsnapshot_daily.sh /etc/periodic/daily
+  mv /home/fabsepi/Setup_and_configs/RPI4/Scripts/rsnapshot_weekly.sh /etc/periodic/weekly
+  mv /home/fabsepi/Setup_and_configs/RPI4/Scripts/rsnapshot_monthly.sh /etc/periodic/monthly
+  chmod +x /etc/periodic/*/rsnapshot
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
