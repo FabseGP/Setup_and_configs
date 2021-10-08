@@ -51,7 +51,7 @@ EOF
   elif [[ "$docker" == "no" ]]; then
     apk add podman podman-docker py3-podman podman-remote fuse-overlayfs shadow slirp4netns
   fi
-  apk add afetch snapper openssh rsnapshot libressl udisks2 sed man-pages ttf-dejavu cups cups-libs cups-pdf cups-client cups-filters git py3-pip swaybg nautilus bc fnott lz4 cbonsai nerd-fonts haveged gcc make build-base kbd-bkeymaps curl wget i2c-tools lm_sensors perl lsblk e2fsprogs-extra networkmanager iptables tzdata mysql-client firefox mysql pipewire ttf-opensans pipewire-pulse libuser ksysguard libreoffice pavucontrol yambar fuzzel rclone syncthing rsync alacritty terminator fcron unrar unzip zsh zsh-autosuggestions zsh-syntax-highlighting neovim btrfs-progs mousepad ark mpv swappy glances plasma nodejs-current npm lsof zathura zathura-pdf-poppler eudev sway swaylock-effects swayidle figlet mesa-dri-gallium xdg-desktop-portal-wlr xdg-desktop-portal-kde clipman gnome-calculator polkit-gnome pipewire-media-session grim kdialog dialog grep font-awesome swaylockd
+  apk add afetch snapper openssh rsnapshot libressl udisks2 sed man-pages ttf-dejavu cups cups-libs sshguard cups-pdf cups-client cups-filters git py3-pip swaybg nautilus bc fnott lz4 cbonsai nerd-fonts haveged gcc make build-base kbd-bkeymaps curl wget i2c-tools lm_sensors perl lsblk e2fsprogs-extra networkmanager nftables tzdata mysql-client firefox mysql pipewire ttf-opensans pipewire-pulse libuser ksysguard libreoffice pavucontrol yambar fuzzel rclone syncthing rsync alacritty terminator fcron unrar unzip zsh zsh-autosuggestions zsh-syntax-highlighting neovim btrfs-progs mousepad ark mpv swappy glances plasma nodejs-current npm lsof zathura zathura-pdf-poppler eudev sway swaylock-effects swayidle figlet mesa-dri-gallium xdg-desktop-portal-wlr xdg-desktop-portal-kde clipman gnome-calculator polkit-gnome pipewire-media-session grim kdialog dialog grep font-awesome swaylockd
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -69,10 +69,9 @@ EOF
   fi
   rc-update add swap boot
   rc-update add haveged boot
-  for service in fcron syncthing dbus sshd cupsd mariadb fuse iptables networkmanager; do
+  for service in fcron syncthing dbus sshguard sshd cupsd mariadb fuse nftables networkmanager; do
     rc-update add $service default
   done
-  /etc/init.d/iptables save
   /etc/init.d/sshd start
   sed -i -e "/Port 22/s/^#//" /etc/ssh/sshd.config
   sed -i 's/Port 22/Port 1111/' /etc/ssh/sshd.config
