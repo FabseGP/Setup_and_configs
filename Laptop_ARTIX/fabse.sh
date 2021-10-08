@@ -24,7 +24,7 @@
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
-# Runit + intel-undervolt + hostname resolution + snapper + libvirt + macchina at tty
+# Runit + intel-undervolt + hostname resolution + snapper + libvirt + tty login prompt
 
   ln -s /etc/runit/sv/cupsd /run/runit/service/ 
   ln -s /etc/runit/sv/syncthing /run/runit/service/
@@ -44,6 +44,11 @@
   intel-undervolt apply
   sed -i 's/hosts: files resolve [!UNAVAIL=return] dns/hosts: files mdns4_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns/' /etc/nsswitch.conf
   usermod -a -G libvirt fabse
+  cat << EOF | tee -a /etc/issue > /dev/null
+
+This object that you sir are using is property of Fabse Inc. - expect therefore puns! 
+
+EOF
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
