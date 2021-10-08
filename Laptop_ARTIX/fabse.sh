@@ -20,15 +20,16 @@
 
 # Package-installation
 
-  pacman -Syyu kmod libelf apparmor-runit avahi-runit cups-filters nss-mdns intel-undervolt-runit cups-pdf thermald-runit tlp-runit cpupower-runit pahole cpio perl tar xz bitwarden-cli chrony-runit networkmanager-openvpn xmlto python-sphinx python-sphinx_rtd_theme graphviz imagemagick terminator noto-fonts-emoji wmctrl libnotify lm_sensors-runit nautilus bc lz4 man-db i3status-rust rust wallutils curl mako wget fzf python-pywal zsh-theme-powerlevel10k go make otf-font-awesome swayidle ttf-opensans gammastep foliate xorg-xlsclients neovim zsh swappy zsh-autosuggestions glances zsh-syntax-highlighting zathura zathura-pdf-poppler pipewire pipewire-alsa pipewire-pulse easyeffects sway arduino arduino-avr-core openshot mousepad wine-staging kicad-library kicad-library-3d links gnome-mahjongg gnome-calculator cups-runit dolphin dolphin-plugins qutebrowser geogebra kalzium step gthumb unrar unzip texlive-most atom libreoffice-fresh ark nodejs rclone syncthing-runit wayland gimp plasma ffmpegthumbs kdegraphics-thumbnailers linux-firmware linux-hardened linux-hardened-headers alsa-utils networkmanager-runit alacritty rsync lutris xdg-desktop-portal-kde xdg-desktop-portal-wlr pipewire-media-session gnuplot python3 python-pip realtime-privileges libva-intel-driver brightnessctl ld-lsb lsd imv freecad artools iso-profiles aisleriot bsd-games mpv iptables-runit brave-bin obs-studio firefox kicad libpipewire02 polkit-gnome moc steam mypaint grim android-tools qemu figlet shellcheck kdialog bitwarden jdk-openjdk
+  pacman -Syyu kmod libelf apparmor-runit avahi-runit cups-filters nss-mdns intel-undervolt-runit cups-pdf thermald-runit tlp-runit cpupower-runit pahole cpio perl tar xz bitwarden-cli chrony-runit networkmanager-openvpn xmlto python-sphinx python-sphinx_rtd_theme graphviz imagemagick terminator noto-fonts-emoji wmctrl libnotify lm_sensors-runit nautilus bc lz4 man-db i3status-rust rust wallutils curl mako wget fzf python-pywal zsh-theme-powerlevel10k go make otf-font-awesome swayidle ttf-opensans gammastep foliate xorg-xlsclients neovim zsh swappy zsh-autosuggestions glances zsh-syntax-highlighting zathura zathura-pdf-poppler pipewire pipewire-alsa pipewire-pulse easyeffects sway arduino arduino-avr-core openshot mousepad wine-staging kicad-library kicad-library-3d links gnome-mahjongg gnome-calculator cups-runit dolphin dolphin-plugins qutebrowser geogebra kalzium step gthumb unrar unzip texlive-most atom libreoffice-fresh ark nodejs rclone syncthing-runit wayland gimp plasma ffmpegthumbs kdegraphics-thumbnailers linux-firmware linux-hardened linux-hardened-headers alsa-utils networkmanager-runit alacritty rsync lutris xdg-desktop-portal-kde xdg-desktop-portal-wlr pipewire-media-session gnuplot python3 python-pip realtime-privileges libva-intel-driver brightnessctl ld-lsb lsd imv freecad artools iso-profiles aisleriot bsd-games mpv iptables-nft nftables-runit ebtables dnsmasq brave-bin obs-studio firefox kicad libpipewire02 polkit-gnome moc steam mypaint grim android-tools figlet shellcheck kdialog bitwarden jdk-openjdk
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
-# Runit + intel-undervolt + hostname resolution + snapper
+# Runit + intel-undervolt + hostname resolution + snapper + libvirt + macchina at tty
 
   ln -s /etc/runit/sv/cupsd /run/runit/service/ 
   ln -s /etc/runit/sv/syncthing /run/runit/service/
-  ln -s /etc/runit/sv/iptables /run/runit/service/
+  ln -s /etc/runit/sv/nftables /run/runit/service/
+  ln -s /etc/runit/sv/libvirtd /run/runit/service/
   ln -s /etc/runit/sv/lm_sensors /run/runit/service/
   ln -s /etc/runit/sv/chrony /run/runit/service/
   ln -s /etc/runit/sv/cpupower /run/runit/service/
@@ -42,6 +43,14 @@
   mv /home/fabse/Setup_and_configs/Laptop_ARTIX/intel-undervolt.conf /etc/intel-undervolt.conf
   intel-undervolt apply
   sed -i 's/hosts: files resolve [!UNAVAIL=return] dns/hosts: files mdns4_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns/' /etc/nsswitch.conf
+  usermod -a -G libvirt fabse
+  touch /etc/profile.d/maccina.sh
+  cat << EOF | tee -a /etc/profile.d/macchina.sh > /dev/null
+ #!/bin/bash
+  [ -z "$PS1" ] && return
+  if ! [ $(id -u) = 0 ]; then if [ -f /usr/bin/screenfetch ]; then screenfetch; fi fi
+EOF
+  chmod u+x /etc/profile.d/macchina.sh
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
