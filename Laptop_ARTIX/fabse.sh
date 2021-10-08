@@ -44,13 +44,6 @@
   intel-undervolt apply
   sed -i 's/hosts: files resolve [!UNAVAIL=return] dns/hosts: files mdns4_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns/' /etc/nsswitch.conf
   usermod -a -G libvirt fabse
-  touch /etc/profile.d/macchina.sh
-  cat << EOF | tee -a /etc/profile.d/macchina.sh > /dev/null
- #!/bin/bash
-  [ -z "$PS1" ] && return
-  if ! [ $(id -u) = 0 ]; then if [ -f /usr/bin/macchina ]; then macchina; fi fi
-EOF
-  chmod u+x /etc/profile.d/macchina.sh
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
