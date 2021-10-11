@@ -9,7 +9,7 @@
 
 # Doas or sudo
 
-  read -rp "Are you, sir, using either "podman" or "docker"? " identity
+  read -rp "Are you, sir, using either \"podman\" or \"docker\"? " identity
   if [ "$identity" == podman ]; then
     identity_command="DOCKER_HOST=unix:///run/podman/podman.sock docker compose up -d"
     podman network create pacman
