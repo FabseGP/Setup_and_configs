@@ -39,17 +39,6 @@ EOF
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
-# BTRFS-snapshots; grub-btrfs at shutdown
-
-  cat << EOF | doas tee -a /etc/rc.shutdown > /dev/null
-# Adding BTRFS-snapshots to grub-menu
-cd /etc/grub.d
-./41_snapshots-btrfs
-grub-mkconfig -o /boot/grub/grub.cfg
-EOF
-
-#----------------------------------------------------------------------------------------------------------------------------------
-
 # yay-installation
 
   doas mv /home/fabse/Setup_and_configs/Laptop_ARTIX/makepkg.conf /etc/makepkg.conf
