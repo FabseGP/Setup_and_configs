@@ -42,7 +42,7 @@ EOF
 
 # yay-installation
 
-  doas mv /home/fabse/Setup_and_configs/Laptop_ARTIX/makepkg.conf /etc/makepkg.conf
+  doas cp /home/fabse/Setup_and_configs/Laptop_ARTIX/makepkg.conf /etc/makepkg.conf
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
