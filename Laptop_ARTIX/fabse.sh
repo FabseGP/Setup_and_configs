@@ -3,6 +3,7 @@
 # Package-installation + extra packages
 
   doas pacman -Syyu kmod libelf git-lfs avahi-runit virtualbox-guest-utils virtualbox-guest-iso cups-filters qemu libvirt-runit virtualbox-host-dkms virtualbox nss-mdns intel-undervolt-runit cups-pdf thermald-runit tlp-runit cpupower-runit pahole cpio perl tar xz bitwarden-cli chrony-runit networkmanager-openvpn xmlto python-sphinx python-sphinx_rtd_theme graphviz imagemagick terminator noto-fonts-emoji wmctrl libnotify lm_sensors-runit nautilus bc lz4 man-db i3status-rust rust wallutils curl mako wget fzf python-pywal zsh-theme-powerlevel10k go make otf-font-awesome swayidle ttf-opensans gammastep foliate xorg-xlsclients neovim zsh swappy zsh-autosuggestions glances zsh-syntax-highlighting zathura zathura-pdf-poppler pipewire pipewire-alsa pipewire-pulse easyeffects sway arduino arduino-avr-core openshot mousepad wine-staging kicad-library kicad-library-3d links gnome-mahjongg gnome-calculator cups-runit dolphin dolphin-plugins qutebrowser geogebra kalzium step gthumb unrar unzip texlive-most atom libreoffice-fresh ark nodejs rclone syncthing-runit wayland gimp plasma ffmpegthumbs kdegraphics-thumbnailers linux-firmware linux-hardened linux-hardened-headers alsa-utils networkmanager-runit alacritty rsync lutris xdg-desktop-portal-kde xdg-desktop-portal-wlr pipewire-media-session gnuplot python3 python-pip realtime-privileges libva-intel-driver brightnessctl ld-lsb lsd imv freecad artools iso-profiles aisleriot bsd-games mpv iptables-nft nftables-runit ebtables dnsmasq brave-bin obs-studio firefox kicad libpipewire02 polkit-gnome moc steam mypaint grim android-tools figlet shellcheck kdialog bitwarden jdk-openjdk
+  pip3 install gdown
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -49,8 +50,8 @@ EOF
 
   doas mkdir -p /home/fabse/Downloads
   cd /home/fabse/Downloads || return
-  wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1YBVDSeergaQ7Zx5edMnsbe42ju4pRt3j' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1YBVDSeergaQ7Zx5edMnsbe42ju4pRt3j" -O en.st-stm32cubeide_1.7.0_10852_20210715_0634_amd64.sh_v1.7.0.zip && rm -rf /tmp/cookies.txt
-  wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1-PD8pP1dnfrmKuOK31XUleTXqokzYfT0' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1-PD8pP1dnfrmKuOK31XUleTXqokzYfT0" -O en.stm32cubemx-lin_v6-3-0_v6.3.0.zip && rm -rf /tmp/cookies.txt
+  gdown https://drive.google.com/uc?id=1YBVDSeergaQ7Zx5edMnsbe42ju4pRt3j
+  gdown https://drive.google.com/uc?id=1-PD8pP1dnfrmKuOK31XUleTXqokzYfT0
   yay -S stm32cubemx stm32cubeide spicetify-cli-git spotify cnrdrvcups-lb otf-openmoji sunwait-git sway-launcher-desktop swaylock-fancy-git bastet foot freshfetch-git cbonsai nerd-fonts-git fuzzel nudoku clipman openrgb-bin osp-tracker balena-etcher macchina onlyoffice-bin standardnotes-bin revolt-desktop toilet
   rm /home/fabse/Downloads/*
   cd /home/fabse || return 
@@ -134,6 +135,7 @@ EOF
 
 # Chemsketch
 
+  gdown https://drive.google.com/uc?id=
   wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=18_rAJrndm_V0KMfnEA_jGcQfgInObpRC' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=18_rAJrndm_V0KMfnEA_jGcQfgInObpRC" -O Chemsketch.zip && rm -rf /tmp/cookies.txt
   mkdir -p /home/fabse/Chemsketch
   unzip -d /home/fabse/Chemsketch /home/fabse/Chemsketch.zip
