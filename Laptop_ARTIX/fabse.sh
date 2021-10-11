@@ -47,7 +47,7 @@ EOF
 
 # Installation of packages from AUR; cnrdrvcups-lb only because of Brother-printer
 
-  doas mkdir -p /home/fabse/Downloads
+  mkdir -p /home/fabse/Downloads
   cd /home/fabse/Downloads || return
   gdown https://drive.google.com/uc?id=1YBVDSeergaQ7Zx5edMnsbe42ju4pRt3j
   gdown https://drive.google.com/uc?id=1-PD8pP1dnfrmKuOK31XUleTXqokzYfT0
