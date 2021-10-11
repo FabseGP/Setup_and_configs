@@ -9,7 +9,7 @@
 
 # Doas or sudo
 
-  read -rp "Are you, sir, using either "doas" or "sudo"? " identity
+  read -rp "Are you, sir, using either \"doas\" or \"sudo\"? " identity
   if [ "$identity" == doas ]; then
     identity_command="doas -u fabse"
   elif [ "$identity" == sudo ]; then
@@ -18,24 +18,23 @@
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
-# Package-installation
+# Package-installation + extra packages
 
-  pacman -Syyu kmod libelf avahi-runit cups-filters nss-mdns intel-undervolt-runit cups-pdf thermald-runit tlp-runit cpupower-runit pahole cpio perl tar xz bitwarden-cli chrony-runit networkmanager-openvpn xmlto python-sphinx python-sphinx_rtd_theme graphviz imagemagick terminator noto-fonts-emoji wmctrl libnotify lm_sensors-runit nautilus bc lz4 man-db i3status-rust rust wallutils curl mako wget fzf python-pywal zsh-theme-powerlevel10k go make otf-font-awesome swayidle ttf-opensans gammastep foliate xorg-xlsclients neovim zsh swappy zsh-autosuggestions glances zsh-syntax-highlighting zathura zathura-pdf-poppler pipewire pipewire-alsa pipewire-pulse easyeffects sway arduino arduino-avr-core openshot mousepad wine-staging kicad-library kicad-library-3d links gnome-mahjongg gnome-calculator cups-runit dolphin dolphin-plugins qutebrowser geogebra kalzium step gthumb unrar unzip texlive-most atom libreoffice-fresh ark nodejs rclone syncthing-runit wayland gimp plasma ffmpegthumbs kdegraphics-thumbnailers linux-firmware linux-hardened linux-hardened-headers alsa-utils networkmanager-runit alacritty rsync lutris xdg-desktop-portal-kde xdg-desktop-portal-wlr pipewire-media-session gnuplot python3 python-pip realtime-privileges libva-intel-driver brightnessctl ld-lsb lsd imv freecad artools iso-profiles aisleriot bsd-games mpv iptables-nft nftables-runit ebtables dnsmasq brave-bin obs-studio firefox kicad libpipewire02 polkit-gnome moc steam mypaint grim android-tools figlet shellcheck kdialog bitwarden jdk-openjdk
+  pacman -Syyu kmod libelf git-lfs avahi-runit virtualbox-guest-utils virtualbox-guest-iso cups-filters qemu libvirt-runit virtualbox-host-dkms virtualbox nss-mdns intel-undervolt-runit cups-pdf thermald-runit tlp-runit cpupower-runit pahole cpio perl tar xz bitwarden-cli chrony-runit networkmanager-openvpn xmlto python-sphinx python-sphinx_rtd_theme graphviz imagemagick terminator noto-fonts-emoji wmctrl libnotify lm_sensors-runit nautilus bc lz4 man-db i3status-rust rust wallutils curl mako wget fzf python-pywal zsh-theme-powerlevel10k go make otf-font-awesome swayidle ttf-opensans gammastep foliate xorg-xlsclients neovim zsh swappy zsh-autosuggestions glances zsh-syntax-highlighting zathura zathura-pdf-poppler pipewire pipewire-alsa pipewire-pulse easyeffects sway arduino arduino-avr-core openshot mousepad wine-staging kicad-library kicad-library-3d links gnome-mahjongg gnome-calculator cups-runit dolphin dolphin-plugins qutebrowser geogebra kalzium step gthumb unrar unzip texlive-most atom libreoffice-fresh ark nodejs rclone syncthing-runit wayland gimp plasma ffmpegthumbs kdegraphics-thumbnailers linux-firmware linux-hardened linux-hardened-headers alsa-utils networkmanager-runit alacritty rsync lutris xdg-desktop-portal-kde xdg-desktop-portal-wlr pipewire-media-session gnuplot python3 python-pip realtime-privileges libva-intel-driver brightnessctl ld-lsb lsd imv freecad artools iso-profiles aisleriot bsd-games mpv iptables-nft nftables-runit ebtables dnsmasq brave-bin obs-studio firefox kicad libpipewire02 polkit-gnome moc steam mypaint grim android-tools figlet shellcheck kdialog bitwarden jdk-openjdk
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
-# Runit + intel-undervolt + hostname resolution + snapper + libvirt + tty login prompt + firecfg
+# Runit + intel-undervolt + hostname resolution + snapper + virtual machine + tty login prompt + firecfg + git-lfs
 
   ln -s /etc/runit/sv/cupsd /run/runit/service/ 
   ln -s /etc/runit/sv/syncthing /run/runit/service/
   ln -s /etc/runit/sv/nftables /run/runit/service/
-  ln -s /etc/runit/sv/libvirtd /run/runit/service/
   ln -s /etc/runit/sv/lm_sensors /run/runit/service/
   ln -s /etc/runit/sv/chrony /run/runit/service/
   ln -s /etc/runit/sv/cpupower /run/runit/service/
   ln -s /etc/runit/sv/intel-undervolt /run/runit/service/
-  ln -s /etc/runit/sv/tlp-runit /run/runit/service/
-  ln -s /etc/runit/sv/thermald-runit /run/runit/service
+  ln -s /etc/runit/sv/tlp /run/runit/service/
+  ln -s /etc/runit/sv/thermald /run/runit/service
   ln -s /etc/runit/sv/avahi-daemon /run/runit/service
   sensors-detect
   sv start intel-undervolt
@@ -44,10 +43,25 @@
   intel-undervolt apply
   sed -i 's/hosts: files resolve [!UNAVAIL=return] dns/hosts: files mdns4_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns/' /etc/nsswitch.conf
   usermod -a -G libvirt fabse
+  usermod -a -G vboxusers fabse
+  modprobe vboxdrv && modprobe vboxnetadp && modprobe vboxnetflt
+  "$identity_command" firecfg --fix
+   "$identity_command" git-lfs install
   cat << EOF | tee -a /etc/issue > /dev/null
-
 This object that you sir are using is property of Fabse Inc. - expect therefore puns! 
 
+EOF
+  "$identity_command" cd /home/fabse || return
+
+#----------------------------------------------------------------------------------------------------------------------------------
+
+# BTRFS-snapshots; grub-btrfs at shutdown
+
+  cat << EOF | tee -a /etc/rc.shutdown > /dev/null
+# Adding BTRFS-snapshots to grub-menu
+cd /etc/grub.d
+./41_snapshots-btrfs
+grub-mkconfig -o /boot/grub/grub.cfg
 EOF
 
 #----------------------------------------------------------------------------------------------------------------------------------
@@ -62,13 +76,18 @@ EOF
 
   "$identity_command" xdg-open https://www.st.com/en/development-tools/stm32cubeide.html
   "$identity_command" xdg-open https://www.st.com/en/development-tools/stm32cubemx.html
-  read -rp "Are you ready again? Type anything for yes: " STM32_ready
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # Installation of packages from AUR; cnrdrvcups-lb only because of Brother-printer
 
-  yay -S spicetify-cli-git spotify cnrdrvcups-lb otf-openmoji sunwait-git sway-launcher-desktop swaylock-fancy-git bastet foot freshfetch-git cbonsai nerd-fonts-git stm32cubeide fuzzel nudoku clipman stm32cubemx openrgb-bin osp-tracker balena-etcher macchina onlyoffice-bin standardnotes-bin revolt-desktop toilet
+  mkdir -p /home/fabse/Downloads
+  "$identity_command" cd /home/fabse/Downloads || return
+  wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1YBVDSeergaQ7Zx5edMnsbe42ju4pRt3j' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1YBVDSeergaQ7Zx5edMnsbe42ju4pRt3j" -O en.st-stm32cubeide_1.7.0_10852_20210715_0634_amd64.sh_v1.7.0.zip && rm -rf /tmp/cookies.txt
+  wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1-PD8pP1dnfrmKuOK31XUleTXqokzYfT0' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1-PD8pP1dnfrmKuOK31XUleTXqokzYfT0" -O en.stm32cubemx-lin_v6-3-0_v6.3.0.zip && rm -rf /tmp/cookies.txt
+  yay -S stm32cubemx stm32cubeide spicetify-cli-git spotify cnrdrvcups-lb otf-openmoji sunwait-git sway-launcher-desktop swaylock-fancy-git bastet foot freshfetch-git cbonsai nerd-fonts-git fuzzel nudoku clipman openrgb-bin osp-tracker balena-etcher macchina onlyoffice-bin standardnotes-bin revolt-desktop toilet
+  rm /home/fabse/Downloads/*
+  "$identity_command" cd /home/fabse || return 
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -147,12 +166,14 @@ EOF
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
-# Maple + chemsketch
+# Chemsketch
 
-  "$identity_command" xdg-open https://www.acdlabs.com/resources/freeware/chemsketch/download.php
-  read -rp "Are you ready again? Type anything for yes: " Science_ready
-  "$identity_command" unzip /home/fabse/Hentet/ACDLabs202021_ChemSketchFree_Install.zip
-  "$identity_command" wine /home/fabse/Hentet/ACDLabs202021_ChemSketchFree_Install/setup.exe
+  wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=18_rAJrndm_V0KMfnEA_jGcQfgInObpRC' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=18_rAJrndm_V0KMfnEA_jGcQfgInObpRC" -O Chemsketch.zip && rm -rf /tmp/cookies.txt
+  "$identity_command" mkdir -p /home/fabse/Chemsketch
+  "$identity_command" unzip -d /home/fabse/Chemsketch /home/fabse/Chemsketch.zip
+  "$identity_command" rm /home/fabse/Chemsketch.zip
+  "$identity_command" wine /home/fabse/Chemsketch/setup.exe
+  "$identity_command" rm -r /home/fabse/Chemsketch
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -164,18 +185,15 @@ EOF
 
 # Firefox-theme
 
-  "$identity_command" firefox about:support &
-  read -rp "Is the path copied? Then type the full path here: " Firefox_ready
-  "$identity_command" mkdir "$Firefox_ready"/chrome
-  "$identity_command" mv -r /home/fabse/Setup_and_configs/Laptop_ARTIX/firefox/userChrome.css "$Firefox_ready"/chrome
-  "$identity_command" mv -r /home/fabse/Setup_and_configs/Laptop_ARTIX/firefox/user.js "$Firefox_ready"
+  "$identity_command" mkdir -p /home/fabse/firefox/chrome 
+  "$identity_command" mv -r /home/fabse/Setup_and_configs/Laptop_ARTIX/firefox/userChrome.css /home/fabse/firefox/chrome
+  "$identity_command" mv -r /home/fabse/Setup_and_configs/Laptop_ARTIX/firefox/user.js /home/fabse/firefox
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # Spicetify
 
-  "$identity_command" spotify
-  "$identity_command" read -rp "Are you ready again? Type anything for yes: " Spotify_ready
+  "$identity_command" cd /home/fabse || return
   chmod a+wr /opt/spotify
   chmod a+wr /opt/spotify/Apps -R
   "$identity_command" git clone https://github.com/morpheusthewhite/spicetify-themes.git
