@@ -72,13 +72,6 @@ EOF
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
-# Files for stm32x
-
-  "$identity_command" xdg-open https://www.st.com/en/development-tools/stm32cubeide.html
-  "$identity_command" xdg-open https://www.st.com/en/development-tools/stm32cubemx.html
-
-#----------------------------------------------------------------------------------------------------------------------------------
-
 # Installation of packages from AUR; cnrdrvcups-lb only because of Brother-printer
 
   mkdir -p /home/fabse/Downloads
