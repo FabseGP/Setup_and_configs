@@ -13,7 +13,6 @@
   doas ln -s /etc/runit/sv/syncthing /run/runit/service/
   doas ln -s /etc/runit/sv/nftables /run/runit/service/
   doas ln -s /etc/runit/sv/lm_sensors /run/runit/service/
-  doas ln -s /etc/runit/sv/chrony /run/runit/service/
   doas ln -s /etc/runit/sv/cpupower /run/runit/service/
   doas ln -s /etc/runit/sv/intel-undervolt /run/runit/service/
   doas ln -s /etc/runit/sv/tlp /run/runit/service/
