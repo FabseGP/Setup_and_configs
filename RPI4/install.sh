@@ -11,7 +11,7 @@
 
 # Doas or sudo
 
-  read -rp "Are you, sir, using either "doas" or "sudo"? " identity
+  read -rp "Are you, sir, using either \"doas\" or \"sudo\"? " identity
   if [ "$identity" == doas ]; then
     identity_command="doas -u fabsepi"
   elif [ "$identity" == sudo ]; then
@@ -51,11 +51,11 @@ EOF
   elif [[ "$docker" == "no" ]]; then
     apk add podman podman-docker py3-podman podman-remote fuse-overlayfs shadow slirp4netns
   fi
-  apk add afetch snapper openssh rsnapshot libressl udisks2 sed man-pages ttf-dejavu cups cups-libs sshguard cups-pdf cups-client cups-filters git py3-pip swaybg nautilus bc fnott lz4 cbonsai nerd-fonts haveged gcc make build-base kbd-bkeymaps curl wget i2c-tools lm_sensors perl lsblk e2fsprogs-extra networkmanager nftables tzdata mysql-client firefox mysql pipewire ttf-opensans pipewire-pulse libuser ksysguard libreoffice pavucontrol yambar fuzzel rclone syncthing rsync alacritty terminator fcron unrar unzip zsh zsh-autosuggestions zsh-syntax-highlighting neovim btrfs-progs mousepad ark mpv swappy glances plasma nodejs-current npm lsof zathura zathura-pdf-poppler eudev sway swaylock-effects swayidle figlet mesa-dri-gallium xdg-desktop-portal-wlr xdg-desktop-portal-kde clipman gnome-calculator polkit-gnome pipewire-media-session grim kdialog dialog grep font-awesome swaylockd
+  apk add afetch musl-locales openssh google-authenticator rsnapshot openssh-server-pam lang libressl udisks2 sed man-pages ttf-dejavu cups cups-libs sshguard cups-pdf cups-client cups-filters git py3-pip swaybg nautilus bc fnott lz4 cbonsai nerd-fonts haveged gcc make build-base kbd-bkeymaps curl wget i2c-tools lm_sensors perl lsblk e2fsprogs-extra networkmanager nftables tzdata mysql-client firefox mysql pipewire ttf-opensans pipewire-pulse libuser ksysguard libreoffice pavucontrol yambar fuzzel rclone syncthing rsync alacritty terminator fcron unrar unzip zsh zsh-autosuggestions zsh-syntax-highlighting neovim btrfs-progs mousepad ark mpv swappy glances plasma nodejs-current npm lsof zathura zathura-pdf-poppler eudev sway swaylock-effects swayidle figlet mesa-dri-gallium xdg-desktop-portal-wlr xdg-desktop-portal-kde clipman gnome-calculator polkit-gnome pipewire-media-session grim kdialog dialog grep font-awesome swaylockd
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
-# Services
+# Services + openssh enhanements
 
   if [[ "$docker" == "yes" ]]; then
     rc-update add docker default
@@ -73,8 +73,62 @@ EOF
     rc-update add $service default
   done
   /etc/init.d/sshd start
+  cat << EOF | tee -a /etc/ssh/sshd.config > /dev/null
+
+AuthenticationMethods publickey,keyboard-interactive
+ChallengeResponseAuthentication yes
+PermitRootLogin yes
+KbdInteractiveAuthentication yes
+
+EOF
+  sed -i -e "/PasswordAuthentication no/s/^#//" /etc/ssh/sshd.config
   sed -i -e "/Port 22/s/^#//" /etc/ssh/sshd.config
   sed -i 's/Port 22/Port 1111/' /etc/ssh/sshd.config
+  cat << EOF | tee -a /etc/issue.net > /dev/null
+
+###############################################################
+#                                                      Welcome to Fabse Inc.                                                           # 
+#                                   All connections are monitored and recorded                                         #
+#                          Disconnect IMMEDIATELY if you are not an authorized user!                    #
+###############################################################
+
+EOF
+  sed -i -e "/Banner \/some\/path/s/^#//" /etc/ssh/sshd.config
+  sed -i 's/Banner \/some\/path/Banner \/etc\/issue.net/' /etc/ssh/sshd.config
+  touch /etc/sshguard.conf
+  cat << EOF | tee -a /etc/sshguard.conf > /dev/null
+
+#!/bin/bash
+BACKEND='/usr/libexec/sshg-fw-nft-sets'
+FILES='/var/log/messages'
+
+# How many problematic attempts trigger a block
+THRESHOLD=20
+# Blocks last at least 180 seconds
+BLOCK_TIME=180
+# The attackers are remembered for up to 3600 seconds
+DETECTION_TIME=3600
+
+# Blacklist threshold and file name
+BLACKLIST_FILE=100:/var/db/sshguard/blacklist.db
+
+# IPv6 subnet size to block. Defaults to a single address, CIDR notation. (optional, default to 128)
+IPV6_SUBNET=64
+# IPv4 subnet size to block. Defaults to a single address, CIDR notation. (optional, default to 32)
+IPV4_SUBNET=24
+
+EOF
+  touch /etc/pam.d/sshd.pam
+  cat << EOF | tee -a /etc/pam.d/sshd.pam > /dev/null
+
+account		include				base-account
+
+auth		required			pam_env.so
+auth		required			pam_nologin.so	successok
+auth		include				google-authenticator
+
+EOF
+  google-authenticator
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -168,7 +222,8 @@ EOF
   touch /etc/motd
   mkdir /etc/pipewire
   cp /usr/share/pipewire/pipewire.conf /etc/pipewire/
-  sed -i -e "/{ path = "\/usr\/bin\/pipewire-media-session" args = ""/s/^#//" /etc/pipewire/pipewire.conf
+  sed -i -e "/{ path = "\/usr\/bin\/pipewire-media-session" args = ""}/s/^#//" /etc/pipewire/pipewire.conf
+  sed -i s/#unicode="NO"\n\n#/#unicode="NO"\n\nunicode="YES"\n\n#/ /etc/rc.conf
   bash -c 'cat > /etc/motd' << EOF
   
 Welcome to Alpine Linux - delivered to you by Fabse Inc.!
@@ -255,3 +310,4 @@ EOF
   echo
   echo "And you're welcome :))"
   echo
++
