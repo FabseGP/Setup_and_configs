@@ -55,7 +55,7 @@ EOF
 # Installation of packages from AUR; cnrdrvcups-lb only because of Brother-printer
 
   mkdir -p /home/fabse/Downloads
-  yay -S stm32cubemx spicetify-cli-git spotify cnrdrvcups-lb-bin otf-openmoji sunwait-git sway-launcher-desktop swaylock-fancy-git bastet foot freshfetch-bin cbonsai nerd-fonts-git fuzzel nudoku clipman openrgb-bin osp-tracker balena-etcher macchina onlyoffice-bin standardnotes-bin revolt-desktop toilet
+  yay -S stm32cubemx spicetify-cli-git gdown spotify cnrdrvcups-lb-bin otf-openmoji sunwait-git sway-launcher-desktop swaylock-fancy-git bastet foot freshfetch-bin cbonsai nerd-fonts-git fuzzel nudoku clipman openrgb-bin osp-tracker balena-etcher macchina onlyoffice-bin standardnotes-bin revolt-desktop toilet
   cd /home/fabse || return 
 
 #----------------------------------------------------------------------------------------------------------------------------------
