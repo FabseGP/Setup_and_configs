@@ -121,6 +121,7 @@ EOF
   cd grub2-themes || return
   doas ./install.sh -b -t tela
   cd /home/fabse || return
+  rm -rf /home/fabse/grub2-themes
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
