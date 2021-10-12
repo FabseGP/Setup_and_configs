@@ -14,6 +14,17 @@
   
 #----------------------------------------------------------------------------------------------------------------------------------
 
+# Installation of packages from AUR; cnrdrvcups-lb only because of Brother-printer
+
+  doas cp /home/fabse/Setup_and_configs/Laptop_ARTIX/makepkg.conf /etc/makepkg.conf
+  mkdir -p /home/fabse/Downloads
+  yay -S stm32cubemx spicetify-cli gdown spotify cnrdrvcups-lb otf-openmoji sunwait-git sway-launcher-desktop swaylock-fancy-git bastet foot freshfetch-bin cbonsai fuzzel nudoku clipman openrgb-bin osp-tracker balena-etcher macchina onlyoffice-bin standardnotes-bin revolt-desktop toilet
+  yay -Scd
+  doas usermod -a -G games fabse
+  cd /home/fabse || return 
+
+#----------------------------------------------------------------------------------------------------------------------------------
+
 # Runit + intel-undervolt + hostname resolution + snapper + virtual machine + tty login prompt + firecfg + git-lfs
 
   doas ln -s /etc/runit/sv/cupsd /run/runit/service/ 
@@ -39,22 +50,6 @@ This object that you sir are using is property of Fabse Inc. - expect therefore 
 
 EOF
   cd /home/fabse || return
-
-#----------------------------------------------------------------------------------------------------------------------------------
-
-# yay-installation
-
-  doas cp /home/fabse/Setup_and_configs/Laptop_ARTIX/makepkg.conf /etc/makepkg.conf
-
-#----------------------------------------------------------------------------------------------------------------------------------
-
-# Installation of packages from AUR; cnrdrvcups-lb only because of Brother-printer
-
-  mkdir -p /home/fabse/Downloads
-  yay -S stm32cubemx spicetify-cli gdown spotify cnrdrvcups-lb otf-openmoji sunwait-git sway-launcher-desktop swaylock-fancy-git bastet foot freshfetch-bin cbonsai fuzzel nudoku clipman openrgb-bin osp-tracker balena-etcher macchina onlyoffice-bin standardnotes-bin revolt-desktop toilet
-  yay -Scd
-  doas usermod -a -G games fabse
-  cd /home/fabse || return 
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
