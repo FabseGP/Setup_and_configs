@@ -164,11 +164,11 @@ EOF
   git clone https://github.com/morpheusthewhite/spicetify-themes.git
   cd spicetify-themes || return
   cp -r -- * ~/.config/spicetify/Themes
-  cd "$(dirname "$(spicetify -c)")/Themes/DribbblishDynamic" || return
+  cd "$(dirname "$(spicetify -c)")/Themes/Dribbblish"
   mkdir -p ../../Extensions
-  cp dribbblish-dynamic.js ../../Extensions/.
-  spicetify config extensions dribbblish-dynamic.js
-  spicetify config current_theme DribbblishDynamic color_scheme nord-dark
+  cp dribbblish.js ../../Extensions/.
+  spicetify config extensions dribbblish.js
+  spicetify config current_theme Dribbblish color_scheme nord-dark
   spicetify config inject_css 1 replace_colors 1 overwrite_assets 1
   spicetify backup apply
   cd /home/fabse || return
