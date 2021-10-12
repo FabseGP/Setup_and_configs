@@ -39,6 +39,7 @@
   doas usermod -a -G vboxusers fabse
   doas modprobe vboxdrv && doas modprobe vboxnetadp && doas modprobe vboxnetflt
   firecfg --fix
+  firecfg --fix-sound
   cat << EOF | doas tee -a /etc/issue > /dev/null
 This object that you sir are using is property of Fabse Inc. - expect therefore puns! 
 
