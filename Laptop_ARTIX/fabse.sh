@@ -139,8 +139,8 @@ EOF
   mkdir -p /home/fabse/Chemsketch
   unzip -d /home/fabse/Chemsketch /home/fabse/Chemsketch.zip
   rm -rf /home/fabse/Chemsketch.zip
-  wine /home/fabse/Chemsketch/setup.exe
-  rm -rf  /home/fabse/Chemsketch
+  # wine /home/fabse/Chemsketch/setup.exe
+  # rm -rf  /home/fabse/Chemsketch
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
