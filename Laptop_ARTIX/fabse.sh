@@ -36,7 +36,7 @@
   doas sed -i 's/hosts: files resolve [!UNAVAIL=return] dns/hosts: files mdns4_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns/' /etc/nsswitch.conf
   doas usermod -a -G libvirt fabse
   doas usermod -a -G vboxusers fabse
-  doas modprobe vboxdrv && modprobe vboxnetadp && modprobe vboxnetflt
+  doas modprobe vboxdrv && doas modprobe vboxnetadp && doas modprobe vboxnetflt
   firecfg --fix
   cat << EOF | doas tee -a /etc/issue > /dev/null
 This object that you sir are using is property of Fabse Inc. - expect therefore puns! 
