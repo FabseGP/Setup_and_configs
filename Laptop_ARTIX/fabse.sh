@@ -51,7 +51,7 @@ EOF
   gdown https://drive.google.com/uc?id=1YBVDSeergaQ7Zx5edMnsbe42ju4pRt3j
   gdown https://drive.google.com/uc?id=1-PD8pP1dnfrmKuOK31XUleTXqokzYfT0
   yay --noconfirm --useask -S stm32cubemx stm32cubeide spicetify-cli-git spotify cnrdrvcups-lb-bin otf-openmoji sunwait-git sway-launcher-desktop swaylock-fancy-git bastet foot freshfetch-bin cbonsai nerd-fonts-git fuzzel nudoku clipman openrgb-bin osp-tracker balena-etcher macchina onlyoffice-bin standardnotes-bin revolt-desktop toilet
-  rm /home/fabse/Downloads/*
+  rm -rf /home/fabse/Downloads/*
   cd /home/fabse || return 
 
 #----------------------------------------------------------------------------------------------------------------------------------
@@ -124,8 +124,10 @@ EOF
 # Reveal.js + chart.js + slides.js
 
   npm install browserify
+  npm fix
   git clone https://github.com/hakimel/reveal.js.git
   cd reveal.js && npm install
+  npm fix
   cd /home/fabse || return
   npm install chart.js
 
@@ -136,9 +138,9 @@ EOF
   gdown https://drive.google.com/uc?id=18_rAJrndm_V0KMfnEA_jGcQfgInObpRC
   mkdir -p /home/fabse/Chemsketch
   unzip -d /home/fabse/Chemsketch /home/fabse/Chemsketch.zip
-  rm /home/fabse/Chemsketch.zip
+  rm -rf /home/fabse/Chemsketch.zip
   wine /home/fabse/Chemsketch/setup.exe
-  rm -r /home/fabse/Chemsketch
+  rm -rf  /home/fabse/Chemsketch
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -190,7 +192,7 @@ EOF
   cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/fabse.ascii .config/macchina/ascii/fabse.ascii
   cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/alacritty.yml .config/alacritty/alacritty.yml
   git clone https://github.com/hexive/sunpaper.git
-  rm -rf !(images) /home/fabse/sunpaper/*
+  rm -rf /home/fabse/sunpaper/{extra,.git,README.md,screenshots}
   cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/sunpaper.sh /home/fabse/Scripts
   chmod u+x /home/fabse/Scripts/*
   rm -rf /home/fabse/Setup_and_configs
