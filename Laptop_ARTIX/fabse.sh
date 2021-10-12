@@ -129,10 +129,10 @@ EOF
 # Reveal.js + chart.js + slides.js
 
   npm install browserify
-  npm fix
+  npm audit fix
   git clone https://github.com/hakimel/reveal.js.git
   cd reveal.js && npm install
-  npm fix
+  npm audit fix
   cd /home/fabse || return
   npm install chart.js
   npm fix
