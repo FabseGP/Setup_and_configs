@@ -49,7 +49,6 @@ EOF
   mkdir -p /home/fabse/Downloads
   cd /home/fabse/Downloads || return
   gdown https://drive.google.com/uc?id=1YBVDSeergaQ7Zx5edMnsbe42ju4pRt3j
-  gdown https://drive.google.com/uc?id=1-PD8pP1dnfrmKuOK31XUleTXqokzYfT0
   yay --noconfirm --useask -S stm32cubemx stm32cubeide spicetify-cli-git spotify cnrdrvcups-lb-bin otf-openmoji sunwait-git sway-launcher-desktop swaylock-fancy-git bastet foot freshfetch-bin cbonsai nerd-fonts-git fuzzel nudoku clipman openrgb-bin osp-tracker balena-etcher macchina onlyoffice-bin standardnotes-bin revolt-desktop toilet
   rm -rf /home/fabse/Downloads/*
   cd /home/fabse || return 
