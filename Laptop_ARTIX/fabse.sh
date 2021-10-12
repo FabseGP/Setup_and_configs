@@ -189,7 +189,7 @@ EOF
   mkdir -p .config/{sway,swappy,mako,i3status-rust,alacritty,macchina/ascii}
   mkdir -p .local/share/macchina/themes
   mkdir /home/fabse/Scripts
-  cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/config_sway .config/sway/config
+  cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/config .config/sway/config
   cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/config_swappy .config/swappy/config
   cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/config_mako .config/mako/config
   cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/config.toml .config/i3status-rust/config.toml
