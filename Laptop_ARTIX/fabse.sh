@@ -53,6 +53,7 @@ EOF
   mkdir -p /home/fabse/Downloads
   yay -S stm32cubemx spicetify-cli gdown spotify cnrdrvcups-lb otf-openmoji sunwait-git sway-launcher-desktop swaylock-fancy-git bastet foot freshfetch-bin cbonsai fuzzel nudoku clipman openrgb-bin osp-tracker balena-etcher macchina onlyoffice-bin standardnotes-bin revolt-desktop toilet
   yay -Scd
+  doas usermod -a -G games fabse
   cd /home/fabse || return 
 
 #----------------------------------------------------------------------------------------------------------------------------------
