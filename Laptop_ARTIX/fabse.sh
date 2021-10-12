@@ -20,7 +20,6 @@
   mkdir -p /home/fabse/Downloads
   yay -S stm32cubemx spicetify-cli gdown spotify cnrdrvcups-lb otf-openmoji sunwait-git sway-launcher-desktop swaylock-fancy-git bastet freshfetch-bin cbonsai fuzzel nudoku clipman openrgb-bin osp-tracker balena-etcher macchina onlyoffice-bin standardnotes-bin revolt-desktop toilet
   yay -Scd
-  doas usermod -a -G games fabse
   cd /home/fabse || return 
 
 #----------------------------------------------------------------------------------------------------------------------------------
@@ -44,6 +43,7 @@
   doas sed -i 's/hosts: files resolve [!UNAVAIL=return] dns/hosts: files mdns4_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns/' /etc/nsswitch.conf
   doas usermod -a -G libvirt fabse
   doas usermod -a -G vboxusers fabse
+  doas usermod -a -G games fabse
   doas modprobe vboxdrv && doas modprobe vboxnetadp && doas modprobe vboxnetflt
   cat << EOF | doas tee -a /etc/issue > /dev/null
 This object that you sir are using is property of Fabse Inc. - expect therefore puns! 
@@ -122,14 +122,19 @@ EOF
 
 # Reveal.js + chart.js + slides.js
 
+  mkdir -p /home/fabse/npm_modules/{browserify,chart_js}
+  cd /home/fabse/npm_modules/chart_js || return
+  npm install chart.js
+  npm audit fix
+  cd /home/fabse/npm_modules/browserify || return
   npm install browserify
   npm audit fix
+  cd /home/fabse/npm_modules || return
   git clone https://github.com/hakimel/reveal.js.git
   cd reveal.js && npm install
   npm audit fix
   cd /home/fabse || return
-  npm install chart.js
-  npm audit fix
+ 
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -140,8 +145,6 @@ EOF
   mkdir -p /home/fabse/Downloads/Chemsketch
   unzip -d /home/fabse/Downloads/Chemsketch /home/fabse/Downloads/Chemsketch.zip
   rm -rf /home/fabse/Downloads/Chemsketch.zip
-  # wine /home/fabse/Chemsketch/setup.exe
-  # rm -rf  /home/fabse/Chemsketch
   cd /home/fabse || return
 
 #----------------------------------------------------------------------------------------------------------------------------------
