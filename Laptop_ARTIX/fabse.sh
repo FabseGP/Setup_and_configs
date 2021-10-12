@@ -15,7 +15,7 @@
 
 # Package-installation + default java; plasma = ^1 ^4 ^29 ^43 ^44 
   
-  doas pacman -Syyu kmod libelf sagemath seatd ttf-iosevka-nerd arm-none-eabi-gcc gdb openocd arm-none-eabi-gdb libopencm3 vulkan-intel lib32-vulkan-intel phonon-qt5-vlc dialog avahi-runit virtualbox-guest-utils virtualbox-guest-iso cups-filters qemu libvirt-runit virtualbox-host-dkms virtualbox nss-mdns intel-undervolt-runit cups-pdf thermald-runit tlp-runit cpupower-runit pahole cpio perl tar xz bitwarden-cli networkmanager-openvpn xmlto python-sphinx python-sphinx_rtd_theme graphviz imagemagick terminator noto-fonts-emoji wmctrl libnotify lm_sensors-runit nautilus man-db i3status-rust rust wallutils curl mako wget fzf python-pywal zsh-theme-powerlevel10k go make otf-font-awesome swayidle ttf-opensans gammastep foliate xorg-xlsclients zsh swappy zsh-autosuggestions glances zsh-syntax-highlighting zathura zathura-pdf-poppler pipewire pipewire-alsa pipewire-pulse easyeffects sway arduino arduino-avr-core openshot mousepad wine-staging kicad-library kicad-library-3d links gnome-mahjongg gnome-calculator cups-runit dolphin dolphin-plugins qutebrowser geogebra kalzium step gthumb unrar unzip texlive-most atom libreoffice-fresh ark nodejs rclone syncthing-runit wayland gimp plasma ffmpegthumbs kdegraphics-thumbnailers linux-hardened linux-hardened-headers alsa-utils alacritty rsync lutris xdg-desktop-portal-kde xdg-desktop-portal-wlr pipewire-media-session gnuplot python3 python-pip libva-intel-driver brightnessctl ld-lsb lsd imv freecad artools iso-profiles aisleriot bsd-games mpv iptables-nft nftables-runit ebtables dnsmasq brave-bin obs-studio firefox kicad libpipewire02 polkit-gnome moc steam mypaint grim android-tools figlet shellcheck kdialog bitwarden jdk-openjdk meson 
+  doas pacman -Syyu kmod libelf qt5-wayland qt6-wayland sagemath seatd ttf-iosevka-nerd arm-none-eabi-gcc gdb openocd arm-none-eabi-gdb libopencm3 vulkan-intel lib32-vulkan-intel phonon-qt5-vlc dialog avahi-runit virtualbox-guest-utils virtualbox-guest-iso cups-filters qemu libvirt-runit virtualbox-host-dkms virtualbox nss-mdns intel-undervolt-runit cups-pdf thermald-runit tlp-runit cpupower-runit pahole cpio perl tar xz bitwarden-cli networkmanager-openvpn xmlto python-sphinx python-sphinx_rtd_theme graphviz imagemagick terminator noto-fonts-emoji wmctrl libnotify lm_sensors-runit nautilus man-db i3status-rust rust wallutils curl mako wget fzf python-pywal zsh-theme-powerlevel10k go make otf-font-awesome swayidle ttf-opensans gammastep foliate xorg-xlsclients zsh swappy zsh-autosuggestions glances zsh-syntax-highlighting zathura zathura-pdf-poppler pipewire pipewire-alsa pipewire-pulse easyeffects sway arduino arduino-avr-core openshot mousepad wine-staging kicad-library kicad-library-3d links gnome-mahjongg gnome-calculator cups-runit dolphin dolphin-plugins qutebrowser geogebra kalzium step gthumb unrar unzip texlive-most atom libreoffice-fresh ark nodejs rclone syncthing-runit wayland gimp plasma ffmpegthumbs kdegraphics-thumbnailers linux-hardened linux-hardened-headers alsa-utils alacritty rsync lutris xdg-desktop-portal-kde xdg-desktop-portal-wlr pipewire-media-session gnuplot python3 python-pip libva-intel-driver brightnessctl ld-lsb lsd imv freecad artools iso-profiles aisleriot bsd-games mpv iptables-nft nftables-runit ebtables dnsmasq brave-bin obs-studio firefox kicad libpipewire02 polkit-gnome moc steam mypaint grim android-tools figlet shellcheck kdialog bitwarden jdk-openjdk meson 
   doas archlinux-java set java-17-openjdk
   
 #----------------------------------------------------------------------------------------------------------------------------------
@@ -74,16 +74,13 @@ fi
 
 export MOZ_ENABLE_WAYLAND=1
 export SDL_VIDEODRIVER=wayland
-
 export _JAVA_AWT_WM_NONREPARENTING=1
-
 export EDITOR="nvim"
 export VISUAL="nvim"
-
 export XDG_SESSION_TYPE=wayland
+export QT_QPA_PLATFORM=wayland
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
-
 export HISTFILE="home/fabse/.zhistory"    # History filepath
 export HISTSIZE=10000                   # Maximum events for internal history
 export SAVEHIST=10000                   # Maximum events in history file
@@ -112,7 +109,31 @@ alias rm="rm -i"
 alias yay="paru"
 
 EOF
+cat << EOF | tee -a /etc/environment > /dev/null
+
+# By Fabse
+export MOZ_ENABLE_WAYLAND=1
+export SDL_VIDEODRIVER=wayland
+export _JAVA_AWT_WM_NONREPARENTING=1
+export EDITOR="nvim"
+export VISUAL="nvim"
+export XDG_SESSION_TYPE=wayland
+export QT_QPA_PLATFORM=wayland
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export HISTFILE="home/fabse/.zhistory"    # History filepath
+export HISTSIZE=10000                   # Maximum events for internal history
+export SAVEHIST=10000                   # Maximum events in history file
+
+EOF
   mkdir ~/.local/share/fonts
+  touch /home/fabse/.config/electron-flags.conf
+  cat << EOF | tee -a /home/fabse/.config/electron-flags.conf > /dev/null
+
+# Wayland-support
+--enable-features=UseOzonePlatform
+--ozone-platform=wayland
+EOF
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
