@@ -131,12 +131,14 @@ EOF
 
 # Chemsketch
 
+  cd /home/fabse/Downloads || return
   gdown https://drive.google.com/uc?id=18_rAJrndm_V0KMfnEA_jGcQfgInObpRC
-  mkdir -p /home/fabse/Chemsketch
-  unzip -d /home/fabse/Chemsketch /home/fabse/Chemsketch.zip
-  rm -rf /home/fabse/Chemsketch.zip
+  mkdir -p /home/fabse/Downloads/Chemsketch
+  unzip -d /home/fabse/Downloads/Chemsketch /home/fabse/Downloads/Chemsketch.zip
+  rm -rf /home/fabse/Downloads/Chemsketch.zip
   # wine /home/fabse/Chemsketch/setup.exe
   # rm -rf  /home/fabse/Chemsketch
+  cd /home/fabse || return
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -192,4 +194,3 @@ EOF
   cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/sunpaper.sh /home/fabse/Scripts
   chmod u+x /home/fabse/Scripts/*
   rm -rf /home/fabse/Setup_and_configs
-  
