@@ -201,4 +201,3 @@ EOF
   rm -rf /home/fabse/sunpaper/{extra,.git,README.md,screenshots}
   cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/sunpaper.sh /home/fabse/Scripts
   chmod u+x /home/fabse/Scripts/*
-  rm -rf /home/fabse/Setup_and_configs
