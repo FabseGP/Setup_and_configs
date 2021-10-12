@@ -2,7 +2,7 @@
 
 # Correct start
 
-  read -rp "Is the script executed as bash -i /script/path? " hello
+  read -rp "Is the script executed as bash -i /script/path? Is alias yay=paru added to .bashrc? " hello
   doas rm -rf /install_script
   
 #----------------------------------------------------------------------------------------------------------------------------------
