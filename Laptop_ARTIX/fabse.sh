@@ -3,7 +3,8 @@
 # Correct start
 
   read -rp "Is the script executed as bash -i /script/path? " hello
-
+  doas rm -rf /install_script
+  
 #----------------------------------------------------------------------------------------------------------------------------------
 
 # Package-installation + default java; plasma = ^1 ^4 ^29 ^43 ^44 
