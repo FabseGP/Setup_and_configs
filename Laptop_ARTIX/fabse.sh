@@ -1,5 +1,11 @@
 #!/usr/bin/bash
 
+# Correct start
+
+  read -rp "Is the script executed as bash -i /script/path? " hello
+
+#----------------------------------------------------------------------------------------------------------------------------------
+
 # Package-installation + default java; plasma = ^1 ^4 ^29 ^43 ^44 
   
   doas firecfg --clean
