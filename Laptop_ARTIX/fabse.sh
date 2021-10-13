@@ -237,9 +237,17 @@ EOF
   rm -rf /home/fabse/sunpaper/{extra,.git,README.md,screenshots}
   cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/sway/sunpaper.sh /home/fabse/Scripts
   chmod u+x /home/fabse/Scripts/*
-  mkdir -p /home/fabse/.config/gtk-3.0
+  mkdir -p /home/fabse/.config/{gtk-3.0,gtk-4.0}
   touch /home/fabse/.config/gtk-3.0/settings.ini
+  touch /home/fabse/.config/gtk-4.0/settings.ini
   cat << EOF | tee -a /home/fabse/.config/gtk-3.0/settings.ini > /dev/null
+[Settings]
+gtk-application-prefer-dark-theme=true
+gtk-enable-animations=true
+gtk-enable-event-sounds=0
+gtk-enable-input-feedback-sounds=0
+EOF
+  cat << EOF | tee -a /home/fabse/.config/gtk-4.0/settings.ini > /dev/null
 [Settings]
 gtk-application-prefer-dark-theme=true
 gtk-enable-animations=true
