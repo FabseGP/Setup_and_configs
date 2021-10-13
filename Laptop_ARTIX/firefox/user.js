@@ -33,3 +33,5 @@ user_pref("dom.event.clipboardevents.enabled", false);
 user_pref("dom.storage.enabled", false);
 user_pref("dom.webaudio.enabled", false);
 user_pref("signon.autofillForms", false);
+user_pref("security.secure.connection_icon_color_gray",false);
+
