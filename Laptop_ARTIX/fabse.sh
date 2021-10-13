@@ -145,7 +145,14 @@ export SAVEHIST=10000                   # Maximum events in history file
 EOF
   mkdir ~/.local/share/fonts
   touch /home/fabse/.config/electron-flags.conf
+  touch /home/fabse/.config/brave-flags.conf
   cat << EOF | tee -a /home/fabse/.config/electron-flags.conf > /dev/null
+
+# Wayland-support
+--enable-features=UseOzonePlatform
+--ozone-platform=wayland
+EOF
+cat << EOF | tee -a /home/fabse/.config/brave-flags.conf > /dev/null
 
 # Wayland-support
 --enable-features=UseOzonePlatform
