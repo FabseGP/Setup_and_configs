@@ -198,8 +198,8 @@ EOF
 # Firefox-theme
 
   mkdir -p /home/fabse/firefox/chrome 
-  cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/firefox/userChrome.css /home/fabse/firefox/chrome
-  cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/firefox/user.js /home/fabse/firefox
+  cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/firefox/* /home/fabse/firefox
+  mv /home/fabse/firefox/userChrome.css /home/fabse/firefox/chrome
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
