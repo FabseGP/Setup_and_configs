@@ -24,7 +24,7 @@
 
   doas cp /home/fabse/Setup_and_configs/Laptop_ARTIX/makepkg.conf /etc/makepkg.conf
   mkdir -p /home/fabse/Downloads
-  yay -S stm32cubemx spicetify-cli avogadroapp bibata-rainbow-cursor-theme tela-icon-theme sweet-gtk-theme-dark spotify bibata-rainbow-cursor-theme cnrdrvcups-lb otf-openmoji sunwait-git sway-launcher-desktop swaylock-fancy-git bastet freshfetch-bin cbonsai fuzzel nudoku clipman openrgb-bin osp-tracker macchina onlyoffice-bin standardnotes-bin revolt-desktop toilet
+  yay -S stm32cubemx spicetify-cli avogadroapp bibata-rainbow-cursor-theme candy-icons-git tela-icon-theme sweet-gtk-theme-dark spotify bibata-rainbow-cursor-theme cnrdrvcups-lb otf-openmoji sunwait-git sway-launcher-desktop swaylock-fancy-git bastet freshfetch-bin cbonsai fuzzel nudoku clipman openrgb-bin osp-tracker macchina onlyoffice-bin standardnotes-bin revolt-desktop toilet
   yay -Scd
   cd /home/fabse || return 
 
