@@ -200,6 +200,8 @@ EOF
   mkdir -p /home/fabse/firefox/chrome 
   cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/firefox/* /home/fabse/firefox
   mv /home/fabse/firefox/userChrome.css /home/fabse/firefox/chrome
+  touch /home/fabse/.librewolf/librewolf.overrides.cfg
+  echo "lockPref("identity.fxaccounts.enabled",true);" >> /home/fabse/.librewolf/librewolf.overrides.cfg
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
