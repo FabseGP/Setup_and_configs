@@ -36,7 +36,7 @@
   doas ln -s /etc/runit/sv/tlp /run/runit/service/
   doas ln -s /etc/runit/sv/thermald /run/runit/service
   doas ln -s /etc/runit/sv/avahi-daemon /run/runit/service
-  doas sensors-detect
+  doas sensors-detect --auto
   doas sv start intel-undervolt
   doas sv start avahi-daemon
   doas cp /home/fabse/Setup_and_configs/Laptop_ARTIX/intel-undervolt.conf /etc/intel-undervolt.conf
