@@ -57,7 +57,7 @@ EOF
 
   handlr add .pdf org.pwmt.zathura.desktop
   handlr add .png imv.desktop
-  handlr add .jpeg img.desktop
+  handlr add .jpeg imv.desktop
   mkdir -p /home/fabse/.config/zathura
   touch /home/fabse/.config/zathura/zathurarc
   cat << EOF | doas tee -a /home/fabse/.config/zathura/zathurarc > /dev/null
@@ -194,6 +194,7 @@ EOF
   mkdir -p /home/fabse/firefox/chrome 
   cp -r /home/fabse/Setup_and_configs/Laptop_ARTIX/firefox/* /home/fabse/firefox
   mv /home/fabse/firefox/userChrome.css /home/fabse/firefox/chrome
+  mkdir -p /home/fabse/.librewolf
   touch /home/fabse/.librewolf/librewolf.overrides.cfg
   echo "lockPref("identity.fxaccounts.enabled",true);" >> /home/fabse/.librewolf/librewolf.overrides.cfg
 
