@@ -59,10 +59,19 @@ EOF
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
-# Default apps
+# Default apps + config
 
   handlr add .pdf org.pwmt.zathura.desktop
+  handlr add .png imv.desktop
+  handlr add .jpeg img.desktop
+  mkdir /home/fabse/config/zathura
+  touch /home/fabse/.config/zathura/zathurarc
+  cat << EOF | doas tee -a /etc/issue > /dev/null
+
+# Copy to clipboard
+  set selection-clipboard clipboard
   
+EOF
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
