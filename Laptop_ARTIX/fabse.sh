@@ -58,9 +58,9 @@ EOF
   handlr add .pdf org.pwmt.zathura.desktop
   handlr add .png imv.desktop
   handlr add .jpeg img.desktop
-  mkdir /home/fabse/config/zathura
+  mkdir -p /home/fabse/.config/zathura
   touch /home/fabse/.config/zathura/zathurarc
-  cat << EOF | doas tee -a /etc/issue > /dev/null
+  cat << EOF | doas tee -a /home/fabse/.config/zathura/zathurarc > /dev/null
 
 # Copy to clipboard
   set selection-clipboard clipboard
