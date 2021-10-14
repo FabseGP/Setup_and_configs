@@ -210,7 +210,7 @@ EOF
   git clone https://github.com/morpheusthewhite/spicetify-themes.git
   cd spicetify-themes || return
   cp -r -- * ~/.config/spicetify/Themes
-  cd "$(dirname "$(spicetify -c)")/Themes/Dribbblish"
+  cd "$(dirname "$(spicetify -c)")/Themes/Dribbblish" || exit
   mkdir -p ../../Extensions
   cp dribbblish.js ../../Extensions/.
   spicetify config extensions dribbblish.js
@@ -257,3 +257,4 @@ gtk-enable-event-sounds=0
 gtk-enable-input-feedback-sounds=0
 EOF
   cd /home/fabse || return
+  doas sed -i '/permit nopass fabse/d' /etc/doas.conf
