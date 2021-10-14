@@ -207,8 +207,8 @@ EOF
 # Spicetify
 
   cd /home/fabse || return
-  doas chmod a+wr /opt/spotify
-  doas chmod a+wr /opt/spotify/Apps -R
+#  doas chmod a+wr /opt/spotify
+#  doas chmod a+wr /opt/spotify/Apps -R
   git clone https://github.com/morpheusthewhite/spicetify-themes.git
   cd spicetify-themes || return
   cp -r -- * ~/.config/spicetify/Themes
