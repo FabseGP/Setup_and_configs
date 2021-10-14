@@ -130,6 +130,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 export EDITOR="nvim"
 export VISUAL="nvim"
 export XDG_SESSION_TYPE=wayland
+export XDG_CURRENT_DESKTOP=sway
 export QT_QPA_PLATFORM=wayland
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
