@@ -204,6 +204,7 @@ EOF
   touch /home/fabse/firefox/librewolf.overrides.cfg
   cat << EOF | tee -a /home/fabse/firefox/librewolf.overrides.cfg > /dev/null
   lockPref("identity.fxaccounts.enabled",true);
+  defaultPref("privacy.resistFingerprinting.letterboxing", true);
 EOF
   doas sed -i 's/"DisableFirefoxAccounts": true,/"DisableFirefoxAccounts": false,/' /usr/lib/librewolf/distribution/policies.json
 
