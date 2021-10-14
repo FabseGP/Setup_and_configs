@@ -1,2 +1,2 @@
 #/usr/bin/bash
-chmod 777 -R /media/SEAGATE
+chmod 760 -R /media/SEAGATE
