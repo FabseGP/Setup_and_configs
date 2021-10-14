@@ -264,6 +264,9 @@ bar {
   exec_always swaymsg "workspace 1; exec syncthing;"
   exec_always /home/fabse/Scripts/sunpaper.sh -d
 
+  # Sworkstyle
+  exec sworkstyle &> /tmp/sworkstyle.log
+
   # Theme
   set $gnome-schema org.gnome.desktop.interface
 
