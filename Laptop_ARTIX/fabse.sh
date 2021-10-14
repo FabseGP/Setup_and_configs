@@ -18,7 +18,7 @@
 
   doas cp /home/fabse/Setup_and_configs/Laptop_ARTIX/makepkg.conf /etc/makepkg.conf
   mkdir -p /home/fabse/Downloads
-  yay --cleanafter --nouseask --removemake=yes -S --stm32cubemx spicetify-cli wayfire-desktop-git bemnu-wlroots avogadroapp bibata-rainbow-cursor-theme handlr-bin candy-icons-git tela-icon-theme sweet-gtk-theme-dark spotify cnrdrvcups-lb kicad-nightly-bin kicad-library-nightly kicad-library-3d-nightly otf-openmoji sunwait-git arduino-ide-beta-bin sway-launcher-desktop swaylock-fancy-git bastet freshfetch-bin cbonsai fuzzel nudoku clipman openrgb-bin osp-tracker macchina onlyoffice-bin standardnotes-bin revolt-desktop toilet
+  yay --cleanafter --nouseask -S --stm32cubemx spicetify-cli wayfire-desktop-git bemnu-wlroots avogadroapp bibata-rainbow-cursor-theme handlr-bin candy-icons-git tela-icon-theme sweet-gtk-theme-dark spotify cnrdrvcups-lb kicad-nightly-bin kicad-library-nightly kicad-library-3d-nightly otf-openmoji sunwait-git arduino-ide-beta-bin sway-launcher-desktop swaylock-fancy-git bastet freshfetch-bin cbonsai fuzzel nudoku clipman openrgb-bin osp-tracker macchina onlyoffice-bin standardnotes-bin revolt-desktop toilet
   yay -Scd
   doas archlinux-java set java-17-openjdk
   cd /home/fabse || return 
@@ -119,6 +119,7 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 alias fabse="macchina"
 alias rm="rm -i"
 alias yay="paru"
+alias sway="dbus-run-session sway"
 
 EOF
 cat << EOF | tee -a /etc/environment > /dev/null
