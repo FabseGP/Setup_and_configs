@@ -18,7 +18,7 @@
 
   doas cp /home/fabse/Setup_and_configs/Laptop_ARTIX/makepkg.conf /etc/makepkg.conf
   mkdir -p /home/fabse/Downloads
-  yay --cleanafter --useask -S stm32cubemx modprobed-db sworkstyle spicetify-cli kvantum-theme-sweet-mars-git wayfire-desktop-git avogadroapp bibata-rainbow-cursor-theme handlr-bin candy-icons-git tela-icon-theme sweet-gtk-theme-dark spotify cnrdrvcups-lb kicad-nightly-bin kicad-library-nightly kicad-library-3d-nightly otf-openmoji sunwait-git sway-launcher-desktop swaylock-fancy-git bastet freshfetch-bin cbonsai fuzzel nudoku clipman openrgb-bin osp-tracker macchina revolt-desktop toilet arduino-ide-beta-bin
+  yay --cleanafter --useask -S stm32cubemx nuclear-player-bin sworkstyle spicetify-cli kvantum-theme-sweet-mars-git wayfire-desktop-git avogadroapp bibata-rainbow-cursor-theme handlr-bin candy-icons-git tela-icon-theme sweet-gtk-theme-dark spotify cnrdrvcups-lb kicad-nightly-bin kicad-library-nightly kicad-library-3d-nightly otf-openmoji sunwait-git sway-launcher-desktop swaylock-fancy-git bastet freshfetch-bin cbonsai fuzzel nudoku clipman openrgb-bin osp-tracker macchina revolt-desktop toilet arduino-ide-beta-bin
   yay -Scd
   doas archlinux-java set java-17-openjdk
   cd /home/fabse || return 
@@ -41,7 +41,6 @@
   doas sv start avahi-daemon
   doas cp /home/fabse/Setup_and_configs/Laptop_ARTIX/intel-undervolt.conf /etc/intel-undervolt.conf
   doas intel-undervolt apply
-  doas sed -i 's/hosts: files resolve [!UNAVAIL=return] dns/hosts: files mdns4_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns/' /etc/nsswitch.conf
   doas usermod -a -G libvirt fabse
   doas usermod -a -G vboxusers fabse
   doas usermod -a -G games fabse
@@ -70,7 +69,7 @@ EOF
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
-# ZSH-theme + fonts + ZSH-config (wayland-related)
+# ZSH-theme + fonts + ZSH-config (wayland-related) + more wayland-stuff
 
   doas chsh -s /usr/bin/zsh fabse
   doas chsh -s /usr/bin/zsh root
@@ -152,6 +151,7 @@ EOF
 --enable-features=UseOzonePlatform
 --ozone-platform=wayland
 EOF
+  doas sed -i 's/Exec="\/opt\/nuclear\/nuclear" %U/Exec="\/opt\/nuclear\/nuclear" %U --enable-features=UseOzonePlatform --ozone-platform=wayland/' /usr/share/applications/nuclear.desktop
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -259,3 +259,4 @@ gtk-enable-input-feedback-sounds=0
 EOF
   cd /home/fabse || return
   doas sed -i '/permit nopass fabse/d' /etc/doas.conf
+  
