@@ -10,7 +10,7 @@
 # Package-installation + default java; plasma = ^1 ^2 ^3 ^4 ^26 ^29 ^38 ^39 ^43 ^44 
   
   doas pacman -S iptables-nft bemenu-renderer
-  doas pacman --noconfirm -Syyu kmod libelf nnn qt5-wayland kvantum-qt5 qt6-wayland x86_energy_perf_policy xorg-xwayland bottom xorg-xlsclients avogadrolibs sagemath seatd ttf-iosevka-nerd arm-none-eabi-gcc thunderbird gdb openocd arm-none-eabi-gdb libopencm3 vulkan-intel lib32-vulkan-intel phonon-qt5-vlc dialog avahi-runit virtualbox-guest-utils virtualbox-guest-iso cups-filters qemu libvirt-runit virtualbox-host-dkms virtualbox arduino-cli nss-mdns intel-undervolt-runit cups-pdf thermald-runit tlp-runit cpupower-runit pahole cpio perl tar xz bitwarden-cli networkmanager-openvpn xmlto python-sphinx python-sphinx_rtd_theme graphviz imagemagick terminator noto-fonts-emoji wmctrl libnotify lm_sensors-runit pcmanfm-gtk3 gvfs man-db i3status-rust rust wallutils curl mako wget fzf python-pywal zsh-theme-powerlevel10k go make otf-font-awesome swayidle ttf-opensans gammastep foliate zsh swappy zsh-autosuggestions zsh-syntax-highlighting zathura zathura-pdf-mupdf pipewire pipewire-alsa pipewire-pulse easyeffects sway arduino-avr-core openshot mousepad wine-staging links gnome-mahjongg gnome-calculator cups-runit qutebrowser geogebra kalzium step gthumb unrar unzip texlive-most geany geany-plugins libreoffice-fresh nodejs rclone syncthing-runit wayland gimp ffmpegthumbs linux-hardened linux-hardened-headers alsa-utils alacritty rsync lutris xdg-desktop-portal-kde xdg-desktop-portal-wlr pipewire-media-session gnuplot python3 python-pip libva-intel-driver brightnessctl ld-lsb lsd imv freecad artools iso-profiles aisleriot bsd-games mpv iptables-nft nftables-runit ebtables dnsmasq obs-studio librewolf libpipewire02 polkit-gnome moc mypaint grim android-tools figlet shellcheck jdk-openjdk meson gvfs-mtp tumbler xarchiver
+  doas pacman --noconfirm -Syyu clang kmod libelf nnn qt5-wayland kvantum-qt5 pacman-contrib liburcu valgrind qt6-wayland x86_energy_perf_policy xorg-xwayland bottom xorg-xlsclients avogadrolibs sagemath seatd ttf-iosevka-nerd arm-none-eabi-gcc thunderbird gdb openocd arm-none-eabi-gdb libopencm3 vulkan-intel lib32-vulkan-intel phonon-qt5-vlc dialog avahi-runit virtualbox-guest-utils virtualbox-guest-iso cups-filters qemu libvirt-runit virtualbox-host-dkms virtualbox arduino-cli nss-mdns intel-undervolt-runit cups-pdf thermald-runit tlp-runit cpupower-runit pahole cpio perl tar xz bitwarden-cli networkmanager-openvpn xmlto python-sphinx python-sphinx_rtd_theme graphviz imagemagick terminator noto-fonts-emoji wmctrl libnotify lm_sensors-runit pcmanfm-gtk3 gvfs man-db i3status-rust rust wallutils curl mako wget fzf python-pywal zsh-theme-powerlevel10k go make otf-font-awesome swayidle ttf-opensans gammastep foliate zsh swappy zsh-autosuggestions zsh-syntax-highlighting zathura zathura-pdf-mupdf pipewire pipewire-alsa pipewire-pulse easyeffects sway arduino-avr-core openshot mousepad wine-staging links gnome-mahjongg gnome-calculator cups-runit qutebrowser geogebra kalzium step gthumb unrar unzip texlive-most geany geany-plugins libreoffice-fresh nodejs rclone syncthing-runit wayland gimp ffmpegthumbs linux-hardened linux-hardened-headers alsa-utils alacritty rsync lutris xdg-desktop-portal-kde xdg-desktop-portal-wlr pipewire-media-session gnuplot python3 python-pip libva-intel-driver brightnessctl ld-lsb lsd imv freecad artools iso-profiles aisleriot bsd-games mpv iptables-nft nftables-runit ebtables dnsmasq obs-studio librewolf libpipewire02 polkit-gnome moc mypaint grim android-tools figlet shellcheck jdk-openjdk meson gvfs-mtp tumbler xarchiver
   
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -18,7 +18,7 @@
 
   doas cp /home/fabse/Setup_and_configs/Laptop_ARTIX/makepkg.conf /etc/makepkg.conf
   mkdir -p /home/fabse/Downloads
-  yay --cleanafter --useask -S dot-bin wxgtk3-dev-light newm-git greetd stm32cubemx nuclear-player-bin sworkstyle spicetify-cli kvantum-theme-sweet-mars-git wayfire-desktop-git avogadroapp bibata-rainbow-cursor-theme handlr-bin candy-icons-git tela-icon-theme sweet-gtk-theme-dark spotify cnrdrvcups-lb kicad-nightly-bin kicad-library-nightly kicad-library-3d-nightly otf-openmoji sunwait-git sway-launcher-desktop swaylock-fancy-git bastet freshfetch-bin cbonsai fuzzel nudoku clipman openrgb-bin osp-tracker macchina revolt-desktop toilet arduino-ide-beta-bin
+  yay --cleanafter --useask -S dot-bin wxgtk3-dev-light newm-git greetd modprobed-db stm32cubemx nuclear-player-bin sworkstyle spicetify-cli kvantum-theme-sweet-mars-git wayfire-desktop-git avogadroapp bibata-rainbow-cursor-theme handlr-bin candy-icons-git tela-icon-theme sweet-gtk-theme-dark spotify cnrdrvcups-lb kicad-nightly-bin kicad-library-nightly kicad-library-3d-nightly otf-openmoji sunwait-git sway-launcher-desktop swaylock-fancy-git bastet freshfetch-bin cbonsai fuzzel nudoku clipman openrgb-bin osp-tracker macchina revolt-desktop toilet arduino-ide-beta-bin
   yay -Scd
   doas archlinux-java set java-17-openjdk
   cd /home/fabse || return 
@@ -53,7 +53,7 @@ EOF
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
-# Default apps + config
+# Default apps + config + extra
 
   handlr add .pdf org.pwmt.zathura.desktop
   handlr add .png imv.desktop
@@ -66,6 +66,11 @@ EOF
   set selection-clipboard clipboard
   
 EOF
+  cd /home/fabse || exit
+  mkdir /home/fabse/.config/artools
+  buildiso -p base -q 
+  cp /etc/artools/artools* /home/fabse/.config/artools
+  cp -r /usr/share/artools/iso-profiles /home/fabse/artools-workspace
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -259,4 +264,3 @@ gtk-enable-input-feedback-sounds=0
 EOF
   cd /home/fabse || return
   doas sed -i '/permit nopass fabse/d' /etc/doas.conf
-  
