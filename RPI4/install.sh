@@ -28,7 +28,7 @@ EOF
   elif [ "$docker" == "no" ]; then
     PACKAGES="apk add podman podman-docker py3-podman podman-remote fuse-overlayfs shadow slirp4netns"
   fi
-  doas apk add $PACKAGES afetch bottom musl-locales openssh google-authenticator rsnapshot openssh-server-pam lang libressl udisks2 sed man-pages ttf-dejavu cups cups-libs sshguard cups-pdf cups-client cups-filters git py3-pip swaybg pcmanfm bc mako lz4 cbonsai nerd-fonts haveged gcc make build-base kbd-bkeymaps curl wget i2c-tools lm_sensors perl lsblk e2fsprogs-extra networkmanager nftables tzdata mysql-client firefox mysql pipewire ttf-opensans pipewire-pulse libuser libreoffice pavucontrol i3status-rust fzf rclone syncthing rsync alacritty terminator fcron unrar unzip zsh zsh-autosuggestions zsh-syntax-highlighting neovim btrfs-progs mousepad xarchiver nnn mpv swappy gotop wayfire nodejs-current npm lsof zathura zathura-pdf-mupdf eudev sway swaylock-effects swayidle figlet mesa-dri-gallium xdg-desktop-portal-wlr xdg-desktop-portal-kde gammastep wf-config clipman gnome-calculator polkit-gnome pipewire-media-session grim dialog grep font-awesome swaylockd
+  doas apk add $PACKAGES afetch cgroups bottom musl-locales openssh google-authenticator rsnapshot openssh-server-pam lang libressl udisks2 sed man-pages ttf-dejavu cups cups-libs sshguard cups-pdf cups-client cups-filters git py3-pip swaybg pcmanfm bc mako lz4 cbonsai nerd-fonts haveged gcc make build-base kbd-bkeymaps curl wget i2c-tools lm_sensors perl lsblk e2fsprogs-extra networkmanager nftables tzdata mysql-client firefox mysql pipewire ttf-opensans pipewire-pulse libuser libreoffice pavucontrol i3status-rust fzf rclone syncthing rsync alacritty terminator fcron unrar unzip zsh zsh-autosuggestions zsh-syntax-highlighting neovim btrfs-progs mousepad xarchiver nnn mpv swappy gotop wayfire nodejs-current npm lsof zathura zathura-pdf-mupdf eudev sway swaylock-effects swayidle figlet mesa-dri-gallium xdg-desktop-portal-wlr xdg-desktop-portal-kde gammastep wf-config clipman gnome-calculator polkit-gnome pipewire-media-session grim dialog grep font-awesome swaylockd
 
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -46,7 +46,7 @@ EOF
   fi
   doas rc-update add swap boot
   doas rc-update add haveged boot
-  for service in fcron syncthing dbus sshguard sshd cupsd mariadb fuse nftables networkmanager; do
+  for service in fcron syncthing dbus sshguard sshd cgroups cupsd mariadb fuse nftables networkmanager; do
     doas rc-update add $service default
   done
   doas /etc/init.d/sshd start
